@@ -29,6 +29,8 @@ namespace TopDownGridBasedEngine
             Point topLeft = new Point(_window.ClientBounds.Width, 0);
             Point topRight = new Point(0, 0);
 
+            sb.DrawString(TextureManager.Font, EntityManager.Instance.Joueur.CurrentWeapon().Nom, new Vector2(Game1.Screen.ClientBounds.Width - 100, 10), Color.Yellow);
+
             //sb.Draw(TextureManager.Instance.TextureFire[0], new Rectangle(bottomLeft.X, bottomLeft.Y - 10, 10, 10), Color.White);
 
 

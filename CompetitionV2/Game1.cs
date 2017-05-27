@@ -18,7 +18,6 @@ namespace TopDownGridBasedEngine
         private int FPSCounter;
         private double FPSTime;
         private int LastFPS;
-        private SpriteFont font;
 
 
         IPartieDeJeu PartieDuJeu;
@@ -52,7 +51,7 @@ namespace TopDownGridBasedEngine
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            font = Content.Load<SpriteFont>("Font/Font");
+            
             Penumbra.Initialize();
             Penumbra.Visible = true;
         }
@@ -86,7 +85,7 @@ namespace TopDownGridBasedEngine
                 FPSCounter = 0;
             }
             _spriteBatch.Begin();
-            _spriteBatch.DrawString(font, "FPS: " + LastFPS, new Vector2(10, 10), Color.Yellow);
+            _spriteBatch.DrawString(TextureManager.Font, "FPS: " + LastFPS, new Vector2(10, 10), Color.Yellow);
             _spriteBatch.End();
             base.Draw(gameTime);
             PartieDuJeu.DrawWithoutShadows(_spriteBatch, gameTime, GraphicsDevice);
