@@ -31,7 +31,7 @@ namespace TopDownGridBasedEngine
             _CurrPos.Y = position / map.Width;
 
             // Balance la longueur des murs en fonction de la largeur de l'écran et du random.
-            _LeftLength = r.Next(map.Width / 20, map.Width / 6);
+            _LeftLength = r.Next(map.Width / 16, map.Width / 6);
             _Length = _LeftLength;
 
             _Orientation = (3 * r.Next(0, 4)); // Clockwise;
@@ -86,24 +86,11 @@ namespace TopDownGridBasedEngine
         /// Returns false and set current position if the wall can be correctly built.
         /// Returns true if no wall could ever be built here.
         /// </summary>
-        /// <param name="otherOrientationsWereAlreadyChecked"></param>
-        /// <returns></returns>
-        bool CheckUpperWallBuilding(bool otherOrientationsWereAlreadyChecked)
+        bool CheckUpperWallBuilding()
         {
             bool retour = false;
             bool nextPosIsInvalid = false; // Basically another return but with more explicit name.
 
-
- /*           if (!otherOrientationsWereAlreadyChecked && _r.Next(_Length) < 2) // Environ deux angles par mur si possible.
-            {
-                nextPosIsInvalid = true;
-
-                if (_r.Next() % 2 == 1)
-                    retour = LeftStart();
-                else
-                    retour = RightStart();
-            }
-*/
             // Section dégueulasse, mais simple.
             if (!nextPosIsInvalid)
             {
@@ -148,22 +135,10 @@ namespace TopDownGridBasedEngine
         /// Returns false and set current position if the wall can be correctly built.
         /// Returns true if no wall could ever be built here.
         /// </summary>
-        /// <param name="otherOrientationsWereAlreadyChecked"></param>
-        /// <returns></returns>
-        bool CheckRightWallBuilding(bool otherOrientationsWereAlreadyChecked)
+        bool CheckRightWallBuilding()
         {
             bool retour = false;
             bool nextPosIsInvalid = false; // Basically another return but with more explicit name.
-
-            /*if (!otherOrientationsWereAlreadyChecked && _r.Next(_Length) < 2) // Environ deux angles par mur si possible.
-            {
-                nextPosIsInvalid = true;
-
-                if (_r.Next() % 2 == 1)
-                    retour = UpperStart();
-                else
-                    retour = DownStart();
-            }*/
 
             // Section dégueulasse, mais simple.
             if (!nextPosIsInvalid)
@@ -209,24 +184,11 @@ namespace TopDownGridBasedEngine
         /// Returns false and set current position if the wall can be correctly built.
         /// Returns true if no wall could ever be built here.
         /// </summary>
-        /// <param name="otherOrientationsWereAlreadyChecked"></param>
-        /// <returns></returns>
-        bool CheckDownWallBuilding(bool otherOrientationsWereAlreadyChecked)
+        bool CheckDownWallBuilding()
         {
             bool retour = false;
             bool nextPosIsInvalid = false; // Basically another return but with more explicit name.
 
-
-/*            if (!otherOrientationsWereAlreadyChecked && _r.Next(_Length) < 2) // Environ deux angles par mur si possible.
-            {
-                nextPosIsInvalid = true;
-
-                if (_r.Next() % 2 == 0)
-                    retour = LeftStart();
-                else
-                    retour = RightStart();
-            }
-*/
             // Section dégueulasse, mais simple.
             if (!nextPosIsInvalid)
             {
@@ -236,9 +198,7 @@ namespace TopDownGridBasedEngine
                 }
                 else
                 {
-                    if (_CurrPos.Y > 1 && _Map[_CurrPos.X, _CurrPos.Y].Type != CaseType.Vide)
-                        nextPosIsInvalid = true;
-                    else if (_CurrPos.X != 0)
+                    if (_CurrPos.X != 0)
                     {
                         if (_Map[_CurrPos.X - 1, _CurrPos.Y + 1].Type != CaseType.Vide)
                             nextPosIsInvalid = true;
@@ -252,6 +212,8 @@ namespace TopDownGridBasedEngine
                         else if (_Map[_CurrPos.X + 1, _CurrPos.Y + 2].Type != CaseType.Vide)
                             nextPosIsInvalid = true;
                     }
+                    else if (_CurrPos.Y > 1 && _Map[_CurrPos.X, _CurrPos.Y].Type != CaseType.Vide)
+                        nextPosIsInvalid = true;
 
                 }
             }
@@ -273,23 +235,12 @@ namespace TopDownGridBasedEngine
         /// Returns false and set current position if the wall can be correctly built.
         /// Returns true if no wall could ever be built here.
         /// </summary>
-        /// <param name="otherOrientationsWereAlreadyChecked"></param>
-        /// <returns></returns>
-        bool CheckLeftWallBuilding(bool otherOrientationsWereAlreadyChecked)
+        bool CheckLeftWallBuilding()
         {
             bool retour = false;
             bool nextPosIsInvalid = false; // Basically another return but with more explicit name.
 
-/*            if (!otherOrientationsWereAlreadyChecked && _r.Next(_Length) < 2) // Environ deux angles par mur si possible.
-            {
-                nextPosIsInvalid = true;
 
-                if (_r.Next() % 2 == 0)
-                    retour = UpperStart();
-                else
-                    retour = DownStart();
-            }
-*/
             // Section dégueulasse, mais simple.
             if (!nextPosIsInvalid)
             {
@@ -334,9 +285,9 @@ namespace TopDownGridBasedEngine
         {
             bool over = false;
 
-            if (CheckUpperWallBuilding(false) &&
-                CheckRightWallBuilding(true) &&
-                CheckLeftWallBuilding(true))
+            if (CheckUpperWallBuilding() &&
+                CheckRightWallBuilding() &&
+                CheckLeftWallBuilding())
                 over = true;
 
             return over;
@@ -346,9 +297,9 @@ namespace TopDownGridBasedEngine
         {
             bool over = false;
 
-            if (CheckRightWallBuilding(false) &&
-                CheckDownWallBuilding(true) &&
-                CheckUpperWallBuilding(true))
+            if (CheckRightWallBuilding() &&
+                CheckDownWallBuilding() &&
+                CheckUpperWallBuilding())
                 over = true;
 
             return over;
@@ -358,9 +309,9 @@ namespace TopDownGridBasedEngine
         {
             bool over = false;
 
-            if (CheckDownWallBuilding(false) &&
-                CheckLeftWallBuilding(true) &&
-                CheckRightWallBuilding(true))
+            if (CheckDownWallBuilding() &&
+                CheckRightWallBuilding() &&
+                CheckLeftWallBuilding())
                 over = true;
 
             return over;
@@ -370,9 +321,9 @@ namespace TopDownGridBasedEngine
         {
             bool over = false;
 
-            if (CheckLeftWallBuilding(false) &&
-                CheckUpperWallBuilding(true) &&
-                CheckDownWallBuilding(true))
+            if (CheckLeftWallBuilding() &&
+                CheckUpperWallBuilding() &&
+                CheckDownWallBuilding())
                 over = true;
 
             return over;
