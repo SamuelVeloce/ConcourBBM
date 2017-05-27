@@ -43,7 +43,7 @@ namespace TopDownGridBasedEngine
             TextureManager.InitInstance(Content);
             PartieDuJeu = new JeuMenu();
             SoundManager.InitInstance(Content);
-
+            SoundManager.TrameSonoreJeu.Play((float)0.5, 0, 0);
             base.Initialize();
 
         }
