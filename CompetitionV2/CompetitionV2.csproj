@@ -47,6 +47,7 @@
     <Compile Include="AbsMoveableEntity.cs" />
     <Compile Include="Armes\BoltActionSniper.cs" />
     <Compile Include="Armes\Machinegun.cs" />
+    <Compile Include="Armes\PistolAI.cs" />
     <Compile Include="Armes\SemiAutomaticSniper.cs" />
     <Compile Include="Armes\Weapon.cs" />
     <Compile Include="BlockCollisionEventArgs.cs" />

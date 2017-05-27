@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 using Competition.Armes;
 using TopDownGridBasedEngine.Projectile;
+using CompetitionV2.Armes;
 
 using Penumbra;
 
@@ -36,7 +37,7 @@ namespace TopDownGridBasedEngine
             Collided += Enemy_Collided;
             NextPathfindTime = 0;
             _SpeedFactor = speedFactor;
-            Arme = new Pistol(this);
+            Arme = new PistolAI(this);
         }
 
         private void Enemy_Collided(object sender, BlockCollisionEventArgs e)
@@ -89,7 +90,7 @@ namespace TopDownGridBasedEngine
                 NextPathfindTime = 200;
                 if (RaycastTo(new Point(j.X + j.Size / 2, j.Y + j.Size / 2)))
                 {
-                    Arme.MouseDown(new Point(j.X, j.Y));
+                    Arme.MouseDown(new Point(j.X - j.Size / 2, j.Y - j.Size / 2));
                     Arme.MouseUp();
 
                 }
