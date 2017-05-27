@@ -22,6 +22,7 @@ namespace TopDownGridBasedEngine
         private int LastFPS;
 
 
+
         static IPartieDeJeu[] PartieDuJeu;
         private static int m_IndexPartieDeJeu;
         private static Game1 Instance;
@@ -49,7 +50,7 @@ namespace TopDownGridBasedEngine
                 m_IndexPartieDeJeu = i;
             }
         }
-        
+    
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -112,6 +113,7 @@ namespace TopDownGridBasedEngine
                 ButtonState.Pressed || Keyboard.GetState().IsKeyDown(
                     Keys.Escape))
                 Exit();
+            
 
             PartieDuJeu[IndexPartieDeJeu].Update(gameTime);
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CompetitionV2.Projectile;
+using TopDownGridBasedEngine.Projectile;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -27,16 +27,34 @@ namespace TopDownGridBasedEngine
 
             _hud = new Hud(Game1.Screen);
             Map = new Map(45, Game1.Screen.ClientBounds);
-
-            Joueur = new Joueur(40, 40, Map);
-            EntityManager.InitInstance(Joueur, Map, 0);
+            Joueur = null;
 
             System.Random r = new System.Random();
+            Point p;
+
+            do
+            {
+                p = new Point(r.Next() % Map.Width, r.Next() % Map.Height);
+                if (!Map[p.X, p.Y].IsSolid)
+                    Joueur = new Joueur(p.X * Map.EntityPixelPerCase, p.Y * Map.EntityPixelPerCase, Map);
+            }
+            while (Joueur == null);
+            
+            EntityManager.InitInstance(Joueur, Map, 0);
+
+            
             Enemy e;
             for (int i = 0; i < 50; i++)
             {
-                e = new Enemy(r.Next() % 900, r.Next() % 900, Map, 0.25f);
-                EntityManager.Instance.Add(e);
+
+                p = new Point(r.Next() % Map.Width, r.Next() % Map.Height);
+                if (!Map[p.X, p.Y].IsSolid)
+                {
+                    e = new Enemy(p.X * Map.EntityPixelPerCase, p.Y * Map.EntityPixelPerCase, Map, 0.25f);
+                    EntityManager.Instance.Add(e);
+                }
+                
+                
             }
 
             _wrapper = new KeyWrapper(0, 0, 0);
