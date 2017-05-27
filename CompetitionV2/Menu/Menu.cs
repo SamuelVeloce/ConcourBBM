@@ -17,6 +17,9 @@ namespace CompetitionV2.Menu
             m_btns = Buttons;
 
         }
+
+        
+
         public void Update(GameTime gameTime)
         {
            //todo loop every buttons in form
@@ -40,7 +43,7 @@ namespace CompetitionV2.Menu
             //Game1.Penumbra.Visible = false;
             //Game1.Penumbra.BeginDraw();
             sb.Begin();
-            
+            sb.Draw(TextureManager.BackgroundImage,gd.Viewport.Bounds,Color.White);
             foreach (Button btn in m_btns)
             {
                 btn.Draw(sb);

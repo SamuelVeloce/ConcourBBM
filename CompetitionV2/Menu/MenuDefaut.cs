@@ -12,11 +12,11 @@ namespace CompetitionV2.Menu
     {
         private static Button[] btn = new Button[]
             {
-                new Button("Jouer!", TextureManager.TextureTerre[0], new Rectangle(10, 10, 300, 100),
+                new Button("Jouer!", TextureManager.TextureTerre[0], new Rectangle(30, 30, 300, 100),
                     Game1.SetPartieDeJeu, (int) TypesDePartieDeJeu.Jeu),
-                new Button("Armurerie!", TextureManager.TextureTerre[0], new Rectangle(10, 160, 300, 100),
+                new Button("Armurerie!", TextureManager.TextureTerre[0], new Rectangle(30, 180, 300, 100),
                     Game1.SetPartieDeJeu, (int) TypesDePartieDeJeu.Armurerie),
-                new Button("Quitter!", TextureManager.TextureTerre[0], new Rectangle(10, 310, 300, 100),
+                new Button("Quitter!", TextureManager.TextureTerre[0], new Rectangle(30, 330, 300, 100),
                     Game1.SetPartieDeJeu, (int) TypesDePartieDeJeu.FermerJeu)
             };
         public MenuDefaut():base(btn)
