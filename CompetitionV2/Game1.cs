@@ -15,6 +15,8 @@ namespace TopDownGridBasedEngine
         public static Joueur[] Joueurs;
         
         public static PenumbraComponent Penumbra;
+
+        public Hud _hud;
         
         public Game1()
         {
@@ -34,7 +36,8 @@ namespace TopDownGridBasedEngine
             Penumbra.AmbientColor = Color.Black;
             
             base.Initialize();
-            
+
+            _hud = new Hud(Window);
             _map = new Map(29, Window.ClientBounds);
             Joueurs = new Joueur[4];
             _wrapper = new KeyWrapper(0, 0, 0);
@@ -83,6 +86,7 @@ namespace TopDownGridBasedEngine
 
         protected override void UnloadContent()
         {
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -132,6 +136,7 @@ namespace TopDownGridBasedEngine
             
             _spriteBatch.Begin();
             EntityManager.Instance.DrawPlayers(_spriteBatch, Window.ClientBounds);
+            _hud.Draw(_spriteBatch);
             _spriteBatch.End();
 
         }
