@@ -14,7 +14,8 @@ namespace Competition.Armes
     public enum WeaponType
     {
         Pistol = 0,
-        MachineGun = 1
+        MachineGun = 1,
+        Shotgun,
     };
 
     public abstract class Weapons //Classe abstraite utilisé comme template pour toutes les armes
