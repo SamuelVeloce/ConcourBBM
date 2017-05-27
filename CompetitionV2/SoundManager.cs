@@ -18,6 +18,7 @@ namespace TopDownGridBasedEngine
         public static SoundEffect ImpactRobot;
         public static SoundEffect Pistol;
         public static SoundEffect Rifle;
+        public static SoundEffect Shotgun;
         public static SoundEffect EmptyGun;
         public static SoundEffect TrameSonoreMenu;
         public static SoundEffect TrameSonoreJeu;
@@ -46,6 +47,7 @@ namespace TopDownGridBasedEngine
             ImpactRobot = _content.Load<SoundEffect>("SoundEffect/ImpactRobot");
             Pistol = _content.Load<SoundEffect>("SoundEffect/PistolShot");
             Rifle = _content.Load<SoundEffect>("SoundEffect/RifleShot");
+            Shotgun = _content.Load<SoundEffect>("SoundEffect/Shotgun");
             EmptyGun = _content.Load<SoundEffect>("SoundEffect/EmptyGun");
             TrameSonoreMenu = _content.Load<SoundEffect>("SoundEffect/TrameSonore");
             TrameSonoreJeu = _content.Load<SoundEffect>("SoundEffect/ExtremeAction");
