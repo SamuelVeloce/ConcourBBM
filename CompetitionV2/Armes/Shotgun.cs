@@ -30,11 +30,9 @@ namespace CompetitionV2.Armes
         private bool m_Reloading;
         private readonly System.Timers.Timer m_WeaponTimer;
 
-
-        private volatile bool m_ShootingSound;
         public override void JouerSonTir()
         {
-           // throw new NotImplementedException();
+            SoundManager.Shotgun.Play((float)0.5,0,0);
         }
 
         public override WeaponType WeaponType => WeaponType.Shotgun;

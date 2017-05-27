@@ -3,7 +3,7 @@ using CompetitionV2.Menu;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
+using Microsoft.Xna.Framework.Audio;
 using Penumbra;
 
 namespace TopDownGridBasedEngine
@@ -21,7 +21,7 @@ namespace TopDownGridBasedEngine
         private double FPSTime;
         private int LastFPS;
 
-
+        private static SoundEffectInstance seiTrameJeu;
 
         static IPartieDeJeu[] PartieDuJeu;
         private static int m_IndexPartieDeJeu;
@@ -31,6 +31,25 @@ namespace TopDownGridBasedEngine
         {
             if (m_IndexPartieDeJeu != i)
             {
+                //Sortie de jeu
+                if(m_IndexPartieDeJeu == 1)
+                {
+                    SoundManager.seiMusique.Stop();
+                    SoundManager.seiMusique = SoundManager.TrameSonoreMenu.CreateInstance();
+                    SoundManager.seiMusique.Volume = (float)1;
+                    SoundManager.seiMusique.IsLooped = true;
+                    SoundManager.seiMusique.Play();
+                }
+                //Entrée en jeu
+                if(i == 1)
+                {
+                    SoundManager.seiMusique.Stop();
+                    SoundManager.seiMusique = SoundManager.TrameSonoreJeu.CreateInstance();
+                    SoundManager.seiMusique.Volume = (float)0.5;
+                    SoundManager.seiMusique.IsLooped = true;
+                    SoundManager.seiMusique.Play();
+                }
+
                 switch (i)
                 {
                     case (int)TypesDePartieDeJeu.Jeu:
@@ -88,7 +107,10 @@ namespace TopDownGridBasedEngine
 
             
             SoundManager.InitInstance(Content);
-            SoundManager.TrameSonoreJeu.Play((float)0.5, 0, 0);
+
+            seiTrameJeu = SoundManager.TrameSonoreMenu.CreateInstance();
+            seiTrameJeu.Play();
+            
             base.Initialize();
 
         }
