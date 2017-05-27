@@ -45,7 +45,7 @@ namespace TopDownGridBasedEngine
 
             BombsLeft = 1;
 
-            m_WeaponList = new Weapons[] {new Pistol(), new MachineGun()};
+            m_WeaponList = new Weapons[] {new Pistol(this), new MachineGun(this)};
 
 
             Lights = new Light[2];
@@ -56,6 +56,7 @@ namespace TopDownGridBasedEngine
             Lights[0].Scale = new Vector2(900, 900);
             Lights[0].CastsShadows = true;
             Lights[0].ShadowType = ShadowType.Occluded;
+            Lights[0].Radius = 5;
             Game1.Penumbra.Lights.Add(Lights[0]);
 
             Lights[1] = new PointLight();
@@ -64,11 +65,17 @@ namespace TopDownGridBasedEngine
             Lights[1].Scale = new Vector2(900, 900);
             Lights[1].CastsShadows = false;
             Lights[1].ShadowType = ShadowType.Solid;
+            Lights[1].Radius = 5;
             Game1.Penumbra.Lights.Add(Lights[1]);
 
             ChangedCase += Joueur_ChangedCase;
             Moved += Joueur_Moved;
             Died += Die;
+        }
+
+        public void DealDamage(int Damage)
+        {
+
         }
         
         public Light[] Lights { get; }
@@ -86,8 +93,8 @@ namespace TopDownGridBasedEngine
         {
             for (int i = 0; i < 2; i++)
             {
-                Lights[i].Position = new Vector2(X * Map.TileWidth / Map.EntityPixelPerCase,
-                    Y * Map.TileWidth / Map.EntityPixelPerCase);
+                Lights[i].Position = new Vector2(X * Map.TileWidth / Map.EntityPixelPerCase + Size / 2,
+                    Y * Map.TileWidth / Map.EntityPixelPerCase + Size / 2);
             }
 
         }

@@ -132,34 +132,38 @@ namespace TopDownGridBasedEngine
                 if (dx <= -Size)
                 {
                     // Évite la case par la gauche. Seule collision possible = gauche
-                    if (-dxm <= Size && dym > -Size && dym <= Map.EntityPixelPerCase)
+                    if (-dxm <= Size && dym > -Size && dym < Map.EntityPixelPerCase)
                     {
                         ret.Add(new CollisionInfo(CollisionSide.Left, cases[i]));
-                        xm = x - Size + 1;
+                        xm = x - Size;
+                        dxm = xm - cases[i].X * Map.EntityPixelPerCase;
                     }
                 }
                 else if (dx >= Size)
                 {
-                    if (dxm <= Map.EntityPixelPerCase && dym > -Size && dym <= Map.EntityPixelPerCase)
+                    if (dxm <= Map.EntityPixelPerCase && dym > -Size && dym < Map.EntityPixelPerCase)
                     {
                         ret.Add(new CollisionInfo(CollisionSide.Right, cases[i]));
-                        xm = x - Size + 1;
+                        xm = x - Size;
+                        dxm = xm - cases[i].X * Map.EntityPixelPerCase;
                     }
                 }
                 if (dy <= -Size)
                 {
-                    if (-dym <= Size && dxm > -Size && dxm <= Map.EntityPixelPerCase)
+                    if (-dym <= Size && dxm > -Size && dxm < Map.EntityPixelPerCase)
                     {
                         ret.Add(new CollisionInfo(CollisionSide.Up, cases[i]));
-                        ym = y - Size + 1;
+                        ym = y - Size;
+                        dym = ym - cases[i].Y * Map.EntityPixelPerCase;
                     }
                 }
                 else if (dy >= Size)
                 {
-                    if (dym <= Map.EntityPixelPerCase && dxm > -Size && dxm <= Map.EntityPixelPerCase)
+                    if (dym <= Map.EntityPixelPerCase && dxm > -Size && dxm < Map.EntityPixelPerCase)
                     {
                         ret.Add(new CollisionInfo(CollisionSide.Down, cases[i]));
-                        ym = y - Size +1;
+                        ym = y - Size;
+                        dym = ym - cases[i].Y * Map.EntityPixelPerCase;
                     }
                 }
             }
