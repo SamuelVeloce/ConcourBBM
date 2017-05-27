@@ -12,9 +12,7 @@ namespace TopDownGridBasedEngine
 {
     public class Joueur : AbsMoveableEntity, ITexturable
     {
-
         private int _textureVariant;
-        private Sauvegarde _Sauvegarde;
 
         Weapons[] m_WeaponList;
 

@@ -12,33 +12,32 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace TopDownGridBasedEngine
 {
     [Serializable]
-    public class Sauvegarde
+    public static class Sauvegarde
     {
-        private byte[] _DropCountForEachWeapon;
+        private static byte[] _DropCountForEachWeapon;
 
-        public static Sauvegarde GetSauvegarde(FileStream fs)
+        public static void SetSauvegarde(FileStream fs)
         {
             BinaryFormatter bf = new BinaryFormatter();
-            return (Sauvegarde)bf.Deserialize(fs);
+            _DropCountForEachWeapon = (byte[])bf.Deserialize(fs);
         }
 
-
-        public Sauvegarde()
+        public static void SetSauvegarde()
         {
-            _DropCountForEachWeapon = new byte[6]; // Change avec le nombre d'armes.
+            _DropCountForEachWeapon = new byte[6]; // Change selon le nombre d'armes.
         }
 
-        bool Save(FileStream fs)
+        static bool Save(FileStream fs)
         {
             if (fs.CanWrite == false)
                 return false;
 
             BinaryFormatter bf = new BinaryFormatter();
-            bf.Serialize(fs, this);
+            bf.Serialize(fs, _DropCountForEachWeapon);
             return true;
         }
 
-        public bool IsWeaponUnlocked(WeaponType w)
+        public static bool IsWeaponUnlocked(WeaponType w)
         {
             if (_DropCountForEachWeapon[(int)w] >= 30)
                 return true;
@@ -46,7 +45,7 @@ namespace TopDownGridBasedEngine
                 return false;
         }
 
-        public void AddDrop(WeaponType Type)
+        public static void AddDrop(WeaponType Type)
         {
             _DropCountForEachWeapon[(int)Type] += 1;
         }
