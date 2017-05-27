@@ -130,7 +130,7 @@ namespace TopDownGridBasedEngine
 
         public void UpdateTexture(long deltaTime)
         {
-            _textureVariant += (int)deltaTime / 5;
+            //_textureVariant += (int)deltaTime / 1;
             if (_textureVariant > 79)
                 _textureVariant %= 80;
 
