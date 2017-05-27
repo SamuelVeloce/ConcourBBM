@@ -20,6 +20,7 @@ namespace CompetitionV2
         public static SoundEffect Rifle;
         public static SoundEffect EmptyGun;
         public static SoundEffect TrameSonoreMenu;
+        public static SoundEffect TrameSonoreJeu;
 
         private SoundManager(ContentManager content)
         {
@@ -47,11 +48,15 @@ namespace CompetitionV2
             Rifle = _content.Load<SoundEffect>("SoundEffect/RifleShot");
             EmptyGun = _content.Load<SoundEffect>("SoundEffect/EmptyGun");
             TrameSonoreMenu = _content.Load<SoundEffect>("SoundEffect/TrameSonore");
+            TrameSonoreJeu = _content.Load<SoundEffect>("SoundEffect/ExtremeAction");
 
             /*
                 Tous les effets sonores sont libres de droit et ont étés 
                 téléchargés depuis https://www.zapsplat.com et édités à 
                 l'aide de https://audiotrimmer.com/
+
+                La trame sonore du jeu a été téléchargée sur le site:
+                http://www.bensound.com/
             */
         }
     }
