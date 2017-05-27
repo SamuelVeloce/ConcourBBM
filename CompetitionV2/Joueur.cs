@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Competition.Armes;
 using CompetitionV2.Armes;
 using CompetitionV2.Projectile;
@@ -6,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Penumbra;
+using EventHandler = CompetitionV2.Menu.EventHandler;
 
 
 namespace TopDownGridBasedEngine
@@ -76,8 +78,10 @@ namespace TopDownGridBasedEngine
         {
             IsDead = true;
             Game1.Penumbra.Lights.Remove(Lights[0]);
-            Game1.Penumbra.Lights.Remove(Lights[1]);
-        }
+            Game1.Penumbra.Lights.Remove(Lights[1]); 
+            
+            Game1.SetPartieDeJeu((int)TypesDePartieDeJeu.MenuDefaut);
+    }
 
         private void Joueur_Moved(object sender, CancellableEventArgs e)
         {
