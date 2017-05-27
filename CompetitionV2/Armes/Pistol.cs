@@ -30,8 +30,7 @@ namespace CompetitionV2.Projectile
         private readonly System.Timers.Timer m_WeaponTimer;
 
 
-
-        private volatile bool m_ShootingSound;
+        
         public override void JouerSonTir()
         {
             //TODO
@@ -51,11 +50,7 @@ namespace CompetitionV2.Projectile
                 m_WeaponTimer.Start();
             }
         }
-        //  private Vector2 m_MouseDir;
-        /*  public override Vector2 MouseDirection
-          {
-              set { m_MouseDir = value; }
-          }*/
+        
 
         public Pistol()
         {
@@ -63,7 +58,7 @@ namespace CompetitionV2.Projectile
             NBulletInCharger = m_ClipSize;
             m_WeaponTimer = new System.Timers.Timer(m_Firerate) { AutoReset = false };
             m_WeaponTimer.Elapsed += _timer_Elapsed;
-
+            Nom = "Pistol";
 
         }
         public override void MouseDown()//Vector2 MouseDir)
