@@ -76,6 +76,10 @@ namespace TopDownGridBasedEngine
             if (Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.D))
                 _wrapper.State |= KeyState.Right;
             _wrapper.ToggleSpace(Keyboard.GetState().IsKeyDown(Keys.Space));
+
+            if (Keyboard.GetState().IsKeyDown(Keys.R))
+                Joueur.CurrentWeapon().Reload();
+
             if (Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
                 if (!MouseDown)
@@ -83,7 +87,6 @@ namespace TopDownGridBasedEngine
                     Joueur.CurrentWeapon().MouseDown();
                     MouseDown = true;
                 }
-                
             }
             else
             {
