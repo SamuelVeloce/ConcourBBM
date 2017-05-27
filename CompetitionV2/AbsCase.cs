@@ -95,7 +95,7 @@ namespace TopDownGridBasedEngine
         public virtual void Draw(SpriteBatch sb, float width)
         {
             
-            sb.Draw(Texture, new Rectangle((int)(X * width), (int)(Y * width), (int)width, (int)width), Color.White);
+            sb.Draw(Texture, new Rectangle((int)(X * width), (int)(Y * width), (int)width + 1, (int)width + 1), Color.White);
         }
 
         public override string ToString()

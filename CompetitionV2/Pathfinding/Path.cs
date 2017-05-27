@@ -43,7 +43,7 @@ namespace TopDownGridBasedEngine
             if (c != null)
             {
                 Vector2 Diff = new Vector2(CurrentEntityPosition.X - c.PosX, CurrentEntityPosition.Y - c.PosY);
-                if (Diff.LengthSquared() < 0.25f)
+                if (Diff.LengthSquared() < 0.4f)
                 {
                     m_ListPath.Remove(c);
                 }

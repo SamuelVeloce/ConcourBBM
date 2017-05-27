@@ -26,7 +26,7 @@ namespace TopDownGridBasedEngine
         {
             VelX = 0;
             VelY = 0;
-            Size = 5;
+            Size = 20;
             _path = null;
             Died += Die;
             Collided += Enemy_Collided;
@@ -108,11 +108,9 @@ namespace TopDownGridBasedEngine
             }
             if (VelX == 0 && VelY == 0)
                 bit = TextureManager.Instance.TexturePlayerDown[0];
-<<<<<<< HEAD
-            sb.Draw(bit, new Rectangle((int)((X - Size) * w), (int)((Y - Size - 20) * w), (int)(Size * w * 2), (int)(Size * w * 3)), color);
-=======
-            sb.Draw(bit, new Rectangle((int)((X - rad) * w), (int)((Y - rad - 20) * w), (int)(rad * w * 1), (int)(rad * w * 1)), color);
->>>>>>> master
+            sb.Draw(bit, new Rectangle((int)(X * w), (int)(Y * w - Size * w), (int)(Size * w), (int)(Size * w * 2)), color);
+            sb.Draw(TextureManager.TextureTerre[0], new Rectangle((int)(X * w), (int)(Y * w - Size * w), (int)(Size * w), (int)(Size * w * 2)), Color.White);
+
 
         }
 

@@ -98,9 +98,9 @@ namespace TopDownGridBasedEngine
             bool bx, by;
             AbsCase[] ret;
             
-            x1 = (x - Size) / Map.EntityPixelPerCase;
-            x2 = (x + Size - 1) / Map.EntityPixelPerCase;
-            y1 = (y - Size) / Map.EntityPixelPerCase;
+            x1 = (x) / Map.EntityPixelPerCase;
+            x2 = (x + Size- 1) / Map.EntityPixelPerCase;
+            y1 = (y) / Map.EntityPixelPerCase;
             y2 = (y + Size - 1) / Map.EntityPixelPerCase;
             
             if (y2 >= Map.NoCase)
@@ -132,6 +132,8 @@ namespace TopDownGridBasedEngine
             by = (y1 != y2);
             if (bx) n <<= 1;
             if (by) n <<= 1;
+            if (n == 2)
+                n = n;
             ret = new AbsCase[n];
             
             ret[i++] = Map[x1, y1];
@@ -139,6 +141,7 @@ namespace TopDownGridBasedEngine
             if (bx) ret[i++] = Map[x2, y1];
             if (by) ret[i++] = Map[x1, y2];
             if (bx && by) ret[i] = Map[x2, y2];
+            
             return ret;
         }
 
