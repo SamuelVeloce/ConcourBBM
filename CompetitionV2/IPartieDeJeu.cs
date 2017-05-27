@@ -9,11 +9,12 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 
-namespace CompetitionV2
+namespace TopDownGridBasedEngine
 {
     public interface IPartieDeJeu
     {
-        void Draw(SpriteBatch sb, GameTime gameTime);
+        void DrawWithShadows(SpriteBatch sb, GameTime gameTime, GraphicsDevice gd);
+        void DrawWithoutShadows(SpriteBatch sb, GameTime gameTime, GraphicsDevice gd);
         void Update(GameTime gameTime);
     }
 }

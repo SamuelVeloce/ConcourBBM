@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Penumbra;
 
 
@@ -77,23 +78,23 @@ namespace TopDownGridBasedEngine
             Lights = new Light[3];
             
             Lights[0] = new Spotlight();
-            Lights[0].Color = Color.White;
-            Lights[0].Scale = new Vector2(600, 900);
+            Lights[0].Color = Color.Red;
+            Lights[0].Scale = new Vector2(600, 100);
             Lights[0].ShadowType = ShadowType.Solid;
             Game1.Penumbra.Lights.Add(Lights[0]);
 
             Lights[1] = new PointLight();
-            Lights[1].Color = Color.Teal;
-            Lights[1].Intensity = 2f;
-            Lights[1].Scale = new Vector2(700, 700);
+            Lights[1].Color = Color.DarkGray;
+            Lights[1].Intensity = 1f;
+            Lights[1].Scale = new Vector2(900, 900);
             Lights[1].CastsShadows = true;
             Lights[1].ShadowType = ShadowType.Occluded;
             Game1.Penumbra.Lights.Add(Lights[1]);
 
             Lights[2] = new PointLight();
-            Lights[2].Color = Color.Teal;
-            Lights[2].Intensity = 2f;
-            Lights[2].Scale = new Vector2(700, 700);
+            Lights[2].Color = Color.DarkGray;
+            Lights[2].Intensity = 1f;
+            Lights[2].Scale = new Vector2(900, 900);
             Lights[2].CastsShadows = false;
             Lights[2].ShadowType = ShadowType.Solid;
             Game1.Penumbra.Lights.Add(Lights[2]);
@@ -132,8 +133,7 @@ namespace TopDownGridBasedEngine
                 Lights[i].Position = new Vector2(X * Map.TileWidth / Map.EntityPixelPerCase,
                     Y * Map.TileWidth / Map.EntityPixelPerCase);
             }
-            if (!(VelX == 0 && VelY == 0))
-                Lights[0].Rotation = (float) Math.Atan2(-VelX, VelY) + MathHelper.PiOver2;
+
         }
 
         private void Joueur_Collided(object sender, BlockCollisionEventArgs e)
@@ -249,6 +249,8 @@ namespace TopDownGridBasedEngine
                 else
                     DropBomb(X / 30, Y / 30, true);
             }
+            Lights[0].Rotation = (float)Math.Atan2(Mouse.GetState().Position.Y - Y * Map.TileWidth / Map.EntityPixelPerCase,
+                Mouse.GetState().Position.X - X * Map.TileWidth / Map.EntityPixelPerCase);
         }
 
         public bool ShootBomb(int x, int y, float Velx, float Vely)

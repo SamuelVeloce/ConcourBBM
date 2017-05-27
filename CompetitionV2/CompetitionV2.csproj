@@ -157,6 +157,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Armes\Weapons....txt" />
+    <Content Include="Content\Textures\Ground.png" />
+    <Content Include="Content\Textures\SolidWall.png" />
     <Content Include="Content\Textures\Bullet.png" />
     <Content Include="Content\Textures\Cyborg.png" />
     <Content Include="Content\Textures\Destroyer.png" />
@@ -199,6 +201,7 @@
     <Content Include="Content\Textures\TileTerre2.png" />
     <Content Include="Content\Textures\Warmachine.png" />
     <Content Include="Content\Textures\Warmachine2.png" />
+    <Content Include="Content\Textures\Wall.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

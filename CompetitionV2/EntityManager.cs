@@ -22,10 +22,10 @@ namespace TopDownGridBasedEngine
 
         private EntityManager() : this(null, null, 0) { }
         
-        private EntityManager(Joueur[] j, Map m, int numeroJoueur)
+        private EntityManager(Joueur j, Map m, int numeroJoueur)
         {
             _entities = new List<AbsEntity>();
-            Joueurs = j;
+            Joueur = j;
             Map = m;
             _id = numeroJoueur;
             someLock = new object();
@@ -42,17 +42,17 @@ namespace TopDownGridBasedEngine
             get
             {
                 if (_instance == null)
-                    throw new Exception("Instance inexistante. Utilisez InitInstance avant d'utiliser l'instance");
+                    return null;// throw new Exception("Instance inexistante. Utilisez InitInstance avant d'utiliser l'instance");
                 return _instance;
             }
         }
 
-        public static void InitInstance(Joueur[] j, Map m, int ID)
+        public static void InitInstance(Joueur j, Map m, int ID)
         {
             if (_instance != null)
             {
                 _instance._entities = new List<AbsEntity>();
-                _instance.Joueurs = j;
+                _instance.Joueur = j;
                 _instance.Map = m;
                 _instance._id = ID;
             }
@@ -61,7 +61,7 @@ namespace TopDownGridBasedEngine
 
         public List<AbsEntity> Entities => _entities;
 
-        public Joueur[] Joueurs { get; private set; }
+        public Joueur Joueur { get; private set; }
 
         public Map Map { get; set; }
 
@@ -107,8 +107,8 @@ namespace TopDownGridBasedEngine
 
         public void TickPlayer(int idPlayer, long deltaTime, KeyWrapper wrapper)
         {
-            if (!Joueurs[idPlayer].IsDead)
-                Joueurs[idPlayer].TickPlayer(deltaTime, wrapper);
+            if (!Joueur.IsDead)
+                Joueur.TickPlayer(deltaTime, wrapper);
         }
 
         public void TickEntities(long deltaTime)
@@ -123,11 +123,10 @@ namespace TopDownGridBasedEngine
                     if (e is ITexturable)
                         ((ITexturable) e).UpdateTexture(deltaTime);
                 }
-                for (int i = 0; i < 4; i++)
-                    if (Joueurs[i] != null && Joueurs[i].IsDead == false)
-                        Joueurs[i].UpdateTexture(deltaTime); //Tick(DeltaTime);
-                if (Joueurs[_id].IsDead == false)
-                    Joueurs[_id].Tick(deltaTime);
+                if (Joueur != null && Joueur.IsDead == false)
+                    Joueur.UpdateTexture(deltaTime); //Tick(DeltaTime);
+                if (Joueur.IsDead == false)
+                    Joueur.Tick(deltaTime);
                 if (_deadFire.Count != 0)
                 {
                     FireFireStopped(this, new MultiFireEventArgs(_deadFire.ToArray(), false));
@@ -155,9 +154,8 @@ namespace TopDownGridBasedEngine
         public void DrawPlayers(SpriteBatch sb, Rectangle clientRect)
         {
             float w = Map.TileWidth;
-            for (int i = 0; i < 4; i++)
-                if (Joueurs[i] != null && Joueurs[i].IsDead == false)
-                    Joueurs[i].Draw(sb, w / 30);
+            if (Joueur != null && Joueur.IsDead == false)
+                Joueur.Draw(sb, w / 30);
         }
 
     }

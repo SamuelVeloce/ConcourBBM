@@ -54,7 +54,7 @@ namespace TopDownGridBasedEngine
         public override void Tick(long deltaTime)
         {
             NextPathfindTime -= deltaTime;
-            Joueur j = EntityManager.Instance.Joueurs[0];
+            Joueur j = EntityManager.Instance.Joueur;
 
             if (_path != null && NextPathfindTime > 0)
             {
@@ -71,7 +71,7 @@ namespace TopDownGridBasedEngine
                     VelY = Velocity.Y;
                 }
             }
-            else
+            else if (NextPathfindTime <= 0)
             {
                 NextPathfindTime = 200;
                 if (RaycastTo(new Point(j.X + j.Size / 2, j.Y + j.Size / 2)))
@@ -80,7 +80,7 @@ namespace TopDownGridBasedEngine
                 }
                 _path?.Delete();
                 _path = new Path(new Point((this.X + this.Size / 2) / Map.EntityPixelPerCase, (this.Y + this.Size / 2) / Map.EntityPixelPerCase),
-                    new Point(EntityManager.Instance.Joueurs[0].X / Map.EntityPixelPerCase, EntityManager.Instance.Joueurs[0].Y / Map.EntityPixelPerCase),
+                    new Point(EntityManager.Instance.Joueur.X / Map.EntityPixelPerCase, EntityManager.Instance.Joueur.Y / Map.EntityPixelPerCase),
                     Map);
                 
             }

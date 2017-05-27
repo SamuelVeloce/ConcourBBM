@@ -93,10 +93,9 @@ namespace TopDownGridBasedEngine
 
 
             // Textures de cases
-            TextureCaseVide = _content.Load<Texture2D>("Textures/TextureCaseVide");
-            TextureCaseVide = _content.Load<Texture2D>("Textures/TextureCaseVide");
-            TextureCaseWall = _content.Load<Texture2D>("Textures/TextureCaseWall");
-            TextureCaseSolidWall = _content.Load<Texture2D>("Textures/TextureCaseSolidWall");
+            TextureCaseVide = _content.Load<Texture2D>("Textures/Ground");
+            TextureCaseWall = _content.Load<Texture2D>("Textures/Wall");
+            TextureCaseSolidWall = _content.Load<Texture2D>("Textures/SolidWall");
 
             TextureFire[0] = _content.Load<Texture2D>("Textures/TextureCaseFire1");
             TextureFire[1] = _content.Load<Texture2D>("Textures/TextureCaseFire2");
