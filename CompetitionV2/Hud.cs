@@ -24,17 +24,10 @@ namespace TopDownGridBasedEngine
 
         public void Draw(SpriteBatch sb)
         {
-            Point bottomLeft = new Point(0, _window.ClientBounds.Height);
-            Point bottomRight = new Point(_window.ClientBounds.Width, _window.ClientBounds.Height);
-            Point topLeft = new Point(_window.ClientBounds.Width, 0);
-            Point topRight = new Point(0, 0);
-
-            sb.DrawString(TextureManager.Font, EntityManager.Instance.Joueur.CurrentWeapon().Nom, new Vector2(Game1.Screen.ClientBounds.Width - 100, 10), Color.Yellow);
+            //Dessine les informations dans le coin supérieur droit
+            sb.DrawString(TextureManager.Font, EntityManager.Instance.Joueur.CurrentWeapon().Nom, new Vector2(Game1.Screen.ClientBounds.Width - 150, 10), Color.Yellow);
             sb.DrawString(TextureManager.Font, EntityManager.Instance.Entities.Count.ToString() + " Enemis restant", new Vector2(Game1.Screen.ClientBounds.Width - 150, 30), Color.Yellow);
-
-            //sb.Draw(TextureManager.Instance.TextureFire[0], new Rectangle(bottomLeft.X, bottomLeft.Y - 10, 10, 10), Color.White);
-
-
+            sb.DrawString(TextureManager.Font,"Balles: " + EntityManager.Instance.Joueur.CurrentWeapon().NBulletInCharger.ToString() , new Vector2(Game1.Screen.ClientBounds.Width - 150, 50),Color.Yellow);
         }
     }
 }
