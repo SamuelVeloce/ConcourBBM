@@ -95,6 +95,13 @@ namespace TopDownGridBasedEngine
                     c = c.ParentCase;
                 }
             }
+            if (m_ListPath.Count > 7)
+                m_ListPath.RemoveRange(0, 7);
+            else
+                m_ListPath.Clear();
+
+            //foreach (Case ca in m_ListPath)
+                //ca.Wrapped.color = Color.HotPink;
         }
 
         private Case FindLowestFCost()

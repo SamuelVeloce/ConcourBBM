@@ -30,10 +30,10 @@ namespace CompetitionV2.Projectile
             if (i >= 0)
             {
                 while (i >= 0 &&
-                       !(LinesCross(oldPosition, Position, new Vector2(enemies[i].X, enemies[i].Y),
+                       !(LinesCross(oldPosition, Position, new Vector2(enemies[i].X, enemies[i].Y - enemies[i].Size),
                              new Vector2(enemies[i].X + enemies[i].Size, enemies[i].Y + enemies[i].Size)) ||
                          LinesCross(oldPosition, Position, new Vector2(enemies[i].X, enemies[i].Y + enemies[i].Size),
-                             new Vector2(enemies[i].X + enemies[i].Size, enemies[i].Y))))
+                             new Vector2(enemies[i].X + enemies[i].Size, enemies[i].Y - enemies[i].Size))))
                 {
                     i--;
                 }
