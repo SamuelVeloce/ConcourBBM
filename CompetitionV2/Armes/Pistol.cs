@@ -49,7 +49,7 @@ namespace CompetitionV2.Projectile
         }
         
 
-        public Pistol()
+        public Pistol(AbsEntity Owner) : base(Owner)
         {
             NBulletLeft = int.MaxValue - 100;
             NBulletInCharger = m_ClipSize;
@@ -58,7 +58,13 @@ namespace CompetitionV2.Projectile
             Nom = "Pistol";
 
         }
-        public override void MouseDown()//Vector2 MouseDir)
+
+        public override void MouseDown()
+        {
+            MouseDown((Mouse.GetState().Position.ToVector2() / EntityManager.Instance.Map.TileWidth * Map.EntityPixelPerCase).ToPoint());
+        }
+
+        public override void MouseDown(Point Target)//Vector2 MouseDir)
         {
             if (m_CanShoot)
             {
@@ -67,9 +73,23 @@ namespace CompetitionV2.Projectile
                 //m_MouseDir = MouseDir;
                 NBulletInCharger--;
 
-                double Radians = Math.Atan2(Mouse.GetState().Position.Y / EntityManager.Instance.Map.TileWidth * Map.EntityPixelPerCase - EntityManager.Instance.Joueur.Y, Mouse.GetState().Position.X/ EntityManager.Instance.Map.TileWidth * Map.EntityPixelPerCase - EntityManager.Instance.Joueur.X) + ((m_RNG.NextDouble() * m_SpreadAngle) - m_SpreadAngle / 2.0) * (Math.PI / 180.0);
-                Vector2 MouseDir = new Vector2((float)Math.Cos(Radians), (float)Math.Sin(Radians));
-                EntityManager.Instance.ProjectilesListFriendly.Add(new ProjectileBullet(TextureManager.TextureBullet,new Vector2(EntityManager.Instance.Joueur.X,EntityManager.Instance.Joueur.Y),new Vector2(8,8), MouseDir*1000,100));
+                
+                if (Owner is Joueur)
+                {
+                    double Radians = Math.Atan2(Target.Y - Owner.Y, Target.X - Owner.X) + ((m_RNG.NextDouble() * m_SpreadAngle) - m_SpreadAngle / 2.0) * (Math.PI / 180.0);
+                    Vector2 MouseDir = new Vector2((float)Math.Cos(Radians), (float)Math.Sin(Radians));
+                    ProjectileBullet bullet = new ProjectileBullet(TextureManager.TextureBullet, new Vector2(Owner.X, Owner.Y), new Vector2(8, 8), MouseDir * 1000, 100);
+                    bullet.Friendly = true;
+                    EntityManager.Instance.ProjectilesListFriendly.Add(bullet);
+                }
+                else
+                {
+                    double Radians = Math.Atan2(Target.Y - Owner.Y, Target.X - Owner.X) + ((m_RNG.NextDouble() * m_SpreadAngle) - m_SpreadAngle * 10 / 2.0) * (Math.PI / 180.0);
+                    Vector2 MouseDir = new Vector2((float)Math.Cos(Radians), (float)Math.Sin(Radians));
+                    ProjectileBullet bullet = new ProjectileBullet(TextureManager.TextureBullet, new Vector2(Owner.X, Owner.Y), new Vector2(8, 8), MouseDir * 1000, 100);
+                    bullet.Friendly = false;
+                    EntityManager.Instance.ProjectilesListHostile.Add(bullet);
+                }
 
                 JouerSonTir();
             }

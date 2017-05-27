@@ -17,7 +17,9 @@ namespace TopDownGridBasedEngine
         private int _id;
         private List<Fire> _deadFire;
         private List<absProjectile> m_projectilesListFriendly;
-        
+        private List<absProjectile> m_projectilesListHostile;
+
+
 
         private static EntityManager _instance;
 
@@ -34,6 +36,7 @@ namespace TopDownGridBasedEngine
             someLock = new object();
             _deadFire = new List<Fire>();
             m_projectilesListFriendly = new List<absProjectile>();
+            m_projectilesListHostile = new List<absProjectile>();
         }
 
         protected void FireFireStopped(object sender, MultiFireEventArgs e)
@@ -75,6 +78,12 @@ namespace TopDownGridBasedEngine
         {
             get { return m_projectilesListFriendly; }
             set { m_projectilesListFriendly = value; }
+        }
+
+        public List<absProjectile> ProjectilesListHostile
+        {
+            get { return m_projectilesListHostile; }
+            set { m_projectilesListHostile = value; }
         }
 
         public void Add(AbsEntity e)
@@ -127,11 +136,20 @@ namespace TopDownGridBasedEngine
                     _deadFire = new List<Fire>();
                 }
                 List<absProjectile> projli = EntityManager.Instance.ProjectilesListFriendly;
+                List<absProjectile> projho = EntityManager.Instance.ProjectilesListHostile;
+
                 for (int i = projli.Count - 1; i >= 0; i--)
                 {
                     if (projli[i].Update(gameTime))
                     {
                         projli.RemoveAt(i);
+                    }
+                }
+                for (int i = projho.Count - 1; i >= 0; i--)
+                {
+                    if (projho[i].Update(gameTime))
+                    {
+                        projho.RemoveAt(i);
                     }
                 }
             }
@@ -152,6 +170,10 @@ namespace TopDownGridBasedEngine
             }
 
             foreach (absProjectile proj in ProjectilesListFriendly)
+            {
+                proj.Draw(sb, w);
+            }
+            foreach (absProjectile proj in ProjectilesListHostile)
             {
                 proj.Draw(sb, w);
             }

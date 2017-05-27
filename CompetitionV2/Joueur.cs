@@ -44,7 +44,7 @@ namespace TopDownGridBasedEngine
 
             BombsLeft = 1;
 
-            m_WeaponList = new Weapons[] {new Pistol(), new MachineGun()};
+            m_WeaponList = new Weapons[] {new Pistol(this), new MachineGun(this)};
 
 
             Lights = new Light[2];
@@ -55,6 +55,7 @@ namespace TopDownGridBasedEngine
             Lights[0].Scale = new Vector2(900, 900);
             Lights[0].CastsShadows = true;
             Lights[0].ShadowType = ShadowType.Occluded;
+            Lights[0].Radius = 5;
             Game1.Penumbra.Lights.Add(Lights[0]);
 
             Lights[1] = new PointLight();
@@ -63,11 +64,17 @@ namespace TopDownGridBasedEngine
             Lights[1].Scale = new Vector2(900, 900);
             Lights[1].CastsShadows = false;
             Lights[1].ShadowType = ShadowType.Solid;
+            Lights[1].Radius = 5;
             Game1.Penumbra.Lights.Add(Lights[1]);
 
             ChangedCase += Joueur_ChangedCase;
             Moved += Joueur_Moved;
             Died += Die;
+        }
+
+        public void DealDamage(int Damage)
+        {
+
         }
         
         public Light[] Lights { get; }
@@ -83,8 +90,8 @@ namespace TopDownGridBasedEngine
         {
             for (int i = 0; i < 2; i++)
             {
-                Lights[i].Position = new Vector2(X * Map.TileWidth / Map.EntityPixelPerCase,
-                    Y * Map.TileWidth / Map.EntityPixelPerCase);
+                Lights[i].Position = new Vector2(X * Map.TileWidth / Map.EntityPixelPerCase + Size / 2,
+                    Y * Map.TileWidth / Map.EntityPixelPerCase + Size / 2);
             }
 
         }
@@ -205,6 +212,8 @@ namespace TopDownGridBasedEngine
             //g.FillRectangle(b, (X - m_Radius) * w, (Y - m_Radius) * w, m_Radius * 2 * w, m_Radius * 2 * w);
             //g.DrawImage(bit, (X - rad) * w, (Y - rad - 20) * w, rad * w * 2, rad * w * 3);
             sb.Draw(bit, new Rectangle((int)(X * w), (int)(Y * w - Size * w), (int)(Size * w), (int)(Size * w * 2)), color);
+            sb.Draw(TextureManager.TextureTerre[0], new Rectangle(new Point((int)(X * Map.TileWidth / Map.EntityPixelPerCase),
+                    (int)(Y * Map.TileWidth / Map.EntityPixelPerCase)), new Point(Size, Size)), Color.White);
             //sb.Draw(TextureManager.TextureTerre[0], new Rectangle((int)(X * w), (int)(Y * w), (int)(Size * w), (int)(Size * w)), Color.White);
             //Console.WriteLine($"{X}, {Y}\r\n{VelX}, {VelY}");
             //g.DrawString(string.Format("{0}, {1}\r\n{2}, {3}", X, Y, VelX, VelY), new Font("Arial", 12), b, 10, 45 * (_idJoueur));

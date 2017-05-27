@@ -36,7 +36,7 @@ namespace TopDownGridBasedEngine
             Collided += Enemy_Collided;
             NextPathfindTime = 0;
             _SpeedFactor = speedFactor;
-            Arme = new Pistol();
+            Arme = new Pistol(this);
         }
 
         private void Enemy_Collided(object sender, BlockCollisionEventArgs e)
@@ -89,7 +89,7 @@ namespace TopDownGridBasedEngine
                 NextPathfindTime = 200;
                 if (RaycastTo(new Point(j.X + j.Size / 2, j.Y + j.Size / 2)))
                 {
-                    Arme.MouseDown();
+                    Arme.MouseDown(new Point(j.X, j.Y));
                     Arme.MouseUp();
                 }
                 _path = new Path(new Point((this.X + this.Size / 2) / Map.EntityPixelPerCase, (this.Y + this.Size / 2) / Map.EntityPixelPerCase),
@@ -125,7 +125,7 @@ namespace TopDownGridBasedEngine
             if (VelX == 0 && VelY == 0)
                 bit = TextureManager.Instance.TexturePlayerDown[0];
             sb.Draw(bit, new Rectangle((int)(X * w), (int)(Y * w - Size * w), (int)(Size * w), (int)(Size * w * 2)), color);
-            sb.Draw(TextureManager.TextureTerre[0], new Rectangle((int)(X * w), (int)(Y * w - Size * w), (int)(Size * w), (int)(Size * w * 2)), Color.White);
+            //sb.Draw(TextureManager.TextureTerre[0], new Rectangle((int)(X * w), (int)(Y * w - Size * w), (int)(Size * w), (int)(Size * w * 2)), Color.White);
 
 
         }
