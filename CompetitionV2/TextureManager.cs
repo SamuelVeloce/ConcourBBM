@@ -28,6 +28,13 @@ namespace TopDownGridBasedEngine
         public Texture2D[] TextureFire;
         public Texture2D[] TextureBomb;
 
+        //Textures du jeu cyborg
+        public static Texture2D TextureBarricade;
+        public static Texture2D[] TextureTerre;
+        public static Texture2D[] Robots;
+        public static Texture2D Cyborg;
+        public static Texture2D Explosion;
+
         // Déclaration de l'instance unique de la classe
         private static TextureManager _instance;
 
@@ -83,6 +90,7 @@ namespace TopDownGridBasedEngine
             TextureBomb = new Texture2D[4];
 
 
+
             // Textures de cases
             TextureCaseVide = _content.Load<Texture2D>("Textures/TextureCaseVide");
             TextureCaseVide = _content.Load<Texture2D>("Textures/TextureCaseVide");
@@ -127,6 +135,41 @@ namespace TopDownGridBasedEngine
             TextureCaseBonus[4, 1] = _content.Load<Texture2D>("Textures/TextureBonusKick2");
             TextureCaseBonus[5, 0] = _content.Load<Texture2D>("Textures/TextureBonusMaxExplosion");
             TextureCaseBonus[5, 1] = _content.Load<Texture2D>("Textures/TextureBonusMaxExplosion2");
+
+            //
+            //Textures jeu cyborg vs robots
+            //
+
+            //Environnement
+            TextureBarricade = _content.Load<Texture2D>("Textures/TileBarricade");
+
+            //Arrière-Plan
+            TextureTerre = new Texture2D[2];
+            TextureTerre[0] = _content.Load<Texture2D>("Textures/TileTerre1");
+            TextureTerre[1] = _content.Load<Texture2D>("Textures/TileTerre2");
+
+            //Robots
+            Robots = new Texture2D[4];
+            Robots[0] = _content.Load<Texture2D>("Textures/Drone");
+            Robots[1] = _content.Load<Texture2D>("Textures/Destroyer");
+            Robots[2] = _content.Load<Texture2D>("Textures/Warmachine");
+            Robots[3] = _content.Load<Texture2D>("Textures/Warmachine2");
+
+            //Cyborg
+            Cyborg = _content.Load<Texture2D>("Textures/Cyborg");
+
+            //Explosion
+            Explosion = _content.Load<Texture2D>("Textures/Explode");
+
+
+            /* Sources des textures
+            https://opengameart.org/content/dirt-004
+            https://opengameart.org/content/dirt-004
+            http://hasgraphics.com/8-bit-sinistar-clone-graphics/
+            http://untamed.wild-refuge.net/images/rpgxp/avengers/warmachine.png (Warmachine1)
+            http://untamed.wild-refuge.net/images/rpgxp/avengers/ironpatriot.png (Warmachine2)
+            http://untamed.wild-refuge.net/images/rpgxp/mandalorian.png (Cyborg)
+            */
 
         }
     }
