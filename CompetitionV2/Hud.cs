@@ -15,6 +15,7 @@ namespace TopDownGridBasedEngine
     public class Hud
     {
         private GameWindow _window;
+        private Joueur _joueur;
 
         public Hud(GameWindow win)
         {
@@ -28,7 +29,9 @@ namespace TopDownGridBasedEngine
             Point topLeft = new Point(_window.ClientBounds.Width, 0);
             Point topRight = new Point(0, 0);
 
-            sb.Draw(TextureManager.Instance.TextureFire[0], new Rectangle(bottomLeft.X, bottomLeft.Y - 450, 450, 450), Color.White);
+            sb.Draw(TextureManager.Instance.TextureFire[0], new Rectangle(bottomLeft.X, bottomLeft.Y - 10, 10, 10), Color.White);
+
+
         }
     }
 }
