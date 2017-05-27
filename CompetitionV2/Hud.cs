@@ -24,17 +24,31 @@ namespace TopDownGridBasedEngine
 
         public void Draw(SpriteBatch sb)
         {
-            Point bottomLeft = new Point(0, _window.ClientBounds.Height);
-            Point bottomRight = new Point(_window.ClientBounds.Width, _window.ClientBounds.Height);
-            Point topLeft = new Point(_window.ClientBounds.Width, 0);
-            Point topRight = new Point(0, 0);
+            //Gestion du statut de l'armes (Balles)
+            int nbBalles = EntityManager.Instance.Joueur.CurrentWeapon().NBulletInCharger;
+            int nbTotBalles = EntityManager.Instance.Joueur.CurrentWeapon().NBulletLeft;
+            string strBalles = "Balles: ";
+            if (nbBalles == 0)
+            {
+                if (nbTotBalles == 0)
+                {
+                    strBalles += "Vide";
+                }
+                else
+                {
+                    strBalles += "Recharg.";
+                }
+            }
+            else
+            {
+                strBalles += nbBalles.ToString();
+            }
 
-            sb.DrawString(TextureManager.Font, EntityManager.Instance.Joueur.CurrentWeapon().Nom, new Vector2(Game1.Screen.ClientBounds.Width - 100, 10), Color.Yellow);
+            
+            //Dessine les informations dans le coin supérieur droit
+            sb.DrawString(TextureManager.Font, EntityManager.Instance.Joueur.CurrentWeapon().Nom, new Vector2(Game1.Screen.ClientBounds.Width - 150, 10), Color.Yellow);
             sb.DrawString(TextureManager.Font, EntityManager.Instance.Entities.Count.ToString() + " Enemis restant", new Vector2(Game1.Screen.ClientBounds.Width - 150, 30), Color.Yellow);
-
-            //sb.Draw(TextureManager.Instance.TextureFire[0], new Rectangle(bottomLeft.X, bottomLeft.Y - 10, 10, 10), Color.White);
-
-
+            sb.DrawString(TextureManager.Font,strBalles , new Vector2(Game1.Screen.ClientBounds.Width - 150, 50),Color.Yellow);
         }
     }
 }

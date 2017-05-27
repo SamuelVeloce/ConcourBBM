@@ -28,13 +28,10 @@ namespace CompetitionV2.Projectile
         private bool m_CanShoot = true;
         private bool m_Reloading;
         private readonly System.Timers.Timer m_WeaponTimer;
-
-
         
         public override void JouerSonTir()
         {
-            //TODO
-            //ShootingSound.Play(0.3f, 1,0);
+            SoundManager.Pistol.Play((float)0.5,0,0);
         }
 
 
@@ -75,7 +72,10 @@ namespace CompetitionV2.Projectile
                 EntityManager.Instance.ProjectilesListFriendly.Add(new ProjectileBullet(TextureManager.TextureBullet,new Vector2(EntityManager.Instance.Joueur.X,EntityManager.Instance.Joueur.Y),new Vector2(8,8), MouseDir*1000,100));
 
                 JouerSonTir();
-
+            }
+            else
+            {
+                JouerSonVide();
             }
         }
         private void _timer_Elapsed(object sender, ElapsedEventArgs e)

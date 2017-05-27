@@ -66,8 +66,9 @@ namespace TopDownGridBasedEngine
 
         protected override void Initialize()
         {
-            _graphics.PreferredBackBufferHeight = 900;
-            _graphics.PreferredBackBufferWidth = 900;
+            int Dimension = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height - 100;
+            _graphics.PreferredBackBufferHeight = Dimension;
+            _graphics.PreferredBackBufferWidth = Dimension;
             _graphics.ApplyChanges();
             IsMouseVisible = true;
             //Window.AllowUserResizing = true;
@@ -76,13 +77,16 @@ namespace TopDownGridBasedEngine
             Components.Add(Penumbra);
             Penumbra.AmbientColor = Color.White;
             TextureManager.InitInstance(Content);
+
             
             PartieDuJeu = new IPartieDeJeu[3];
             PartieDuJeu[(int)TypesDePartieDeJeu.MenuDefaut] = new MenuDefaut();
             PartieDuJeu[(int)TypesDePartieDeJeu.Jeu] = new JeuMenu();
             PartieDuJeu[(int)TypesDePartieDeJeu.Armurerie] = new Armurerie();
 
-
+            
+            SoundManager.InitInstance(Content);
+            SoundManager.TrameSonoreJeu.Play((float)0.5, 0, 0);
             base.Initialize();
 
         }

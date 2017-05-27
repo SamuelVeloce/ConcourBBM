@@ -186,25 +186,12 @@ namespace TopDownGridBasedEngine
                  currPos += _random.Next(mapLength / 4);
              } while (currPos < mapLength);
             
-             // Version bs
-//            j = 0;
-//            while (j < this.Height)
-//            {
-//                i = 0;
-//                while (i < this.Width)
-//                {
-//                    if (_random.Next() % 2 == 0 && this[j, i].Type == CaseType.Vide)
-//                        this[j, i] = new CaseVerte(j, i, this);
-//                    i += 1;
-//                }
-//                j += 1;
-//            }
         }
 
                 void PousserHerbe(int pos)
                 {
                     Point Centre = new Point(pos % Width, pos / Width);
-                    int Rayon = _random.Next(6, 14);
+                    int Rayon = (_random.Next(0, 6) + 1) << 1;
                     int Step = 0;
 
                     for (int j = 0; j < Rayon; j += 1)
