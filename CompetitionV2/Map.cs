@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Penumbra;
 
+using System.Collections.Generic;
+
 namespace TopDownGridBasedEngine
 {
     public class Map
@@ -16,9 +18,12 @@ namespace TopDownGridBasedEngine
         // Nombre d'unités contenus dans une case, utilisées par les entités
         public const int EntityPixelPerCase = 30;
 
-        public float Width;
+        public float TileWidth;
 
         public int NoCase => _noCase;
+
+        public int Width => _noCase;
+        public int Height => _noCase;
 
         public Map(int size, Rectangle clientRect)
         {
@@ -27,8 +32,10 @@ namespace TopDownGridBasedEngine
             _cases = new AbsCase[size, size];
             _random = new Random();
             
-            Width = Math.Min((float)clientRect.Width / NoCase, (float)clientRect.Height / NoCase);
-            
+            TileWidth = Math.Min((float)clientRect.Width / NoCase, (float)clientRect.Height / NoCase);
+
+            #region oldgen
+            /*
             // Remplissage aléatoire de la carte
             for (int x = 1; x < size - 1; x++)
                 for (int y = 1; y < size - 1; y++)
@@ -100,7 +107,73 @@ namespace TopDownGridBasedEngine
                     if (_random.Next() % 7 == 0) brl = false;
                 }
                 i++;
+            }*/
+            #endregion
+
+            Generate();
+
+        }
+
+        private void Generate()
+        {
+            List<Mur> listeMur = new List<Mur>();
+            int maxDistanceBetweenWalls = this.Width;
+            int minDistanceBetweenWalls = this.Width / 10;
+            // Note sur le balancement : Pour chaque 1/3, on a un peu plus d'un mur de 1/20 à 1/6 (voir Mur()).
+            // Le surremplissage dû au random pouvant aller jusqu'à un mur aux 1/13 est moyenné par l'annulation en cas de collision. 
+
+            int currPos = _random.Next(0, maxDistanceBetweenWalls);
+            int mapLength = this.Width * this.Height;
+            List<Mur> listeASupprimer = new List<Mur>();
+
+            // Compteurs en x et en y
+            byte i;
+            byte j = 0;
+
+            // Recouvrement de la map avec de la terre.
+            while (j < this.Height)
+            {
+                i = 0;
+                while (i < this.Width)
+                {
+                    this[j, i] = new CaseVide(j, i, this);
+                    i += 1;
+                }
+                j += 1;
             }
+
+
+            // Génération de murs pour un futur remplissage.
+            do
+            {
+                listeMur.Add(new Mur(this, _random, currPos));
+                currPos += _random.Next(minDistanceBetweenWalls, maxDistanceBetweenWalls);
+            } while (currPos < mapLength);
+
+            // Remplissage de la carte à partir des murs.
+            do
+            {
+                // L'appel procédural des murs tile par tile évite qu'uniquement
+                // les murs du bas soient "bloqués" par les murs complets du haut.
+
+                foreach (Mur mur in listeMur)
+                {
+                    if (mur.Build())
+                    {
+                        listeASupprimer.Add(mur);
+                    }
+                }
+
+                // Supression des murs achevés ou bloqués.
+                foreach (Mur mur in listeASupprimer)
+                {
+                    listeMur.Remove(mur);
+                }
+                listeASupprimer.Clear();
+
+            } while (listeMur.Count > 0);
+
+            // Mettre ici le code pour remplacer de la terre par de l'herbe si besoin.        
         }
 
         // Indexeur pour aller chercher facilement des cases
@@ -147,7 +220,7 @@ namespace TopDownGridBasedEngine
         public void Draw(SpriteBatch sb, Rectangle clientRect)
         {
             foreach (AbsCase c in _cases)
-                c.Draw(sb, Width);
+                c.Draw(sb, TileWidth);
         }
 
         /// <summary>

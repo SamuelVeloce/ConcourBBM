@@ -21,7 +21,7 @@ namespace TopDownGridBasedEngine
             Light.Intensity = 1;
             Light.ShadowType = ShadowType.Solid;
             Light.Scale = new Vector2(250, 250);
-            Light.Position = new Vector2(x * Map.Width / Map.EntityPixelPerCase, y * Map.Width / Map.EntityPixelPerCase);
+            Light.Position = new Vector2(x * Map.TileWidth / Map.EntityPixelPerCase, y * Map.TileWidth / Map.EntityPixelPerCase);
             Game1.Penumbra.Lights.Add(Light);
         }
         

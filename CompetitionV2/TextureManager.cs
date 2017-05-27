@@ -28,16 +28,13 @@ namespace TopDownGridBasedEngine
         public Texture2D[] TextureFire;
         public Texture2D[] TextureBomb;
 
-<<<<<<< HEAD
         public Texture2D[] TextureBullet;
-=======
         //Textures du jeu cyborg
         public static Texture2D TextureBarricade;
         public static Texture2D[] TextureTerre;
         public static Texture2D[] Robots;
         public static Texture2D Cyborg;
         public static Texture2D Explosion;
->>>>>>> c33e46786880f86b8c26682c79f65783e6ad2e93
 
         // Déclaration de l'instance unique de la classe
         private static TextureManager _instance;
@@ -140,10 +137,8 @@ namespace TopDownGridBasedEngine
             TextureCaseBonus[5, 0] = _content.Load<Texture2D>("Textures/TextureBonusMaxExplosion");
             TextureCaseBonus[5, 1] = _content.Load<Texture2D>("Textures/TextureBonusMaxExplosion2");
 
-<<<<<<< HEAD
 
             TextureBullet[0] = _content.Load<Texture2D>("Textures/Bullet");
-=======
             //
             //Textures jeu cyborg vs robots
             //
@@ -178,7 +173,6 @@ namespace TopDownGridBasedEngine
             http://untamed.wild-refuge.net/images/rpgxp/avengers/ironpatriot.png (Warmachine2)
             http://untamed.wild-refuge.net/images/rpgxp/mandalorian.png (Cyborg)
             */
->>>>>>> c33e46786880f86b8c26682c79f65783e6ad2e93
 
         }
     }

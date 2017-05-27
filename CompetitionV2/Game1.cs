@@ -15,6 +15,8 @@ namespace TopDownGridBasedEngine
         public static Joueur[] Joueurs;
         
         public static PenumbraComponent Penumbra;
+
+        public Hud _hud;
         
         public Game1()
         {
@@ -34,8 +36,12 @@ namespace TopDownGridBasedEngine
             Penumbra.AmbientColor = Color.Black;
             
             base.Initialize();
+
             
-            _map = new Map(29, Window.ClientBounds);
+
+            _hud = new Hud(Window);
+            _map = new Map(59, Window.ClientBounds);
+            
             Joueurs = new Joueur[4];
             _wrapper = new KeyWrapper(0, 0, 0);
 
@@ -67,9 +73,19 @@ namespace TopDownGridBasedEngine
             Joueurs[0].BombBrokeBlocks += OnPlayerBombBrokeBlocks;
             Joueurs[0].BombPlacedBonus += OnPlayerBombPlacedBonus;
             
+
             EntityManager.InitInstance(Joueurs, _map, 0);
+
+            System.Random r = new System.Random();
+            for (int i = 0; i < 20; i++)
+            {
+                Enemy e = new Enemy(r.Next() % _map.Width * Map.EntityPixelPerCase, r.Next() % _map.Height * Map.EntityPixelPerCase, _map, true, 0.25f);
+                EntityManager.Instance.Add(e);
+            }
             
             
+
+
         }
 
         protected override void LoadContent()
@@ -83,6 +99,7 @@ namespace TopDownGridBasedEngine
 
         protected override void UnloadContent()
         {
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -132,6 +149,8 @@ namespace TopDownGridBasedEngine
             
             _spriteBatch.Begin();
             EntityManager.Instance.DrawPlayers(_spriteBatch, Window.ClientBounds);
+            
+            _hud.Draw(_spriteBatch);
             _spriteBatch.End();
 
         }

@@ -24,12 +24,16 @@ namespace TopDownGridBasedEngine
             IsBreakable = breakable;
             LetsFireThrough = letsFireThrough;
 
+            Color = Color.White;
+
             if (solid)
             {
-                Hull = Hull.CreateRectangle(new Vector2(x * Map.Width + Map.Width / 2, y * Map.Width + Map.Width / 2), new Vector2(Map.Width, Map.Width));
+                Hull = Hull.CreateRectangle(new Vector2(x * Map.TileWidth + Map.TileWidth / 2, y * Map.TileWidth + Map.TileWidth / 2), new Vector2(Map.TileWidth, Map.TileWidth));
                 Game1.Penumbra.Hulls.Add(Hull);
             }
         }
+
+        public Color Color { get; set; }
         
         public Hull Hull { get; }
 
@@ -84,7 +88,7 @@ namespace TopDownGridBasedEngine
         public virtual void Draw(SpriteBatch sb, float width)
         {
             
-            sb.Draw(Texture, new Rectangle((int)(X * width), (int)(Y * width), (int)width, (int)width), Color.White);
+            sb.Draw(Texture, new Rectangle((int)(X * width), (int)(Y * width), (int)width, (int)width), Color);
         }
 
         public override string ToString()
