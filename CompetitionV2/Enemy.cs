@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using Competition.Armes;
+using CompetitionV2.Projectile;
+
 using Penumbra;
 
 namespace TopDownGridBasedEngine
@@ -19,6 +22,7 @@ namespace TopDownGridBasedEngine
         protected double NextPathfindTime;
         protected float _SpeedFactor;
         protected int _Hp { get; set; }
+        
 
         public override EntityType Type => EntityType.GenericEntity;
 
@@ -32,6 +36,7 @@ namespace TopDownGridBasedEngine
             Collided += Enemy_Collided;
             NextPathfindTime = 0;
             _SpeedFactor = speedFactor;
+            Arme = new Pistol();
         }
 
         private void Enemy_Collided(object sender, BlockCollisionEventArgs e)
@@ -46,6 +51,8 @@ namespace TopDownGridBasedEngine
             this.X = ((this.X + this.Size / 2) / Map.EntityPixelPerCase) * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2;
             this.Y = ((this.Y + this.Size / 2) / Map.EntityPixelPerCase) * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2;
         }
+
+        public Weapons Arme { get; set; }
 
         public void Die(object sender, CancellableEventArgs e)
         {
@@ -82,7 +89,8 @@ namespace TopDownGridBasedEngine
                 NextPathfindTime = 200;
                 if (RaycastTo(new Point(j.X + j.Size / 2, j.Y + j.Size / 2)))
                 {
-
+                    Arme.MouseDown();
+                    Arme.MouseUp();
                 }
                 _path = new Path(new Point((this.X + this.Size / 2) / Map.EntityPixelPerCase, (this.Y + this.Size / 2) / Map.EntityPixelPerCase),
                     new Point(EntityManager.Instance.Joueur.X / Map.EntityPixelPerCase, EntityManager.Instance.Joueur.Y / Map.EntityPixelPerCase),
