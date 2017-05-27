@@ -14,12 +14,11 @@ namespace Competition.Armes
     public enum WeaponType
     {
         Pistol = 0,
-        MachineGun = 1
+        MachineGun = 1,
     };
 
     public abstract class Weapons //Classe abstraite utilisé comme template pour toutes les armes
     {
-
 
         private string m_Nom;
         public abstract void MouseDown();//Vector2 MouseDir); //methode utilisé quand un bouton de la sourie est appuyé

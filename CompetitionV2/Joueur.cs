@@ -88,6 +88,7 @@ namespace TopDownGridBasedEngine
             Game1.Penumbra.Lights.Remove(Lights[1]); 
             
             Game1.SetPartieDeJeu((int)TypesDePartieDeJeu.MenuDefaut);
+            Sauvegarde.Save();
     }
 
         private void Joueur_Moved(object sender, CancellableEventArgs e)

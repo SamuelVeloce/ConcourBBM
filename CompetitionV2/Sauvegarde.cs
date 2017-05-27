@@ -16,25 +16,28 @@ namespace TopDownGridBasedEngine
     {
         private static byte[] _DropCountForEachWeapon;
 
-        public static void SetSauvegarde(FileStream fs)
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            _DropCountForEachWeapon = (byte[])bf.Deserialize(fs);
-        }
-
         public static void SetSauvegarde()
         {
-            _DropCountForEachWeapon = new byte[6]; // Change selon le nombre d'armes.
+            if (!File.Exists("../Save/Safe.Sound"))
+            {
+                _DropCountForEachWeapon = new byte[6]; // Change selon le nombre d'armes.
+            }
+            else
+            {
+                FileStream fs = new FileStream("../Save/Safe.Sound", FileMode.Open);
+                BinaryFormatter bf = new BinaryFormatter();
+                _DropCountForEachWeapon = (byte[])bf.Deserialize(fs);
+                fs.Close();
+            }
         }
 
-        static bool Save(FileStream fs)
+        public static void Save()
         {
-            if (fs.CanWrite == false)
-                return false;
-
+            FileStream fs = new FileStream("../Save/Safe.Sound", FileMode.OpenOrCreate);
             BinaryFormatter bf = new BinaryFormatter();
             bf.Serialize(fs, _DropCountForEachWeapon);
-            return true;
+
+            fs.Close();
         }
 
         public static bool IsWeaponUnlocked(WeaponType w)

@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using Penumbra;
+using System.IO;
 
 namespace TopDownGridBasedEngine
 {
@@ -20,7 +21,6 @@ namespace TopDownGridBasedEngine
         private int FPSCounter;
         private double FPSTime;
         private int LastFPS;
-
 
 
         static IPartieDeJeu[] PartieDuJeu;
@@ -53,6 +53,7 @@ namespace TopDownGridBasedEngine
     
         public Game1()
         {
+            Sauvegarde.SetSauvegarde();
             _graphics = new GraphicsDeviceManager(this);
             _graphics.IsFullScreen = true;
             Content.RootDirectory = "Content";
