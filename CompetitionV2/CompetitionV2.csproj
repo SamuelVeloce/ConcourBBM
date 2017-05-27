@@ -49,6 +49,7 @@
     <Compile Include="Armes\Machinegun.cs" />
     <Compile Include="Armes\PistolAI.cs" />
     <Compile Include="Armes\SemiAutomaticSniper.cs" />
+    <Compile Include="Armes\Shotgun.cs" />
     <Compile Include="Armes\Weapon.cs" />
     <Compile Include="BlockCollisionEventArgs.cs" />
     <Compile Include="Bomb.cs" />
