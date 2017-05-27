@@ -93,6 +93,7 @@
     <Compile Include="Pathfinding\Path.cs" />
     <Compile Include="Pathfinding\Case.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="ProgressManager.cs" />
     <Compile Include="Projectile\absProjectile.cs" />
     <Compile Include="Armes\Pistol.cs" />
     <Compile Include="Projectile\ProjectileBullet.cs" />

@@ -27,7 +27,7 @@ namespace TopDownGridBasedEngine
             set { _Hp = value; }
         }
 
-        public int MaxHealth = 100;
+        public int MaxHealth = 1000000;
 
         public event OnDropBombHandler DroppedBomb;
         public event OnBombExplodeHandler BombExploded;
@@ -54,7 +54,7 @@ namespace TopDownGridBasedEngine
 
             BombsLeft = 1;
 
-            m_WeaponList = new Weapons[] {new Pistol(this), new AssaultRifle(this), new Shotgun(this), };
+            m_WeaponList = new Weapons[] {new Pistol(this), new AssaultRifle(this), new Shotgun(this) };
             _Hp = MaxHealth;
 
             Lights = new Light[2];
@@ -85,7 +85,7 @@ namespace TopDownGridBasedEngine
         public void DealDamage(int Damage)
         {
             _Hp -= Damage;
-            if (_Hp < 0)
+            if (_Hp <= 0)
                 FireDied(this, new CancellableEventArgs(false));
         }
         

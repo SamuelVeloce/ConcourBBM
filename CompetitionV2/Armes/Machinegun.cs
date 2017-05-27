@@ -23,7 +23,7 @@ namespace TopDownGridBasedEngine.Armes
         {
             get
             {
-                throw new NotImplementedException();
+                return WeaponType.AssaultRifle;
             }
         }
 
@@ -66,7 +66,7 @@ namespace TopDownGridBasedEngine.Armes
         public AssaultRifle(AbsEntity Owner) : base(Owner)
         {
             
-            Nom = "Assault Rifle";
+            Nom = "Fusil d'assaut";
             NBulletLeft = 50;//int.MaxValue - 100;
             NBulletInCharger = m_ClipSize;
             m_WeaponTimer = new System.Timers.Timer(m_Firerate) { AutoReset = false };
@@ -94,7 +94,7 @@ namespace TopDownGridBasedEngine.Armes
 
                 double Radians = Math.Atan2(Target.Y / EntityManager.Instance.Map.TileWidth * Map.EntityPixelPerCase - Owner.Y, Target.X / EntityManager.Instance.Map.TileWidth * Map.EntityPixelPerCase - Owner.X) + ((m_RNG.NextDouble() * m_SpreadAngle) - m_SpreadAngle / 2.0) * (Math.PI / 180.0);
                 Vector2 MouseDir = new Vector2((float)Math.Cos(Radians), (float)Math.Sin(Radians));
-                EntityManager.Instance.ProjectilesListFriendly.Add(new ProjectileBullet(TextureManager.TextureBullet, new Vector2(Owner.X, Owner.Y), new Vector2(8, 8), MouseDir * 500, 10));
+                EntityManager.Instance.ProjectilesListFriendly.Add(new ProjectileBullet(TextureManager.TextureBullet, new Vector2(Owner.X, Owner.Y), new Vector2(8, 8), MouseDir * 500, 10) {Friendly = true});
 
 
                 JouerSonTir();
@@ -158,7 +158,7 @@ namespace TopDownGridBasedEngine.Armes
                             double Radians = Math.Atan2(Mouse.GetState().Position.Y / EntityManager.Instance.Map.TileWidth * Map.EntityPixelPerCase - EntityManager.Instance.Joueur.Y, Mouse.GetState().Position.X / EntityManager.Instance.Map.TileWidth * Map.EntityPixelPerCase - EntityManager.Instance.Joueur.X) +
                                              ((m_RNG.NextDouble() * m_SpreadAngle) - m_SpreadAngle / 2.0) * (Math.PI / 180.0);
                             Vector2 MouseDir = new Vector2((float)Math.Cos(Radians), (float)Math.Sin(Radians));
-                            EntityManager.Instance.ProjectilesListFriendly.Add(new ProjectileBullet(TextureManager.TextureBullet, new Vector2(EntityManager.Instance.Joueur.X, EntityManager.Instance.Joueur.Y), new Vector2(8, 8), MouseDir * 500, 10));
+                            EntityManager.Instance.ProjectilesListFriendly.Add(new ProjectileBullet(TextureManager.TextureBullet, new Vector2(EntityManager.Instance.Joueur.X, EntityManager.Instance.Joueur.Y), new Vector2(8, 8), MouseDir * 500, 10) { Friendly = true });
                             m_WeaponTimer.Start();
                             JouerSonTir();
 

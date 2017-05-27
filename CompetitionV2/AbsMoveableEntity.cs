@@ -111,12 +111,77 @@ namespace TopDownGridBasedEngine
             }
             
             cases = cases.Where((ca) => ca.IsSolid == true).OrderBy((a) => Math.Abs(xm - a.X * Map.EntityPixelPerCase) + Math.Abs(ym - a.Y * Map.EntityPixelPerCase)).ToArray();
+            if (cases.Any((a) => a.X == this.X / Map.EntityPixelPerCase || a.Y == this.Y / Map.EntityPixelPerCase))
+            {
+                cases = cases.Where((ca) => (ca.X == this.X / Map.EntityPixelPerCase || ca.Y == this.Y / Map.EntityPixelPerCase)
+                    && !(ca.X == this.X / Map.EntityPixelPerCase && ca.Y == this.Y / Map.EntityPixelPerCase)).ToArray();
+                n = cases.Count();
+            }
 
-            
+
             for (i = 0; i < n; i++)
             {
+                xm = x + (int)velx;
+                ym = y + (int)vely;
                 float dxm, dym, dx, dy;
 
+                Vector2 TopLeftEntity = new Vector2(x, y);
+                Vector2 BottomRightEntity = new Vector2(x + Size, y + Size);
+
+                Vector2 TopLeftCase = new Vector2(cases[i].X * Map.EntityPixelPerCase, cases[i].Y * Map.EntityPixelPerCase);
+                Vector2 BottomLeftCase = new Vector2(cases[i].X * Map.EntityPixelPerCase + Map.EntityPixelPerCase, cases[i].Y * Map.EntityPixelPerCase + Map.EntityPixelPerCase);
+
+                float X_on_Case = TopLeftEntity.X - TopLeftCase.X;
+                float Y_on_Case = TopLeftEntity.Y - TopLeftCase.Y;
+                if (X_on_Case <= -Size) // Too far to the left 
+                {
+                    if (X_on_Case + velx > -Size) // Moved in to the right 
+                    {
+                        if (TopLeftEntity.Y < BottomLeftCase.Y || BottomRightEntity.Y > TopLeftCase.Y) // Collision to the left of the block
+                        {
+                            ret.Add(new CollisionInfo(CollisionSide.Left, cases[i]));
+                            velx = 0;
+                        }
+                    }
+                }
+                else if (X_on_Case >= Map.EntityPixelPerCase) // Too far to the right
+                {
+                    if (X_on_Case + velx < Map.EntityPixelPerCase) // Moved in to the left
+                    {
+                        if (TopLeftEntity.Y < BottomLeftCase.Y || BottomRightEntity.Y > TopLeftCase.Y) // Collision to the right of the block
+                        {
+                            ret.Add(new CollisionInfo(CollisionSide.Right, cases[i]));
+                            velx = 0;
+                        }
+                    }
+                }
+                else if (Y_on_Case <= -Size) // Too high up
+                {
+                    if (Y_on_Case + vely > -Size) // Moved down
+                    {
+                        if (TopLeftEntity.X < BottomLeftCase.X || BottomRightEntity.X > TopLeftCase.X) // Collision on the top
+                        {
+                            ret.Add(new CollisionInfo(CollisionSide.Up, cases[i]));
+                            vely = 0;
+                        }
+                    }
+                }
+                else if (Y_on_Case >= Map.EntityPixelPerCase) // Too low down
+                {
+                    if (Y_on_Case + vely < Map.EntityPixelPerCase) // Moved up
+                    {
+                        if (TopLeftEntity.X < BottomLeftCase.X || BottomRightEntity.X > TopLeftCase.X) // Collision on the bottom
+                        {
+                            ret.Add(new CollisionInfo(CollisionSide.Down, cases[i]));
+                            vely = 0;
+                        }
+                    }
+                }
+            }
+            return ret;
+
+
+            /*
                 // dxm / dym -> Position du coin haut gauche de l'entité
                 // par rapport au coin haut gauche de la case
                 // APRÈS le déplacement
@@ -136,6 +201,7 @@ namespace TopDownGridBasedEngine
                     {
                         ret.Add(new CollisionInfo(CollisionSide.Left, cases[i]));
                         xm = x - Size;
+                        velx = 0;
                         dxm = xm - cases[i].X * Map.EntityPixelPerCase;
                     }
                 }
@@ -145,6 +211,7 @@ namespace TopDownGridBasedEngine
                     {
                         ret.Add(new CollisionInfo(CollisionSide.Right, cases[i]));
                         xm = x - Size;
+                        velx = 0;
                         dxm = xm - cases[i].X * Map.EntityPixelPerCase;
                     }
                 }
@@ -154,6 +221,7 @@ namespace TopDownGridBasedEngine
                     {
                         ret.Add(new CollisionInfo(CollisionSide.Up, cases[i]));
                         ym = y - Size;
+                        vely = 0;
                         dym = ym - cases[i].Y * Map.EntityPixelPerCase;
                     }
                 }
@@ -163,12 +231,13 @@ namespace TopDownGridBasedEngine
                     {
                         ret.Add(new CollisionInfo(CollisionSide.Down, cases[i]));
                         ym = y - Size;
+                        vely = 0;
                         dym = ym - cases[i].Y * Map.EntityPixelPerCase;
                     }
                 }
             }
 
-            return ret;
+            return ret;*/
         }
 
         /// <summary>
