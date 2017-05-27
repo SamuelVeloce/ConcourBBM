@@ -26,7 +26,7 @@ namespace TopDownGridBasedEngine
         {
             VelX = 0;
             VelY = 0;
-            Size = 20;
+            Size = 15;
             _path = null;
             Died += Die;
             Collided += Enemy_Collided;
@@ -36,12 +36,15 @@ namespace TopDownGridBasedEngine
 
         private void Enemy_Collided(object sender, BlockCollisionEventArgs e)
         {
-            Vector2 vec = new Vector2(VelX + (this.X / Map.EntityPixelPerCase) * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - (this.X - this.Size / 2),
-                VelY + (this.Y / Map.EntityPixelPerCase) * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - (this.Y - this.Size / 2));
+            /*Vector2 vec = new Vector2(VelX + (this.X / Map.EntityPixelPerCase) * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - (this.X + this.Size / 2),
+                VelY + (this.Y / Map.EntityPixelPerCase) * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - (this.Y + this.Size / 2));
             vec.Normalize();
             vec *= _SpeedFactor;
             this.VelX = vec.X;
-            this.VelY = vec.Y;
+            this.VelY = vec.Y;*/
+
+            this.X = ((this.X + this.Size / 2) / Map.EntityPixelPerCase) * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2;
+            this.Y = ((this.Y + this.Size / 2) / Map.EntityPixelPerCase) * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2;
         }
 
         public void Die(object sender, CancellableEventArgs e)

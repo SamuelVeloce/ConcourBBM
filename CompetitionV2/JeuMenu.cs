@@ -23,7 +23,7 @@ namespace TopDownGridBasedEngine
         {
             Game1.Penumbra.Lights.Clear();
             Game1.Penumbra.Hulls.Clear();
-            Game1.Penumbra.AmbientColor = Color.Black;
+            Game1.Penumbra.AmbientColor = Color.White;
 
             _hud = new Hud(Game1.Screen);
             Map = new Map(45, Game1.Screen.ClientBounds);
