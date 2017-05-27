@@ -32,10 +32,10 @@ namespace TopDownGridBasedEngine
             EntityManager.InitInstance(Joueur, Map, 0);
 
             System.Random r = new System.Random();
+            Enemy e;
             for (int i = 0; i < 50; i++)
             {
-                Enemy e = new Enemy(r.Next() % Map.Width * Map.EntityPixelPerCase,
-                    r.Next() % Map.Height * Map.EntityPixelPerCase, Map, 0.25f);
+                e = new Enemy(r.Next() % 900, r.Next() % 900, Map, 0.25f);
                 EntityManager.Instance.Add(e);
             }
 

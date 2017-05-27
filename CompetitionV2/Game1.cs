@@ -35,7 +35,7 @@ namespace TopDownGridBasedEngine
             _graphics.PreferredBackBufferWidth = Dimension;
             _graphics.ApplyChanges();
             IsMouseVisible = true;
-            Window.AllowUserResizing = true;
+            //Window.AllowUserResizing = true;
             Screen = Window;
             Penumbra = new PenumbraComponent(this);
             Components.Add(Penumbra);

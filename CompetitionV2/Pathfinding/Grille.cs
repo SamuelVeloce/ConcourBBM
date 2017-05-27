@@ -16,6 +16,7 @@ namespace TopDownGridBasedEngine
         public Case BeginPoint;
         public Case EndPoint;
         Case[,] m_tCase;
+        private Map map;
 
         public int Width, Height;
 
@@ -23,6 +24,7 @@ namespace TopDownGridBasedEngine
         {
             Width = m.NoCase;
             Height = Width; // Maybe have to change this to allow for non-square maps
+            map = m;
             m_tCase = new Case[Width, Height];
             for (int I = 0; I < Height; I++)
                 for (int J = 0; J < Width; J++)
@@ -31,8 +33,8 @@ namespace TopDownGridBasedEngine
                 }
 
 
-            BeginPoint = m_tCase[PositionDepart.X, PositionDepart.Y];
-            EndPoint = m_tCase[PositionObjectif.X, PositionObjectif.Y];
+            BeginPoint = this[PositionDepart.X, PositionDepart.Y];
+            EndPoint = this[PositionObjectif.X, PositionObjectif.Y];
         }
 
         public Case this[int x, int y]

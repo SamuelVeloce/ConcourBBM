@@ -23,6 +23,7 @@ namespace TopDownGridBasedEngine
             IsSolid = solid;
             IsBreakable = breakable;
             LetsFireThrough = letsFireThrough;
+            //color = Color.White;
 
             if (solid)
             {
@@ -33,6 +34,8 @@ namespace TopDownGridBasedEngine
 
             Hitbox = new Rectangle(new Point(x * Map.EntityPixelPerCase, y * Map.EntityPixelPerCase), new Point(Map.EntityPixelPerCase, Map.EntityPixelPerCase));
         }
+
+        //public Color color { get; set; }
 
         /// <summary>
         /// Utile pour les raycasts. Déterminé selon Map.EntityPixelPerCase
@@ -94,7 +97,6 @@ namespace TopDownGridBasedEngine
 
         public virtual void Draw(SpriteBatch sb, float width)
         {
-            
             sb.Draw(Texture, new Rectangle((int)(X * width), (int)(Y * width), (int)width + 1, (int)width + 1), Color.White);
         }
 
