@@ -23,9 +23,6 @@ namespace TopDownGridBasedEngine
 
         Grille m_Grille;
 
-        bool m_Stop;
-        bool m_Animer;
-
         object Lock;
 
         public Path(Point Begin, Point End, Map m)
@@ -49,17 +46,10 @@ namespace TopDownGridBasedEngine
                 if (Diff.LengthSquared() < 0.25f)
                 {
                     m_ListPath.Remove(c);
-                    //c.Wrapped.Color = Color.White;
                 }
                 return new Point(c.PosX, c.PosY);
             }
             return null;
-        }
-
-        public void Delete()
-        {
-            /*foreach (Case c in m_ListPath)
-                c.Wrapped.Color = Color.White;*/
         }
 
         // Based on A* Algorithm
@@ -73,7 +63,7 @@ namespace TopDownGridBasedEngine
             c.CalculateCost(0, m_End);
 
 
-            while (c != m_End && Iteration < 512 && m_ListToCheck.Any() && c != null && !m_Stop)
+            while (c != m_End && Iteration < 512 && m_ListToCheck.Any() && c != null)
             {
                 // Find lowest F-Value in ListToCheck
                 // Check all cases around and calculate their G-Value
@@ -105,11 +95,6 @@ namespace TopDownGridBasedEngine
                     c = c.ParentCase;
                 }
             }
-
-            /*foreach (Case ca in m_ListPath)
-            {
-                ca.Wrapped.Color = Color.LimeGreen;
-            }*/
         }
 
         private Case FindLowestFCost()

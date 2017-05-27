@@ -37,12 +37,7 @@ namespace TopDownGridBasedEngine
         public event OnMoveHandler Moved;
         public event OnCollideWithBlockHandler Collided;
 
-        protected AbsMoveableEntity(int x, int y, Map m, bool registered) : this(x, y, m, registered, 0)
-        {
-            
-        }
-
-        protected AbsMoveableEntity(int x, int y, Map m, bool registered, int ID) : base(x, y, m, registered, ID)
+        protected AbsMoveableEntity(int x, int y, Map m) : base(x, y, m)
         {
             VelX = 0;
             VelY = 0;

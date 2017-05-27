@@ -16,7 +16,8 @@ namespace TopDownGridBasedEngine
         public event OnGenericMultiblockEventHandler BreakBlocks;
         public event OnGenericBlockEventHandler PlaceBonus;
 
-        public Bomb(int x, int y, Map m, Joueur owner, int lifeTime, int power, bool registered, int ID = 0) : base(x, y, m, registered, ID)
+        public Bomb(int x, int y, Map m, Joueur owner, int lifeTime, int power) 
+            : base(x, y, m)
         {
             Owner = owner;
             LifeTime = lifeTime;
@@ -234,7 +235,7 @@ namespace TopDownGridBasedEngine
             {
                 TickFlying(deltaTime);
             }
-            if (Z == 0 && Flying == false && IsRegistered)
+            if (Z == 0 && Flying == false)
             {
                 // Décrémente sa durée de vie
                 LifeTime -= (int)deltaTime;
@@ -268,63 +269,61 @@ namespace TopDownGridBasedEngine
                 return;
             
             Owner.BombsLeft++;
-            if (IsRegistered)
-            {
-                bool bLeft = true, bRight = true, bUp = true, bDown = true;
+            bool bLeft = true, bRight = true, bUp = true, bDown = true;
 
-                List<AbsCase> BrokenBlocks = new List<AbsCase>();
-                while (i <= _power && (bRight || bUp || bLeft || bDown))
+            List<AbsCase> BrokenBlocks = new List<AbsCase>();
+            while (i <= _power && (bRight || bUp || bLeft || bDown))
+            {
+                if (bRight)
                 {
-                    if (bRight)
+                    x = mx + i;
+                    if (x < Map.NoCase && Map[x, my].IsBreakable)
                     {
-                        x = mx + i;
-                        if (x < Map.NoCase && Map[x, my].IsBreakable)
-                        {
-                            if (!SetFire(x, my, BrokenBlocks, IsRegistered))
-                                bRight = false;
-                        }
-                        else
+                        if (!SetFire(x, my, BrokenBlocks))
                             bRight = false;
                     }
-                    if (bLeft)
+                    else
+                        bRight = false;
+                }
+                if (bLeft)
+                {
+                    x = mx - i;
+                    if (x >= 0 && Map[x, my].IsBreakable)
                     {
-                        x = mx - i;
-                        if (x >= 0 && Map[x, my].IsBreakable)
-                        {
-                            if (!SetFire(x, my, BrokenBlocks, IsRegistered))
-                                bLeft = false;
-                        }
-                        else
+                        if (!SetFire(x, my, BrokenBlocks))
                             bLeft = false;
                     }
-                    if (bUp)
+                    else
+                        bLeft = false;
+                }
+                if (bUp)
+                {
+                    y = my + i;
+                    if (y < Map.NoCase && Map[mx, y].IsBreakable)
                     {
-                        y = my + i;
-                        if (y < Map.NoCase && Map[mx, y].IsBreakable)
-                        {
-                            if (!SetFire(mx, y, BrokenBlocks, IsRegistered))
-                                bUp = false;
-                        }
-                        else
+                        if (!SetFire(mx, y, BrokenBlocks))
                             bUp = false;
                     }
-                    if (bDown)
+                    else
+                        bUp = false;
+                }
+                if (bDown)
+                {
+                    y = my - i;
+                    if (y >= 0 && Map[mx, y].IsBreakable)
                     {
-                        y = my - i;
-                        if (y >= 0 && Map[mx, y].IsBreakable)
-                        {
-                            if (!SetFire(mx, y, BrokenBlocks, IsRegistered))
-                                bDown = false;
-                        }
-                        else
+                        if (!SetFire(mx, y, BrokenBlocks))
                             bDown = false;
                     }
-                    i++;
+                    else
+                        bDown = false;
                 }
-
-                SetFire(mx, my, BrokenBlocks, IsRegistered);
-                FireBreakBlocks(this, new MultiCaseEventArgs(Map[mx, my], BrokenBlocks.ToArray(), false));
+                i++;
             }
+
+            SetFire(mx, my, BrokenBlocks);
+            FireBreakBlocks(this, new MultiCaseEventArgs(Map[mx, my], BrokenBlocks.ToArray(), false));
+            
             ((CaseVide)Map[mx, my]).Bomb = null;
             EntityManager.Instance.Remove(this);
 
@@ -338,7 +337,7 @@ namespace TopDownGridBasedEngine
         /// <param name="y">Y coord (in map coords) of the block</param>
         /// <returns>True if the block was changed and you can keep updating other blocks.
         /// False if you must stop updating blocks.</returns>
-        private bool SetFire(int x, int y, List<AbsCase> BrokenBlocks, bool Registered)
+        private bool SetFire(int x, int y, List<AbsCase> BrokenBlocks)
         {
             if (x < 0 || y < 0 || x >= Map.NoCase || y >= Map.NoCase)
                 return false;
@@ -358,13 +357,13 @@ namespace TopDownGridBasedEngine
             if (c is CaseWall)
             {
                 if (!Map.MakeRandomBonus(x, y))
-                    Ignite(x, y, Map, 600, BrokenBlocks, Registered);
+                    Ignite(x, y, Map, 600, BrokenBlocks);
                 else
                     FirePlacedBonus(this, new CaseEventArgs(Map[x, y], false));
             }
             else
             {
-                Ignite(x, y, Map, 600, BrokenBlocks, Registered);
+                Ignite(x, y, Map, 600, BrokenBlocks);
                 if (c.LetsFireThrough)
                 {
                     ret = true;
@@ -384,9 +383,9 @@ namespace TopDownGridBasedEngine
         /// <param name="BrokenBlocks"></param>
         /// <param name="Register"></param>
         /// <param name="EntityID"></param>
-        public static void Ignite(int x, int y, Map m, int LifeTime, List<AbsCase> BrokenBlocks, bool Register, int EntityID = 0)
+        public static void Ignite(int x, int y, Map m, int LifeTime, List<AbsCase> BrokenBlocks)
         {
-            Fire f = new Fire(x * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2, y * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2, m, 600, Register, EntityID);
+            Fire f = new Fire(x * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2, y * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2, m, 600);
             m[x, y].Fire = f;
             BrokenBlocks?.Add(m[x, y]);
             EntityManager.Instance.Add(f);

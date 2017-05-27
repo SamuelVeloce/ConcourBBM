@@ -19,8 +19,6 @@ namespace TopDownGridBasedEngine
 
         private bool _carryingBomb;
 
-        private readonly byte _idJoueur;
-
         public event OnDropBombHandler DroppedBomb;
         public event OnGetBonusHandler PickedBonus;
         public event OnBombExplodeHandler BombExploded;
@@ -59,7 +57,7 @@ namespace TopDownGridBasedEngine
             PickedBonus?.Invoke(sender, e);
         }
 
-        public Joueur(int x, int y, Map m, byte id) : base(x, y, m, true)
+        public Joueur(int x, int y, Map m) : base(x, y, m)
         {
             Size = 10;
             _textureVariant = 0;
@@ -73,31 +71,30 @@ namespace TopDownGridBasedEngine
             BombsLeft = 1;
             _carryingBomb = false;
 
-            _idJoueur = id;
-
-            Lights = new Light[3];
+            Lights = new Light[2];
             
+            /*
             Lights[0] = new Spotlight();
             Lights[0].Color = Color.Red;
             Lights[0].Scale = new Vector2(600, 100);
             Lights[0].ShadowType = ShadowType.Solid;
+            Game1.Penumbra.Lights.Add(Lights[0]);*/
+
+            Lights[0] = new PointLight();
+            Lights[0].Color = Color.DarkGray;
+            Lights[0].Intensity = 1f;
+            Lights[0].Scale = new Vector2(900, 900);
+            Lights[0].CastsShadows = true;
+            Lights[0].ShadowType = ShadowType.Occluded;
             Game1.Penumbra.Lights.Add(Lights[0]);
 
             Lights[1] = new PointLight();
             Lights[1].Color = Color.DarkGray;
             Lights[1].Intensity = 1f;
             Lights[1].Scale = new Vector2(900, 900);
-            Lights[1].CastsShadows = true;
-            Lights[1].ShadowType = ShadowType.Occluded;
+            Lights[1].CastsShadows = false;
+            Lights[1].ShadowType = ShadowType.Solid;
             Game1.Penumbra.Lights.Add(Lights[1]);
-
-            Lights[2] = new PointLight();
-            Lights[2].Color = Color.DarkGray;
-            Lights[2].Intensity = 1f;
-            Lights[2].Scale = new Vector2(900, 900);
-            Lights[2].CastsShadows = false;
-            Lights[2].ShadowType = ShadowType.Solid;
-            Game1.Penumbra.Lights.Add(Lights[2]);
 
 
 
@@ -115,7 +112,7 @@ namespace TopDownGridBasedEngine
             IsDead = true;
             Game1.Penumbra.Lights.Remove(Lights[0]);
             Game1.Penumbra.Lights.Remove(Lights[1]);
-            Game1.Penumbra.Lights.Remove(Lights[2]);
+            //Game1.Penumbra.Lights.Remove(Lights[2]);
             //MessageBox.Show("Ayyyyyyyy!! I'm dead!");
         }
 
@@ -128,7 +125,7 @@ namespace TopDownGridBasedEngine
                 Bomb.FireMoved(Bomb, new CancellableEventArgs(false));
             }
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 2; i++)
             {
                 Lights[i].Position = new Vector2(X * Map.TileWidth / Map.EntityPixelPerCase,
                     Y * Map.TileWidth / Map.EntityPixelPerCase);
@@ -207,8 +204,6 @@ namespace TopDownGridBasedEngine
             Map[c.X, c.Y] = new CaseVide(c.X, c.Y, Map);
         }
 
-        public byte PlayerID => _idJoueur;
-
         public Bomb Bomb { get; set; }
 
         public int BombsLeft { get; set; }
@@ -249,8 +244,8 @@ namespace TopDownGridBasedEngine
                 else
                     DropBomb(X / 30, Y / 30, true);
             }
-            Lights[0].Rotation = (float)Math.Atan2(Mouse.GetState().Position.Y - Y * Map.TileWidth / Map.EntityPixelPerCase,
-                Mouse.GetState().Position.X - X * Map.TileWidth / Map.EntityPixelPerCase);
+            //Lights[0].Rotation = (float)Math.Atan2(Mouse.GetState().Position.Y - Y * Map.TileWidth / Map.EntityPixelPerCase,
+            //    Mouse.GetState().Position.X - X * Map.TileWidth / Map.EntityPixelPerCase);
         }
 
         public bool ShootBomb(int x, int y, float Velx, float Vely)
@@ -344,7 +339,7 @@ namespace TopDownGridBasedEngine
                     Map[x, y] = new CaseVide(x, y, Map);
                 cv = (CaseVide)Map[x, y];
             }
-            cv.Bomb = new Bomb(x * 30 + 15, y * 30 + 15, Map, this, 3000, _bonusFirePower, Register, ID);
+            cv.Bomb = new Bomb(x * 30 + 15, y * 30 + 15, Map, this, 3000, _bonusFirePower);
             if (cv.IsBreaking)
                 cv.Bomb.LifeTime = 150;
             BombsLeft--;
