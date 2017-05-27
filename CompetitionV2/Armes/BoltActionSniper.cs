@@ -3,11 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+
+using TopDownGridBasedEngine;
 
 namespace Competition.Armes
 {
-    class BoltActionSniper : Weapon
+    class BoltActionSniper : Weapons
     {
+
+        public BoltActionSniper(AbsEntity Owner) : base(Owner)
+        {
+
+        }
+
         public override int NBulletInCharger
         {
             get
@@ -48,6 +57,11 @@ namespace Competition.Armes
         }
 
         public override void MouseDown()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void MouseDown(Point Target)
         {
             throw new NotImplementedException();
         }
