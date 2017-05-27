@@ -111,20 +111,20 @@ namespace TopDownGridBasedEngine
 
             // Textures de joueurs et de bombes
             TextureBomb[0] = _content.Load<Texture2D>("Textures/TextureBomb1");
-            TexturePlayerUp[0] = _content.Load<Texture2D>("Textures/TexturePlayerBack1");
-            TexturePlayerDown[0] =  _content.Load<Texture2D>("Textures/TexturePlayerFront1");
-            TexturePlayerRight[0] = _content.Load<Texture2D>("Textures/TexturePlayerRight1");
-            TexturePlayerLeft[0] = _content.Load<Texture2D>("Textures/TexturePlayerLeft1");
+            TexturePlayerUp[0] = _content.Load<Texture2D>("Textures/Player2");
+            TexturePlayerDown[0] =  _content.Load<Texture2D>("Textures/Player0");
+            TexturePlayerRight[0] = _content.Load<Texture2D>("Textures/Player1");
+            TexturePlayerLeft[0] = _content.Load<Texture2D>("Textures/Player3");
             TextureBomb[1] = _content.Load<Texture2D>("Textures/TextureBomb2");
-            TexturePlayerUp[1] = _content.Load<Texture2D>("Textures/TexturePlayerBack2");
-            TexturePlayerDown[1] =  _content.Load<Texture2D>("Textures/TexturePlayerFront2");
-            TexturePlayerRight[1] = _content.Load<Texture2D>("Textures/TexturePlayerRight2");
-            TexturePlayerLeft[1] = _content.Load<Texture2D>("Textures/TexturePlayerLeft2");
+            TexturePlayerUp[1] = TexturePlayerUp[0];
+            TexturePlayerDown[1] = TexturePlayerDown[0];
+            TexturePlayerRight[1] = TexturePlayerRight[0];
+            TexturePlayerLeft[1] = TexturePlayerLeft[0];
             TextureBomb[3] = _content.Load<Texture2D>("Textures/TextureBomb4");
-            TexturePlayerUp[3] = _content.Load<Texture2D>("Textures/TexturePlayerBack4");
-            TexturePlayerDown[3] =  _content.Load<Texture2D>("Textures/TexturePlayerFront4");
-            TexturePlayerRight[3] = _content.Load<Texture2D>("Textures/TexturePlayerRight4");
-            TexturePlayerLeft[3] = _content.Load<Texture2D>("Textures/TexturePlayerLeft4");
+            TexturePlayerUp[3] = TexturePlayerUp[0];
+            TexturePlayerDown[3] = TexturePlayerDown[0];;
+            TexturePlayerRight[3] = TexturePlayerRight[0];;
+            TexturePlayerLeft[3] = TexturePlayerLeft[0];
             TextureBomb[2] = TextureBomb[0];
             TexturePlayerUp[2] = TexturePlayerUp[0];
             TexturePlayerDown[2] = TexturePlayerDown[0];

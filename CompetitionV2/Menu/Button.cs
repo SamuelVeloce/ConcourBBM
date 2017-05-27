@@ -18,6 +18,7 @@ namespace CompetitionV2.Menu
         private Texture2D m_BackgroundTexture;
         public static event EventHandler m_Job;
         private int m_PartieDeJeu;
+        private bool m_WasPressed;
 
         public Button(string nom, Texture2D texture, Rectangle ButtonBox, EventHandler job, int PartieDeJeu)
         {
@@ -26,6 +27,7 @@ namespace CompetitionV2.Menu
             ButtonRect = ButtonBox;
             m_Job = job;
             m_PartieDeJeu = PartieDeJeu;
+            m_WasPressed = false;
         }
 
         public Rectangle ButtonRect
@@ -46,6 +48,18 @@ namespace CompetitionV2.Menu
             set { m_BackgroundTexture = value; }
         }
 
+        protected bool WasPressed
+        {
+            get { return m_WasPressed; }
+            set { m_WasPressed = value; }
+        }
+
+        protected int PartieDeJeu
+        {
+            get { return m_PartieDeJeu; }
+            set { m_PartieDeJeu = value; }
+        }
+
         /**
          * @return true: If a player enters the button with mouse
          */
@@ -58,16 +72,19 @@ namespace CompetitionV2.Menu
             return false;
         }
 
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             if (enterButton() && Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
-                //todo do stuff
-
+                m_WasPressed = true;
+            }
+            if (m_WasPressed && enterButton() && Mouse.GetState().LeftButton == ButtonState.Released)
+            {
+                m_WasPressed = false;
                 m_Job.Invoke(m_PartieDeJeu);
             }
         }
-        public void Draw(SpriteBatch sb)
+        public virtual void Draw(SpriteBatch sb)
         {
             if (enterButton())
             {

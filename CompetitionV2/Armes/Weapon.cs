@@ -14,7 +14,7 @@ namespace Competition.Armes
     public enum WeaponType
     {
         Pistol = 0,
-        MachineGun = 1,
+        AssaultRifle = 1,
         Shotgun,
     };
 

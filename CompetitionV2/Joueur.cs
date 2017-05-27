@@ -54,7 +54,7 @@ namespace TopDownGridBasedEngine
 
             BombsLeft = 1;
 
-            m_WeaponList = new Weapons[] {new Pistol(this), new AssaultRifle(this), new Shotgun(this), };
+            m_WeaponList = new Weapons[] {new Pistol(this), new AssaultRifle(this), new Shotgun(this) };
             _Hp = MaxHealth;
 
             Lights = new Light[2];
