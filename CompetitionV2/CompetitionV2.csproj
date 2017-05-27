@@ -70,6 +70,10 @@
     <Compile Include="Joueur.cs" />
     <Compile Include="KeyWrapper.cs" />
     <Compile Include="Map.cs" />
+    <Compile Include="Menu\Armurerie.cs" />
+    <Compile Include="Menu\Button.cs" />
+    <Compile Include="Menu\Menu.cs" />
+    <Compile Include="Menu\MenuDefaut.cs" />
     <Compile Include="Mobs\FighterRobot.cs" />
     <Compile Include="Mobs\GrenadierRobot.cs" />
     <Compile Include="Mobs\KamikazeRobot.cs" />

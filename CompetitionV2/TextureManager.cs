@@ -28,8 +28,12 @@ namespace TopDownGridBasedEngine
 
         public Texture2D[] TextureFire;
         public Texture2D[] TextureBomb;
-
+        
         public static Texture2D[] TextureBullet;
+
+        public static Texture2D BackgroundImage;
+        
+        
         //Textures du jeu cyborg
         public static Texture2D TextureBarricade;
         public static Texture2D[] TextureTerre;
@@ -169,7 +173,11 @@ namespace TopDownGridBasedEngine
             Explosion = _content.Load<Texture2D>("Textures/Explode");
 
             Font = _content.Load<SpriteFont>("Font/Font");
-            
+
+
+
+            BackgroundImage = _content.Load<Texture2D>("Textures/BackgroundBlur");
+
             /* Sources des textures
              * Toutes les textures sont libres de droits et peuvent être redistribuées gratuitement
                 https://opengameart.org/content/dirt-004

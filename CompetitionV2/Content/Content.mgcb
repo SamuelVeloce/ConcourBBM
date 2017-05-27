@@ -626,3 +626,73 @@
 /processorParam:TextureFormat=Color
 /build:Textures/Warmachine2.png
 
+<<<<<<< HEAD
+=======
+#begin Font/Font.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Font/Font.spritefont
+
+#begin SoundEffect/EmptyGun.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffect/EmptyGun.wav
+
+#begin SoundEffect/Explosion.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffect/Explosion.wav
+
+#begin SoundEffect/ExplosionDebris.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffect/ExplosionDebris.wav
+
+#begin SoundEffect/ExtremeAction.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffect/ExtremeAction.wav
+
+#begin SoundEffect/ImpactRobot.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffect/ImpactRobot.wav
+
+#begin SoundEffect/PistolShot.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffect/PistolShot.wav
+
+#begin SoundEffect/RifleShot.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffect/RifleShot.wav
+
+#begin SoundEffect/TrameSonore.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffect/TrameSonore.wav
+
+#begin Textures/BackgroundBlur.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Textures/BackgroundBlur.png
+
+>>>>>>> a1f2977d13aa0abf5b4f03b7b38564ba1f87c465
