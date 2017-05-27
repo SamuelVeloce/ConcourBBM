@@ -30,8 +30,9 @@ namespace TopDownGridBasedEngine
 
         protected override void Initialize()
         {
-            _graphics.PreferredBackBufferHeight = 900;
-            _graphics.PreferredBackBufferWidth = 900;
+            int Dimension = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height - 100;
+            _graphics.PreferredBackBufferHeight = Dimension;
+            _graphics.PreferredBackBufferWidth = Dimension;
             _graphics.ApplyChanges();
             IsMouseVisible = true;
             Window.AllowUserResizing = true;
@@ -41,7 +42,7 @@ namespace TopDownGridBasedEngine
             Penumbra.AmbientColor = Color.White;
             TextureManager.InitInstance(Content);
             PartieDuJeu = new JeuMenu();
-
+            SoundManager.InitInstance(Content);
 
             base.Initialize();
 

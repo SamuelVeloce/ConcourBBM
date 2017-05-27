@@ -34,8 +34,7 @@ namespace CompetitionV2.Armes
 
         public override void JouerSonTir()
         {
-            //TODO
-            //ShootingSound.Play(0.3f, 1,0);
+            SoundManager.Pistol.Play();
         }
         
 
@@ -82,6 +81,10 @@ namespace CompetitionV2.Armes
 
 
                 JouerSonTir();
+            }
+            else
+            {
+                JouerSonVide();
             }
         }
         private void _timer_Elapsed(object sender, ElapsedEventArgs e)

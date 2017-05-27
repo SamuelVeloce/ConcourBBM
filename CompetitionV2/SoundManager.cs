@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 
-namespace CompetitionV2
+namespace TopDownGridBasedEngine
 {
     class SoundManager
     {

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Timers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using TopDownGridBasedEngine;
 
 namespace Competition.Armes
 {
@@ -26,6 +27,10 @@ namespace Competition.Armes
         {
             get { return m_Nom; }
             set { m_Nom = value; }
+        }
+        public void JouerSonVide()
+        {
+            SoundManager.EmptyGun.Play();
         }
 
 //Donnés de l'utilisateur de l'arme
