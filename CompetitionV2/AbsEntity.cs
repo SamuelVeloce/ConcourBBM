@@ -164,5 +164,45 @@ namespace TopDownGridBasedEngine
 
         public abstract void Draw(SpriteBatch sb, float width, Color color);
 
+        public bool RaycastTo(Point p)
+        {
+
+            Point Here = new Point((this.X - this.Size), (this.Y - Size));
+            Point There = p;
+            Rectangle TheOtherOne;
+
+            foreach (AbsCase c in Map.Walls)
+            {
+                TheOtherOne = c.Hitbox;
+
+                if (LinesCross(TheOtherOne.Location, TheOtherOne.Location + TheOtherOne.Size, Here, There) ||
+                    LinesCross(new Point(TheOtherOne.Location.X + TheOtherOne.Width, TheOtherOne.Location.Y),
+                    new Point(TheOtherOne.Location.X, TheOtherOne.Location.Y + TheOtherOne.Height), Here, There))
+                    return false;
+            }
+
+            return true;
+
+        }
+
+        public bool LinesCross(Point Debut1, Point Fin1, Point Debut2, Point Fin2)
+        {
+
+            float Denominator = ((Fin1.X - Debut1.X) * (Fin2.Y - Debut2.Y)) -
+                                ((Fin1.Y - Debut1.Y) * (Fin2.X - Debut2.X));
+            float Numerator1 = ((Debut1.Y - Debut2.Y) * (Fin2.X - Debut2.X)) -
+                               ((Debut1.X - Debut2.X) * (Fin2.Y - Debut2.Y));
+            float Numerator2 = ((Debut1.Y - Debut2.Y) * (Fin1.X - Debut1.X)) -
+                               ((Debut1.X - Debut2.X) * (Fin1.Y - Debut1.Y));
+
+
+            if (Denominator == 0) return Numerator1 == 0 && Numerator2 == 0;
+
+            float R = Numerator1 / Denominator;
+            float S = Numerator2 / Denominator;
+
+            return (R >= 0 && R <= 1) && (S >= 0 && S <= 1);
+        }
+
     }
 }

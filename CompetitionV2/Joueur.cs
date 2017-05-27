@@ -81,21 +81,24 @@ namespace TopDownGridBasedEngine
             Lights[0].Scale = new Vector2(600, 900);
             Lights[0].ShadowType = ShadowType.Solid;
             Game1.Penumbra.Lights.Add(Lights[0]);
-            
+
             Lights[1] = new PointLight();
             Lights[1].Color = Color.Teal;
-            Lights[1].Intensity = 10f;
-            Lights[1].Scale = new Vector2(800, 800);
-            Lights[1].ShadowType = ShadowType.Solid;
+            Lights[1].Intensity = 2f;
+            Lights[1].Scale = new Vector2(700, 700);
+            Lights[1].CastsShadows = true;
+            Lights[1].ShadowType = ShadowType.Occluded;
             Game1.Penumbra.Lights.Add(Lights[1]);
 
             Lights[2] = new PointLight();
             Lights[2].Color = Color.Teal;
-            Lights[2].Intensity = 4f;
+            Lights[2].Intensity = 2f;
             Lights[2].Scale = new Vector2(700, 700);
             Lights[2].CastsShadows = false;
             Lights[2].ShadowType = ShadowType.Solid;
             Game1.Penumbra.Lights.Add(Lights[2]);
+
+
 
 
             ChangedCase += Joueur_ChangedCase;

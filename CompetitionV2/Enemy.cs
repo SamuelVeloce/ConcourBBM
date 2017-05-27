@@ -14,10 +14,11 @@ namespace TopDownGridBasedEngine
 {
     public class Enemy : AbsMoveableEntity, ITexturable
     {
-        private int _textureVariant;
-        private Path _path;
-        private double NextPathfindTime;
-        private float _SpeedFactor;
+        protected int _textureVariant;
+        protected Path _path;
+        protected double NextPathfindTime;
+        protected float _SpeedFactor;
+        protected int _Hp { get; set; }
 
         public override EntityType Type => EntityType.GenericEntity;
 
@@ -33,14 +34,14 @@ namespace TopDownGridBasedEngine
             Died += Die;
             Collided += Enemy_Collided;
             NextPathfindTime = 0;
+            _SpeedFactor = speedFactor;
         }
 
         private void Enemy_Collided(object sender, BlockCollisionEventArgs e)
         {
-            Vector2 vec = new Vector2((this.X / Map.EntityPixelPerCase) * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - this.X,
-                (this.Y / Map.EntityPixelPerCase) * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - this.Y);
+            Vector2 vec = new Vector2((this.X / Map.EntityPixelPerCase) * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - (this.X - this.Size / 2),
+                (this.Y / Map.EntityPixelPerCase) * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - (this.Y - this.Size / 2));
             vec.Normalize();
-            vec *= _SpeedFactor;
             this.VelX += vec.X;
             this.VelY += vec.Y;
         }
@@ -53,6 +54,8 @@ namespace TopDownGridBasedEngine
         public override void Tick(long deltaTime)
         {
             NextPathfindTime -= deltaTime;
+            Joueur j = EntityManager.Instance.Joueurs[0];
+
             if (_path != null && NextPathfindTime > 0)
             {
                 int x = (this.X + Size / 2) / Map.EntityPixelPerCase;
@@ -63,7 +66,7 @@ namespace TopDownGridBasedEngine
                     Vector2 Velocity = new Vector2(p.Value.X * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - this.X + this.Size / 2,
                         p.Value.Y * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - this.Y + this.Size / 2);
                     Velocity.Normalize();
-                    Velocity /= 4;
+                    Velocity *= _SpeedFactor;
                     VelX = Velocity.X;
                     VelY = Velocity.Y;
                 }
@@ -71,6 +74,10 @@ namespace TopDownGridBasedEngine
             else
             {
                 NextPathfindTime = 200;
+                if (RaycastTo(new Point(j.X + j.Size / 2, j.Y + j.Size / 2)))
+                {
+
+                }
                 _path?.Delete();
                 _path = new Path(new Point((this.X + this.Size / 2) / Map.EntityPixelPerCase, (this.Y + this.Size / 2) / Map.EntityPixelPerCase),
                     new Point(EntityManager.Instance.Joueurs[0].X / Map.EntityPixelPerCase, EntityManager.Instance.Joueurs[0].Y / Map.EntityPixelPerCase),

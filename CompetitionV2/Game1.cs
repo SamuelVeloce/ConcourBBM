@@ -29,6 +29,7 @@ namespace TopDownGridBasedEngine
             _graphics.PreferredBackBufferHeight = 900;
             _graphics.PreferredBackBufferWidth = 900;
             _graphics.ApplyChanges();
+            IsMouseVisible = true;
             Window.AllowUserResizing = true;
             Penumbra = new PenumbraComponent(this);
             Components.Add(Penumbra);
@@ -40,7 +41,7 @@ namespace TopDownGridBasedEngine
             
 
             _hud = new Hud(Window);
-            _map = new Map(59, Window.ClientBounds);
+            _map = new Map(45, Window.ClientBounds);
             
             Joueurs = new Joueur[4];
             _wrapper = new KeyWrapper(0, 0, 0);
@@ -77,7 +78,7 @@ namespace TopDownGridBasedEngine
             EntityManager.InitInstance(Joueurs, _map, 0);
 
             System.Random r = new System.Random();
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 50; i++)
             {
                 Enemy e = new Enemy(r.Next() % _map.Width * Map.EntityPixelPerCase, r.Next() % _map.Height * Map.EntityPixelPerCase, _map, true, 0.25f);
                 EntityManager.Instance.Add(e);
@@ -131,7 +132,6 @@ namespace TopDownGridBasedEngine
 
         protected override void Draw(GameTime gameTime)
         {
-
             // Light affected stuff.
             Penumbra.Visible = true;
             Penumbra.BeginDraw();

@@ -25,12 +25,15 @@ namespace TopDownGridBasedEngine
         public int Width => _noCase;
         public int Height => _noCase;
 
+        public List<AbsCase> Walls;
+
         public Map(int size, Rectangle clientRect)
         {
             
             _noCase = size + (size % 2 - 1);
             _cases = new AbsCase[size, size];
             _random = new Random();
+            Walls = new List<AbsCase>();
             
             TileWidth = Math.Min((float)clientRect.Width / NoCase, (float)clientRect.Height / NoCase);
 
@@ -191,7 +194,8 @@ namespace TopDownGridBasedEngine
                 {
                     if (this[x, y] != null)
                     {
-
+                        if (this[x, y].IsSolid)
+                            Walls.Remove(this[x, y]);
                         if (this[x, y].Hull != null)
                         {
                             Game1.Penumbra.Hulls.Remove(this[x, y].Hull);
@@ -211,6 +215,8 @@ namespace TopDownGridBasedEngine
                                 vide.Bomb = null;
                     }
                     
+                    if (value.IsSolid)
+                        Walls.Add(value);
                     _cases[x, y] = value;
                 }
             }
