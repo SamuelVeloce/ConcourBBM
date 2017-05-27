@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using Competition.Armes;
+using CompetitionV2.Armes;
 using TopDownGridBasedEngine.Armes;
 using TopDownGridBasedEngine.Projectile;
 using Microsoft.Xna.Framework;
@@ -45,8 +46,7 @@ namespace TopDownGridBasedEngine
 
             BombsLeft = 1;
 
-            m_WeaponList = new Weapons[] {new Pistol(this), new AssaultRifle(this)};
-
+            m_WeaponList = new Weapons[] {new Pistol(this), new AssaultRifle(this), new Shotgun(this), };
 
             Lights = new Light[2];
 
