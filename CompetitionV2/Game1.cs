@@ -68,6 +68,8 @@ namespace TopDownGridBasedEngine
                 ButtonState.Pressed || Keyboard.GetState().IsKeyDown(
                     Keys.Escape))
                 Exit();
+            if (Keyboard.GetState().IsKeyDown(Keys.NumPad9))
+                PartieDuJeu = new JeuMenu();
 
             PartieDuJeu.Update(gameTime);
 
