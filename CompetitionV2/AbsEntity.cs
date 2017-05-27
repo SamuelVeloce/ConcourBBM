@@ -7,13 +7,9 @@ namespace TopDownGridBasedEngine
     public delegate void OnMoveHandler(object sender, CancellableEventArgs e);
     public delegate void OnDieHandler(object sender, CancellableEventArgs e);
     public delegate void OnDropBombHandler(object sender, CaseEventArgs e);
-    public delegate void OnPickBombHandler(object sender, CaseEventArgs e);
-    public delegate void OnKickBombHandler(object sender, KickedBombEventArgs e);
-    public delegate void OnGetBonusHandler(object sender, CaseEventArgs e);
     public delegate void OnChangeCaseHandler(object sender, MultiCaseEventArgs e);
     public delegate void OnCollideWithBlockHandler(object sender, BlockCollisionEventArgs e);
     public delegate void OnBombExplodeHandler(object sender, CaseEventArgs e);
-    public delegate void OnShootBombHandler(object sender, ShootBombEventArgs e);
     public delegate void OnFireStopHandler(object sender, MultiFireEventArgs e);
 
     public delegate void OnGenericMultiblockEventHandler(object sender, MultiCaseEventArgs e);
@@ -102,9 +98,9 @@ namespace TopDownGridBasedEngine
             bool bx, by;
             AbsCase[] ret;
             
-            x1 = (x - Size) / Map.EntityPixelPerCase;
-            x2 = (x + Size - 1) / Map.EntityPixelPerCase;
-            y1 = (y - Size) / Map.EntityPixelPerCase;
+            x1 = (x) / Map.EntityPixelPerCase;
+            x2 = (x + Size- 1) / Map.EntityPixelPerCase;
+            y1 = (y) / Map.EntityPixelPerCase;
             y2 = (y + Size - 1) / Map.EntityPixelPerCase;
             
             if (y2 >= Map.NoCase)
@@ -143,6 +139,7 @@ namespace TopDownGridBasedEngine
             if (bx) ret[i++] = Map[x2, y1];
             if (by) ret[i++] = Map[x1, y2];
             if (bx && by) ret[i] = Map[x2, y2];
+            
             return ret;
         }
 

@@ -18,6 +18,7 @@ namespace TopDownGridBasedEngine
         public Texture2D TextureCaseVide;
         public Texture2D TextureCaseWall;
         public Texture2D TextureCaseSolidWall;
+        public Texture2D TextureCaseVerte;
         public Texture2D[,] TextureCaseBonus;
 
         public Texture2D[] TexturePlayerLeft;
@@ -99,6 +100,7 @@ namespace TopDownGridBasedEngine
             TextureCaseVide = _content.Load<Texture2D>("Textures/Ground");
             TextureCaseWall = _content.Load<Texture2D>("Textures/Wall");
             TextureCaseSolidWall = _content.Load<Texture2D>("Textures/SolidWall");
+            TextureCaseVerte = _content.Load<Texture2D>("Textures/Grass");
 
             TextureFire[0] = _content.Load<Texture2D>("Textures/TextureCaseFire1");
             TextureFire[1] = _content.Load<Texture2D>("Textures/TextureCaseFire2");

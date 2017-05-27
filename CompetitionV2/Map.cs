@@ -45,7 +45,7 @@ namespace TopDownGridBasedEngine
                 {
                     if (x % 2 == 0 && y % 2 == 0)
                         this[x, y] = new CaseVide(x, y, this);
-                    else if (_random.Next() % 2 != 0)
+                    else if (_random.Next() % 2 != 0 && false)
                         this[x, y] = new CaseWall(x, y, this);
                     else
                         this[x, y] = new CaseVide(x, y, this);
@@ -176,8 +176,53 @@ namespace TopDownGridBasedEngine
 
             } while (listeMur.Count > 0);
 
-            // Mettre ici le code pour remplacer de la terre par de l'herbe si besoin.        
+            // Mettre ici le code pour remplacer de la terre par de l'herbe si besoin.       
+
+             // Version unsafe
+             currPos = _random.Next(mapLength / 30);
+             do
+             {
+                 PousserHerbe(currPos);
+                 currPos += _random.Next(mapLength / 4);
+             } while (currPos < mapLength);
+            
+             // Version bs
+//            j = 0;
+//            while (j < this.Height)
+//            {
+//                i = 0;
+//                while (i < this.Width)
+//                {
+//                    if (_random.Next() % 2 == 0 && this[j, i].Type == CaseType.Vide)
+//                        this[j, i] = new CaseVerte(j, i, this);
+//                    i += 1;
+//                }
+//                j += 1;
+//            }
         }
+
+                void PousserHerbe(int pos)
+                {
+                    Point Centre = new Point(pos % Width, pos / Width);
+                    int Rayon = _random.Next(6, 14);
+                    int Step = 0;
+
+                    for (int j = 0; j < Rayon; j += 1)
+                    {
+                        Step = Rayon - j;
+                        for (int i = 0; i < Step; i += 1)
+                        {
+                            if (Centre.X - j >= 0 && Centre.Y - i >= 0 && this[Centre.X - j, Centre.Y - i].Type == CaseType.Vide)
+                                this[Centre.X - j, Centre.Y - i] = new CaseVerte(Centre.X - j, Centre.Y - i, this);
+                            if (Centre.X - j >= 0 && Centre.Y + i < Height && this[Centre.X - j, Centre.Y + i].Type == CaseType.Vide)
+                                this[Centre.X - j, Centre.Y + i] = new CaseVerte(Centre.X - j, Centre.Y + i, this);
+                            if (Centre.X + j < Width && Centre.Y - i >= 0 && this[Centre.X + j, Centre.Y - i].Type == CaseType.Vide)
+                                this[Centre.X + j, Centre.Y - i] = new CaseVerte(Centre.X + j, Centre.Y - i, this);
+                            if (Centre.X + j < Width && Centre.Y + i < Height &&  this[Centre.X + j, Centre.Y + i].Type == CaseType.Vide)
+                                this[Centre.X + j, Centre.Y + i] = new CaseVerte(Centre.X + j, Centre.Y + i, this);
+                        }
+                    }
+                }
 
         // Indexeur pour aller chercher facilement des cases
         public AbsCase this[int x, int y]
@@ -186,7 +231,7 @@ namespace TopDownGridBasedEngine
             {
                 if (x >= 0 && y >= 0 && x < _noCase && y < _noCase)
                     return _cases[x, y];
-                throw new IndexOutOfRangeException($"{x}, {y} is outside the range 0-{_noCase - 1}");
+                return new CaseVide(x, y, this);
             }
             set
             {
@@ -230,65 +275,6 @@ namespace TopDownGridBasedEngine
         {
             foreach (AbsCase c in _cases)
                 c.Draw(sb, TileWidth);
-        }
-
-        /// <summary>
-        /// Tries to place a bonus at the specified spot in the map
-        /// </summary>
-        /// <param name="x">X coords of the case to place a bonus in</param>
-        /// <param name="y">Y coords of the case to place a bonus in</param>
-        /// <returns>True if a bonus was place, false otherwise</returns>
-        public bool MakeRandomBonus(int x, int y)
-        {
-            if (x < 0 || y < 0 || x >= _noCase || y >= _noCase)
-                return false;
-            if (!(this[x, y] is CaseWall))
-                return false;
-
-            if (_random.Next() % 3 != 0)
-                return false;
-
-            this[x, y] = new CaseBonus(x, y, this, _random);
-            return true;
-
-        }
-
-        // Size, byte[Size, Size]
-        public bool FromByteArray(byte[] data, ref int position)
-        {
-            if (data.Length < position + 1)
-                return false;
-            _noCase = data[position++];
-            if (data.Length < position + 1 + _noCase * _noCase)
-                return false;
-            for (int x = 0; x < _noCase; x++)
-            {
-                for (int y = 0; y < _noCase; y++)
-                {
-                    if (data[position] == 2)
-                        this[x, y] = new CaseSolidWall(x, y, this);
-                    else if (data[position] == 1)
-                        this[x, y] = new CaseWall(x, y, this);
-                    else
-                        this[x, y] = new CaseVide(x, y, this);
-                    position++;
-                }
-            }
-            return true;
-        }
-
-        public byte[] ToByteArray()
-        {
-            byte[] ret = new byte[_noCase * _noCase + 1];
-            ret[0] = (byte)_noCase;
-            for (int x = 0; x < _noCase; x++)
-            {
-                for (int y = 0; y < _noCase; y++)
-                {
-                    ret[1 + x * _noCase + y] = (byte)this[x, y].Type;
-                }
-            }
-            return ret;
         }
 
     }
