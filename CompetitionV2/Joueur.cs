@@ -19,7 +19,15 @@ namespace TopDownGridBasedEngine
 
         Weapons[] m_WeaponList;
 
-        
+        private int _Hp;
+
+        public int Health
+        {
+            get { return _Hp; }
+            set { _Hp = value; }
+        }
+
+        public int MaxHealth = 100;
 
         public event OnDropBombHandler DroppedBomb;
         public event OnBombExplodeHandler BombExploded;
@@ -46,8 +54,8 @@ namespace TopDownGridBasedEngine
 
             BombsLeft = 1;
 
-            m_WeaponList = new Weapons[] {new Pistol(this), new MachineGun(this), new Shotgun(this), };
-
+            m_WeaponList = new Weapons[] {new Pistol(this), new AssaultRifle(this), new Shotgun(this) };
+            _Hp = MaxHealth;
 
             Lights = new Light[2];
 
@@ -76,7 +84,9 @@ namespace TopDownGridBasedEngine
 
         public void DealDamage(int Damage)
         {
-
+            _Hp -= Damage;
+            if (_Hp < 0)
+                FireDied(this, new CancellableEventArgs(false));
         }
         
         public Light[] Lights { get; }
@@ -216,7 +226,6 @@ namespace TopDownGridBasedEngine
             //g.FillRectangle(b, (X - m_Radius) * w, (Y - m_Radius) * w, m_Radius * 2 * w, m_Radius * 2 * w);
             //g.DrawImage(bit, (X - rad) * w, (Y - rad - 20) * w, rad * w * 2, rad * w * 3);
             sb.Draw(bit, new Rectangle((int)(X * w), (int)(Y * w - Size * w), (int)(Size * w), (int)(Size * w * 2)), color);
-
             //Console.WriteLine($"{X}, {Y}\r\n{VelX}, {VelY}");
             //g.DrawString(string.Format("{0}, {1}\r\n{2}, {3}", X, Y, VelX, VelY), new Font("Arial", 12), b, 10, 45 * (_idJoueur));
         }

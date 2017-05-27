@@ -37,6 +37,8 @@ namespace CompetitionV2.Armes
            // throw new NotImplementedException();
         }
 
+        public override WeaponType WeaponType => WeaponType.Shotgun;
+
         public Shotgun(AbsEntity owner):base(owner)
         {
             Owner = owner;
@@ -83,7 +85,7 @@ namespace CompetitionV2.Armes
                     Vector2 MouseDir = new Vector2((float)Math.Cos(Radians), (float)Math.Sin(Radians));
                     EntityManager.Instance.ProjectilesListFriendly.Add(new ProjectileBullet(
                         TextureManager.TextureBullet, new Vector2(Owner.X, Owner.Y), new Vector2(8, 8), MouseDir*500,
-                        100));
+                        100) {Friendly = true});
                 }
                 
                 JouerSonTir();

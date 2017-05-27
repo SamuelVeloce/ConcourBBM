@@ -1,37 +1,36 @@
-﻿using System;
+﻿using Competition.Armes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Timers;
-using Competition.Armes;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using TopDownGridBasedEngine;
+using System.Timers;
+using Microsoft.Xna.Framework.Input;
+using TopDownGridBasedEngine.Projectile;
 
-namespace TopDownGridBasedEngine.Projectile
+namespace CompetitionV2.Armes
 {
-    sealed class Pistol : Weapons
+    class PistolAI : Weapons
     {
-
         public override int NBulletLeft { get; set; }
         public override int NBulletInCharger { get; set; }
 
         public override string WeaponName { get { return "Pistolet"; } }
-       // private const byte m_BulletSpeed = 25;
+        // private const byte m_BulletSpeed = 25;
         private const int m_ReloadingTime = 2000;
         private const int m_ClipSize = 17;
-        private const int m_Firerate = 70;
-        private const int m_SpreadAngle = 2;
+        private const int m_Firerate = 350;
+        private const int m_SpreadAngle = 20;
         private readonly Random m_RNG = new Random();
         private bool m_CanShoot = true;
         private bool m_Reloading;
         private readonly System.Timers.Timer m_WeaponTimer;
-        
+
         public override void JouerSonTir()
         {
-            SoundManager.Pistol.Play((float)0.5,0,0);
+            SoundManager.Pistol.Play((float)0.5, 0, 0);
         }
 
         public override WeaponType WeaponType => WeaponType.Pistol;
@@ -49,9 +48,9 @@ namespace TopDownGridBasedEngine.Projectile
                 m_WeaponTimer.Start();
             }
         }
-        
 
-        public Pistol(AbsEntity Owner) : base(Owner)
+
+        public PistolAI(AbsEntity Owner) : base(Owner)
         {
             NBulletLeft = int.MaxValue - 100;
             NBulletInCharger = m_ClipSize;
@@ -63,7 +62,8 @@ namespace TopDownGridBasedEngine.Projectile
 
         public override void MouseDown()
         {
-            MouseDown((Mouse.GetState().Position.ToVector2() / EntityManager.Instance.Map.TileWidth * Map.EntityPixelPerCase).ToPoint());
+            
+            //MouseDown((Mouse.GetState().Position.ToVector2() / EntityManager.Instance.Map.TileWidth * Map.EntityPixelPerCase).ToPoint());
         }
 
         public override void MouseDown(Point Target)//Vector2 MouseDir)
@@ -75,17 +75,18 @@ namespace TopDownGridBasedEngine.Projectile
                 //m_MouseDir = MouseDir;
                 NBulletInCharger--;
 
-                double Radians = Math.Atan2(Target.Y - Owner.Y, Target.X - Owner.X) + ((m_RNG.NextDouble() * m_SpreadAngle) - m_SpreadAngle / 2.0) * (Math.PI / 180.0);
+                double Radians = Math.Atan2((Target.Y) - Owner.Y, Target.X - Owner.X) + ((m_RNG.NextDouble() * m_SpreadAngle) - m_SpreadAngle / 2.0) * (Math.PI / 180.0);
                 Vector2 MouseDir = new Vector2((float)Math.Cos(Radians), (float)Math.Sin(Radians));
                 ProjectileBullet bullet = new ProjectileBullet(TextureManager.TextureBullet, new Vector2(Owner.X, Owner.Y), new Vector2(8, 8), MouseDir * 1000, 10);
-                bullet.Friendly = true;
-                EntityManager.Instance.ProjectilesListFriendly.Add(bullet);
+                bullet.Friendly = false;
+                EntityManager.Instance.ProjectilesListHostile.Add(bullet);
+                
 
                 JouerSonTir();
             }
             else
             {
-                JouerSonVide();
+                //JouerSonVide();
             }
         }
         private void _timer_Elapsed(object sender, ElapsedEventArgs e)
@@ -142,9 +143,5 @@ namespace TopDownGridBasedEngine.Projectile
             //int i = 9;  //debug
             //Do nothing in this case (somewhat useless)
         }
-
-
-
-
     }
 }

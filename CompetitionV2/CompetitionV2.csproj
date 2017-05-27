@@ -47,11 +47,13 @@
     <Compile Include="AbsMoveableEntity.cs" />
     <Compile Include="Armes\BoltActionSniper.cs" />
     <Compile Include="Armes\Machinegun.cs" />
+    <Compile Include="Armes\PistolAI.cs" />
     <Compile Include="Armes\SemiAutomaticSniper.cs" />
     <Compile Include="Armes\Shotgun.cs" />
     <Compile Include="Armes\Weapon.cs" />
     <Compile Include="BlockCollisionEventArgs.cs" />
     <Compile Include="Bomb.cs" />
+    <Compile Include="Bonus.cs" />
     <Compile Include="CancellableEventArgs.cs" />
     <Compile Include="CaseEventArgs.cs" />
     <Compile Include="CaseSolidWall.cs" />
@@ -91,6 +93,7 @@
     <Compile Include="Pathfinding\Path.cs" />
     <Compile Include="Pathfinding\Case.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="ProgressManager.cs" />
     <Compile Include="Projectile\absProjectile.cs" />
     <Compile Include="Armes\Pistol.cs" />
     <Compile Include="Projectile\ProjectileBullet.cs" />
