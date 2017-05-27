@@ -12,7 +12,7 @@ using TopDownGridBasedEngine;
 
 namespace TopDownGridBasedEngine.Armes
 {
-    sealed class MachineGun : Weapons
+    sealed class AssaultRifle : Weapons
     {
         public override int NBulletLeft { get; set; }
         public override int NBulletInCharger { get; set; }
@@ -63,10 +63,10 @@ namespace TopDownGridBasedEngine.Armes
         
 
 
-        public MachineGun(AbsEntity Owner) : base(Owner)
+        public AssaultRifle(AbsEntity Owner) : base(Owner)
         {
             
-            Nom = "Machinegun";
+            Nom = "Assault Rifle";
             NBulletLeft = 50;//int.MaxValue - 100;
             NBulletInCharger = m_ClipSize;
             m_WeaponTimer = new System.Timers.Timer(m_Firerate) { AutoReset = false };
