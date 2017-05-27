@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CompetitionV2.Projectile;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -16,7 +17,7 @@ namespace TopDownGridBasedEngine
         public static Joueur Joueur;
         public static Map Map;
         private KeyWrapper _wrapper;
-
+        private bool MouseDown = false;
 
         public JeuMenu()
         {
@@ -48,18 +49,36 @@ namespace TopDownGridBasedEngine
             _wrapper.MouseX = Mouse.GetState().X;
             _wrapper.MouseY = Mouse.GetState().Y;
             _wrapper.State = 0;
-            if (Keyboard.GetState().IsKeyDown(Keys.Up))
+            if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.W))
                 _wrapper.State |= KeyState.Up;
-            if (Keyboard.GetState().IsKeyDown(Keys.Down))
+            if (Keyboard.GetState().IsKeyDown(Keys.Down) || Keyboard.GetState().IsKeyDown(Keys.S))
                 _wrapper.State |= KeyState.Down;
-            if (Keyboard.GetState().IsKeyDown(Keys.Left))
+            if (Keyboard.GetState().IsKeyDown(Keys.Left) || Keyboard.GetState().IsKeyDown(Keys.A))
                 _wrapper.State |= KeyState.Left;
-            if (Keyboard.GetState().IsKeyDown(Keys.Right))
+            if (Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.D))
                 _wrapper.State |= KeyState.Right;
             _wrapper.ToggleSpace(Keyboard.GetState().IsKeyDown(Keys.Space));
-            EntityManager.Instance.TickPlayer(0, gameTime.ElapsedGameTime.Milliseconds, _wrapper);
+            if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+            {
+                if (!MouseDown)
+                {
+                    Joueur.Weapon.MouseDown();
+                    MouseDown = true;
+                }
+                
+            }
+            else
+            {
+                if (MouseDown)
+                {
+                    Joueur.Weapon.MouseUp();
+                    MouseDown = false;
+                }
+            }
+            
+            EntityManager.Instance.TickPlayer(0, gameTime, _wrapper);
             _wrapper.ResetSpace();
-            EntityManager.Instance.TickEntities(gameTime.ElapsedGameTime.Milliseconds);
+            EntityManager.Instance.TickEntities(gameTime);
 
         }
 
@@ -73,6 +92,7 @@ namespace TopDownGridBasedEngine
             sb.Begin();
             Map.Draw(sb, Game1.Screen.ClientBounds);
             EntityManager.Instance.Draw(sb, Game1.Screen.ClientBounds);
+            
             //EntityManager.Instance.DrawPlayers(_spriteBatch, Window.ClientBounds);
             sb.End();
 

@@ -14,6 +14,13 @@ namespace TopDownGridBasedEngine
         public static GameWindow Screen;
         public static PenumbraComponent Penumbra;
 
+
+        private int FPSCounter;
+        private double FPSTime;
+        private int LastFPS;
+        private SpriteFont font;
+
+
         IPartieDeJeu PartieDuJeu;
         
         public Game1()
@@ -44,8 +51,8 @@ namespace TopDownGridBasedEngine
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            
 
+            font = Content.Load<SpriteFont>("Font/Font");
             Penumbra.Initialize();
             Penumbra.Visible = true;
         }
@@ -69,7 +76,18 @@ namespace TopDownGridBasedEngine
 
         protected override void Draw(GameTime gameTime)
         {
+            FPSCounter++;
             PartieDuJeu.DrawWithShadows(_spriteBatch, gameTime, GraphicsDevice);
+
+            if (gameTime.TotalGameTime.TotalMilliseconds - 1000 > FPSTime)
+            {
+                FPSTime = gameTime.TotalGameTime.TotalMilliseconds;
+                LastFPS = FPSCounter;
+                FPSCounter = 0;
+            }
+            _spriteBatch.Begin();
+            _spriteBatch.DrawString(font, "FPS: " + LastFPS, new Vector2(10, 10), Color.Yellow);
+            _spriteBatch.End();
             base.Draw(gameTime);
             PartieDuJeu.DrawWithoutShadows(_spriteBatch, gameTime, GraphicsDevice);
 
