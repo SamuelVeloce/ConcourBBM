@@ -31,7 +31,7 @@ namespace CompetitionV2.Projectile
         
         public override void JouerSonTir()
         {
-            SoundManager.Pistol.Play();
+            SoundManager.Pistol.Play((float)0.5,0,0);
         }
 
 
