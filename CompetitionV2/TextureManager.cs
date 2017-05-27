@@ -28,6 +28,8 @@ namespace TopDownGridBasedEngine
         public Texture2D[] TextureFire;
         public Texture2D[] TextureBomb;
 
+        public Texture2D[] TextureBullet;
+
         // Déclaration de l'instance unique de la classe
         private static TextureManager _instance;
 
@@ -81,7 +83,7 @@ namespace TopDownGridBasedEngine
             TextureCaseBonus = new Texture2D[6, 2];
             TextureFire = new Texture2D[2];
             TextureBomb = new Texture2D[4];
-
+            TextureBullet = new Texture2D[1];
 
             // Textures de cases
             TextureCaseVide = _content.Load<Texture2D>("Textures/TextureCaseVide");
@@ -127,6 +129,9 @@ namespace TopDownGridBasedEngine
             TextureCaseBonus[4, 1] = _content.Load<Texture2D>("Textures/TextureBonusKick2");
             TextureCaseBonus[5, 0] = _content.Load<Texture2D>("Textures/TextureBonusMaxExplosion");
             TextureCaseBonus[5, 1] = _content.Load<Texture2D>("Textures/TextureBonusMaxExplosion2");
+
+
+            TextureBullet[0] = _content.Load<Texture2D>("Textures/Bullet");
 
         }
     }
