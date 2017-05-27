@@ -34,6 +34,8 @@ namespace TopDownGridBasedEngine.Projectile
             SoundManager.Pistol.Play((float)0.5,0,0);
         }
 
+        public override WeaponType WeaponType => WeaponType.Pistol;
+
 
         public override void Reload()
         {
@@ -75,7 +77,7 @@ namespace TopDownGridBasedEngine.Projectile
 
                 double Radians = Math.Atan2(Target.Y - Owner.Y, Target.X - Owner.X) + ((m_RNG.NextDouble() * m_SpreadAngle) - m_SpreadAngle / 2.0) * (Math.PI / 180.0);
                 Vector2 MouseDir = new Vector2((float)Math.Cos(Radians), (float)Math.Sin(Radians));
-                ProjectileBullet bullet = new ProjectileBullet(TextureManager.TextureBullet, new Vector2(Owner.X, Owner.Y), new Vector2(8, 8), MouseDir * 1000, 100);
+                ProjectileBullet bullet = new ProjectileBullet(TextureManager.TextureBullet, new Vector2(Owner.X, Owner.Y), new Vector2(8, 8), MouseDir * 1000, 10);
                 bullet.Friendly = true;
                 EntityManager.Instance.ProjectilesListFriendly.Add(bullet);
 

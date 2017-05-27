@@ -20,7 +20,8 @@ namespace TopDownGridBasedEngine
         Joueur = 0,
         Bomb,
         Fire,
-        GenericEntity
+        GenericEntity,
+        Bonus
     };
 
     public abstract class AbsEntity

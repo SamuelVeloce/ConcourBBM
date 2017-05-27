@@ -50,6 +50,14 @@ namespace Competition.Armes
             }
         }
 
+        public override WeaponType WeaponType
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public override void JouerSonTir()
         {
             throw new NotImplementedException();

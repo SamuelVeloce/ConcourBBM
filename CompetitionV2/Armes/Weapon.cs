@@ -20,7 +20,7 @@ namespace Competition.Armes
     public abstract class Weapons //Classe abstraite utilisé comme template pour toutes les armes
     {
 
-
+        public abstract WeaponType WeaponType { get; }
         private string m_Nom;
         public abstract void MouseDown();//Vector2 MouseDir); //methode utilisé quand un bouton de la sourie est appuyé
         public abstract void MouseDown(Point Target);//Vector2 MouseDir); //methode utilisé quand un bouton de la sourie est appuyé

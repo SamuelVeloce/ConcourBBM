@@ -52,6 +52,7 @@
     <Compile Include="Armes\Weapon.cs" />
     <Compile Include="BlockCollisionEventArgs.cs" />
     <Compile Include="Bomb.cs" />
+    <Compile Include="Bonus.cs" />
     <Compile Include="CancellableEventArgs.cs" />
     <Compile Include="CaseEventArgs.cs" />
     <Compile Include="CaseSolidWall.cs" />

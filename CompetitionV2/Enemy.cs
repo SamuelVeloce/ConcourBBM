@@ -13,6 +13,7 @@ using TopDownGridBasedEngine.Projectile;
 using CompetitionV2.Armes;
 
 using Penumbra;
+using CompetitionV2;
 
 namespace TopDownGridBasedEngine
 {
@@ -57,7 +58,15 @@ namespace TopDownGridBasedEngine
 
         public void Die(object sender, CancellableEventArgs e)
         {
-            
+            // Make a random bonus
+
+            Random r = new Random();
+
+            if (r.Next() % 10 == 0)
+            {
+                Bonus b = new Bonus(this.X, this.Y, this.Map, this.Arme.WeaponType);
+                EntityManager.Instance.Bonus.Add(b);
+            }
         }
 
         public override void Tick(long deltaTime)
@@ -74,7 +83,7 @@ namespace TopDownGridBasedEngine
                 if (p.HasValue)
                 {
                     Vector2 Velocity = new Vector2(p.Value.X * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - (this.X + this.Size / 2),
-                        p.Value.Y * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - (this.Y + this.Size / 2));
+                        p.Value.Y * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - (this.Y + this.Size));
                     Velocity.Normalize();
                     Velocity *= _SpeedFactor;
                     VelX = Velocity.X;

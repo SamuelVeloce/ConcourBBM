@@ -4,7 +4,7 @@ using System.Linq;
 using TopDownGridBasedEngine.Projectile;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
+using CompetitionV2;
 
 namespace TopDownGridBasedEngine
 {
@@ -18,6 +18,7 @@ namespace TopDownGridBasedEngine
         private List<Fire> _deadFire;
         private List<absProjectile> m_projectilesListFriendly;
         private List<absProjectile> m_projectilesListHostile;
+        private List<Bonus> m_listBonus;
 
 
 
@@ -37,6 +38,7 @@ namespace TopDownGridBasedEngine
             _deadFire = new List<Fire>();
             m_projectilesListFriendly = new List<absProjectile>();
             m_projectilesListHostile = new List<absProjectile>();
+            m_listBonus = new List<Bonus>();
         }
 
         protected void FireFireStopped(object sender, MultiFireEventArgs e)
@@ -69,6 +71,8 @@ namespace TopDownGridBasedEngine
         }
 
         public List<AbsEntity> Entities => _entities;
+
+        public List<Bonus> Bonus => m_listBonus;
 
         public Joueur Joueur { get; private set; }
 
@@ -129,7 +133,7 @@ namespace TopDownGridBasedEngine
                 if (Joueur != null && Joueur.IsDead == false)
                     Joueur.UpdateTexture((int)gameTime.ElapsedGameTime.TotalMilliseconds); //Tick(DeltaTime);
                 if (Joueur.IsDead == false)
-                    Joueur.Tick((int)gameTime.ElapsedGameTime.TotalMilliseconds);
+                    Joueur.Tick((long)gameTime.ElapsedGameTime.TotalMilliseconds);
                 if (_deadFire.Count != 0)
                 {
                     FireFireStopped(this, new MultiFireEventArgs(_deadFire.ToArray(), false));
@@ -152,6 +156,10 @@ namespace TopDownGridBasedEngine
                         projho.RemoveAt(i);
                     }
                 }
+                foreach (Bonus b in this.Bonus)
+                {
+                    b.Tick((long)gameTime.ElapsedGameTime.TotalMilliseconds);
+                }
             }
         }
 
@@ -170,15 +178,16 @@ namespace TopDownGridBasedEngine
             }
 
             foreach (absProjectile proj in ProjectilesListFriendly)
-            {
                 proj.Draw(sb, w);
-            }
+
             foreach (absProjectile proj in ProjectilesListHostile)
-            {
                 proj.Draw(sb, w);
-            }
+
             foreach (AbsEntity e in toDraw)
                 e.Draw(sb, w / 30);
+
+            foreach (Bonus b in Bonus)
+                b.Draw(sb, w);
         }
 
         public void DrawPlayers(SpriteBatch sb, Rectangle clientRect)
