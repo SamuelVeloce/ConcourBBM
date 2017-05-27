@@ -24,17 +24,24 @@ namespace TopDownGridBasedEngine
             IsBreakable = breakable;
             LetsFireThrough = letsFireThrough;
 
-            Color = Color.White;
-
             if (solid)
             {
                 Hull = Hull.CreateRectangle(new Vector2(x * Map.TileWidth + Map.TileWidth / 2, y * Map.TileWidth + Map.TileWidth / 2), new Vector2(Map.TileWidth, Map.TileWidth));
+                
                 Game1.Penumbra.Hulls.Add(Hull);
             }
+
+            Hitbox = new Rectangle(new Point(x * Map.EntityPixelPerCase, y * Map.EntityPixelPerCase), new Point(Map.EntityPixelPerCase, Map.EntityPixelPerCase));
         }
 
-        public Color Color { get; set; }
+        /// <summary>
+        /// Utile pour les raycasts. Déterminé selon Map.EntityPixelPerCase
+        /// </summary>
+        public Rectangle Hitbox { get; }
         
+        /// <summary>
+        /// Ce qui crée les ombres. Déterminé selon Map.TileWidth
+        /// </summary>
         public Hull Hull { get; }
 
         /// <summary>
@@ -88,7 +95,7 @@ namespace TopDownGridBasedEngine
         public virtual void Draw(SpriteBatch sb, float width)
         {
             
-            sb.Draw(Texture, new Rectangle((int)(X * width), (int)(Y * width), (int)width, (int)width), Color);
+            sb.Draw(Texture, new Rectangle((int)(X * width), (int)(Y * width), (int)width, (int)width), Color.White);
         }
 
         public override string ToString()

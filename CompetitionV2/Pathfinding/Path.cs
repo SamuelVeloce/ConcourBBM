@@ -73,7 +73,7 @@ namespace TopDownGridBasedEngine
             c.CalculateCost(0, m_End);
 
 
-            while (c != m_End && Iteration < 16384 && m_ListToCheck.Any() && c != null && !m_Stop)
+            while (c != m_End && Iteration < 512 && m_ListToCheck.Any() && c != null && !m_Stop)
             {
                 // Find lowest F-Value in ListToCheck
                 // Check all cases around and calculate their G-Value

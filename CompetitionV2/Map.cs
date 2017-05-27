@@ -25,12 +25,15 @@ namespace TopDownGridBasedEngine
         public int Width => _noCase;
         public int Height => _noCase;
 
+        public List<AbsCase> Walls;
+
         public Map(int size, Rectangle clientRect)
         {
             
             _noCase = size + (size % 2 - 1);
             _cases = new AbsCase[size, size];
             _random = new Random();
+            Walls = new List<AbsCase>();
             
             TileWidth = Math.Min((float)clientRect.Width / NoCase, (float)clientRect.Height / NoCase);
 
@@ -191,16 +194,20 @@ namespace TopDownGridBasedEngine
                 {
                     if (this[x, y] != null)
                     {
-
+                        if (this[x, y].IsSolid)
+                            Walls.Remove(this[x, y]);
                         if (this[x, y].Hull != null)
                         {
                             Game1.Penumbra.Hulls.Remove(this[x, y].Hull);
-                            if (Game1.Joueurs != null)
-                                foreach (Light light in Game1.Joueurs[0].Lights)
-                                {
-                                    light.Position += Vector2.One;
-                                    light.Position -= Vector2.One;
-                                }
+                            if (EntityManager.Instance != null)
+                            {
+                                if (EntityManager.Instance.Joueur != null)
+                                    foreach (Light light in EntityManager.Instance.Joueur.Lights)
+                                    {
+                                        light.Position += Vector2.One;
+                                        light.Position -= Vector2.One;
+                                    }
+                            }
                         }
                         if (this[x, y].Fire != null)
                             this[x, y].Fire = null;
@@ -211,6 +218,8 @@ namespace TopDownGridBasedEngine
                                 vide.Bomb = null;
                     }
                     
+                    if (value.IsSolid)
+                        Walls.Add(value);
                     _cases[x, y] = value;
                 }
             }

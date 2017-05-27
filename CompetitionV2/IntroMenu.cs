@@ -6,11 +6,17 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace CompetitionV2
+namespace TopDownGridBasedEngine
 {
     public class IntroMenu : IPartieDeJeu
     {
-        public void Draw(SpriteBatch sb, GameTime gameTime)
+
+        public void DrawWithoutShadows(SpriteBatch sb, GameTime gameTime, GraphicsDevice gd)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DrawWithShadows(SpriteBatch sb, GameTime gameTime, GraphicsDevice gd)
         {
             throw new NotImplementedException();
         }
