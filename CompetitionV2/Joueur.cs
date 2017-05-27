@@ -1,7 +1,7 @@
 ﻿using System;
 using Competition.Armes;
-using CompetitionV2.Armes;
-using CompetitionV2.Projectile;
+using TopDownGridBasedEngine.Armes;
+using TopDownGridBasedEngine.Projectile;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -12,7 +12,6 @@ namespace TopDownGridBasedEngine
 {
     public class Joueur : AbsMoveableEntity, ITexturable
     {
-
         private int _textureVariant;
 
         Weapons[] m_WeaponList;
@@ -218,5 +217,6 @@ namespace TopDownGridBasedEngine
             //Console.WriteLine($"{X}, {Y}\r\n{VelX}, {VelY}");
             //g.DrawString(string.Format("{0}, {1}\r\n{2}, {3}", X, Y, VelX, VelY), new Font("Arial", 12), b, 10, 45 * (_idJoueur));
         }
+
     }
 }

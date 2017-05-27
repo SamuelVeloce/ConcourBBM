@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using Competition.Armes;
-using CompetitionV2.Projectile;
+using TopDownGridBasedEngine.Projectile;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using TopDownGridBasedEngine;
 
-namespace CompetitionV2.Armes
+namespace TopDownGridBasedEngine.Armes
 {
     sealed class MachineGun : Weapons
     {

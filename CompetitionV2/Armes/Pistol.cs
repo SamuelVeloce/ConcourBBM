@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using TopDownGridBasedEngine;
 
-namespace CompetitionV2.Projectile
+namespace TopDownGridBasedEngine.Projectile
 {
     sealed class Pistol : Weapons
     {

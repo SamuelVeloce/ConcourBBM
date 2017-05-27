@@ -19,7 +19,6 @@ namespace TopDownGridBasedEngine
         private double FPSTime;
         private int LastFPS;
 
-
         IPartieDeJeu PartieDuJeu;
         
         public Game1()

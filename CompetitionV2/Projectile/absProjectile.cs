@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using TopDownGridBasedEngine;
 
-namespace CompetitionV2.Projectile
+namespace TopDownGridBasedEngine.Projectile
 {
     public abstract class absProjectile : Entity
     {

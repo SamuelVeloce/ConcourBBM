@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using Competition.Armes;
-using CompetitionV2.Projectile;
+using TopDownGridBasedEngine.Projectile;
 
 using Penumbra;
 
@@ -91,6 +91,7 @@ namespace TopDownGridBasedEngine
                 {
                     Arme.MouseDown(new Point(j.X, j.Y));
                     Arme.MouseUp();
+
                 }
                 _path = new Path(new Point((this.X + this.Size / 2) / Map.EntityPixelPerCase, (this.Y + this.Size / 2) / Map.EntityPixelPerCase),
                     new Point(EntityManager.Instance.Joueur.X / Map.EntityPixelPerCase, EntityManager.Instance.Joueur.Y / Map.EntityPixelPerCase),
