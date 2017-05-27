@@ -103,6 +103,11 @@ namespace TopDownGridBasedEngine
                     Arme.MouseUp();
 
                 }
+                else
+                {
+                    Random r = new Random();
+                    
+                }
                 _path = new Path(new Point((this.X + this.Size / 2) / Map.EntityPixelPerCase, (this.Y + this.Size / 2) / Map.EntityPixelPerCase),
                     new Point(EntityManager.Instance.Joueur.X / Map.EntityPixelPerCase, EntityManager.Instance.Joueur.Y / Map.EntityPixelPerCase),
                     Map);
