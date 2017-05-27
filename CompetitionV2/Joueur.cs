@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Threading;
 using Competition.Armes;
+using CompetitionV2.Armes;
 using TopDownGridBasedEngine.Armes;
 using TopDownGridBasedEngine.Projectile;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Penumbra;
+using EventHandler = CompetitionV2.Menu.EventHandler;
 
 
 namespace TopDownGridBasedEngine
@@ -43,7 +46,7 @@ namespace TopDownGridBasedEngine
 
             BombsLeft = 1;
 
-            m_WeaponList = new Weapons[] {new Pistol(this), new MachineGun(this)};
+            m_WeaponList = new Weapons[] {new Pistol(this), new MachineGun(this), new Shotgun(this), };
 
 
             Lights = new Light[2];
@@ -82,8 +85,10 @@ namespace TopDownGridBasedEngine
         {
             IsDead = true;
             Game1.Penumbra.Lights.Remove(Lights[0]);
-            Game1.Penumbra.Lights.Remove(Lights[1]);
-        }
+            Game1.Penumbra.Lights.Remove(Lights[1]); 
+            
+            Game1.SetPartieDeJeu((int)TypesDePartieDeJeu.MenuDefaut);
+    }
 
         private void Joueur_Moved(object sender, CancellableEventArgs e)
         {
@@ -211,9 +216,7 @@ namespace TopDownGridBasedEngine
             //g.FillRectangle(b, (X - m_Radius) * w, (Y - m_Radius) * w, m_Radius * 2 * w, m_Radius * 2 * w);
             //g.DrawImage(bit, (X - rad) * w, (Y - rad - 20) * w, rad * w * 2, rad * w * 3);
             sb.Draw(bit, new Rectangle((int)(X * w), (int)(Y * w - Size * w), (int)(Size * w), (int)(Size * w * 2)), color);
-            sb.Draw(TextureManager.TextureTerre[0], new Rectangle(new Point((int)(X * Map.TileWidth / Map.EntityPixelPerCase),
-                    (int)(Y * Map.TileWidth / Map.EntityPixelPerCase)), new Point(Size, Size)), Color.White);
-            //sb.Draw(TextureManager.TextureTerre[0], new Rectangle((int)(X * w), (int)(Y * w), (int)(Size * w), (int)(Size * w)), Color.White);
+
             //Console.WriteLine($"{X}, {Y}\r\n{VelX}, {VelY}");
             //g.DrawString(string.Format("{0}, {1}\r\n{2}, {3}", X, Y, VelX, VelY), new Font("Arial", 12), b, 10, 45 * (_idJoueur));
         }

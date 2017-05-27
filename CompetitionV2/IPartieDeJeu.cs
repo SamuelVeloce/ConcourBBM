@@ -11,6 +11,14 @@ using Microsoft.Xna.Framework.Input;
 
 namespace TopDownGridBasedEngine
 {
+    enum TypesDePartieDeJeu
+    {
+        MenuDefaut = 0,
+        Jeu = 1,
+        Armurerie = 2,
+        FermerJeu = 3,
+
+    }
     public interface IPartieDeJeu
     {
         void DrawWithShadows(SpriteBatch sb, GameTime gameTime, GraphicsDevice gd);
