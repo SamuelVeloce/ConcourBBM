@@ -36,11 +36,12 @@ namespace TopDownGridBasedEngine
 
         private void Enemy_Collided(object sender, BlockCollisionEventArgs e)
         {
-            Vector2 vec = new Vector2((this.X / Map.EntityPixelPerCase) * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - (this.X - this.Size / 2),
-                (this.Y / Map.EntityPixelPerCase) * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - (this.Y - this.Size / 2));
+            Vector2 vec = new Vector2(VelX + (this.X / Map.EntityPixelPerCase) * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - (this.X - this.Size / 2),
+                VelY + (this.Y / Map.EntityPixelPerCase) * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - (this.Y - this.Size / 2));
             vec.Normalize();
-            this.VelX += vec.X;
-            this.VelY += vec.Y;
+            vec *= _SpeedFactor;
+            this.VelX = vec.X;
+            this.VelY = vec.Y;
         }
 
         public void Die(object sender, CancellableEventArgs e)
@@ -60,8 +61,8 @@ namespace TopDownGridBasedEngine
                 Point? p = _path.NextTile(new Point(x, y));
                 if (p != null)
                 {
-                    Vector2 Velocity = new Vector2(p.Value.X * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - this.X + this.Size / 2,
-                        p.Value.Y * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - this.Y + this.Size / 2);
+                    Vector2 Velocity = new Vector2(VelX + p.Value.X * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - this.X + this.Size / 2,
+                        VelY + p.Value.Y * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - this.Y + this.Size / 2);
                     Velocity.Normalize();
                     Velocity *= _SpeedFactor;
                     VelX = Velocity.X;
@@ -90,7 +91,6 @@ namespace TopDownGridBasedEngine
 
         public override void Draw(SpriteBatch sb, float w, Color color)
         {
-            int rad = Size + 5;
             Texture2D bit;
             if (Math.Abs(VelX) > Math.Abs(VelY)) // Left or right
             {
@@ -108,7 +108,7 @@ namespace TopDownGridBasedEngine
             }
             if (VelX == 0 && VelY == 0)
                 bit = TextureManager.Instance.TexturePlayerDown[0];
-            sb.Draw(bit, new Rectangle((int)((X - rad) * w), (int)((Y - rad - 20) * w), (int)(rad * w * 2), (int)(rad * w * 3)), color);
+            sb.Draw(bit, new Rectangle((int)((X - Size) * w), (int)((Y - Size - 20) * w), (int)(Size * w * 2), (int)(Size * w * 3)), color);
 
         }
 
@@ -117,11 +117,6 @@ namespace TopDownGridBasedEngine
             _textureVariant += (int)deltaTime / 5;
             if (_textureVariant > 79)
                 _textureVariant %= 80;
-
-        }
-
-        public void Pathfind(AbsEntity Towards)
-        {
 
         }
     }

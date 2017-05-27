@@ -7,13 +7,9 @@ namespace TopDownGridBasedEngine
     public delegate void OnMoveHandler(object sender, CancellableEventArgs e);
     public delegate void OnDieHandler(object sender, CancellableEventArgs e);
     public delegate void OnDropBombHandler(object sender, CaseEventArgs e);
-    public delegate void OnPickBombHandler(object sender, CaseEventArgs e);
-    public delegate void OnKickBombHandler(object sender, KickedBombEventArgs e);
-    public delegate void OnGetBonusHandler(object sender, CaseEventArgs e);
     public delegate void OnChangeCaseHandler(object sender, MultiCaseEventArgs e);
     public delegate void OnCollideWithBlockHandler(object sender, BlockCollisionEventArgs e);
     public delegate void OnBombExplodeHandler(object sender, CaseEventArgs e);
-    public delegate void OnShootBombHandler(object sender, ShootBombEventArgs e);
     public delegate void OnFireStopHandler(object sender, MultiFireEventArgs e);
 
     public delegate void OnGenericMultiblockEventHandler(object sender, MultiCaseEventArgs e);

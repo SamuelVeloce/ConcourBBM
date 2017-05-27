@@ -356,10 +356,7 @@ namespace TopDownGridBasedEngine
 
             if (c is CaseWall)
             {
-                if (!Map.MakeRandomBonus(x, y))
-                    Ignite(x, y, Map, 600, BrokenBlocks);
-                else
-                    FirePlacedBonus(this, new CaseEventArgs(Map[x, y], false));
+                Ignite(x, y, Map, 600, BrokenBlocks);
             }
             else
             {
