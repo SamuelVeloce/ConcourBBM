@@ -1,4 +1,6 @@
 ﻿using System;
+using Competition.Armes;
+using CompetitionV2.Projectile;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -11,6 +13,9 @@ namespace TopDownGridBasedEngine
     {
 
         private int _textureVariant;
+
+        Weapons m_Weapon = new Pistol();
+
 
         public event OnDropBombHandler DroppedBomb;
         public event OnBombExplodeHandler BombExploded;
@@ -95,6 +100,12 @@ namespace TopDownGridBasedEngine
         public int BombsLeft { get; set; }
 
         public override EntityType Type { get; } = EntityType.Joueur;
+
+        public Weapons Weapon
+        {
+            get { return m_Weapon; }
+            set { m_Weapon = value; }
+        }
 
         public override void Tick(long deltaTime)
         {
