@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CompetitionV2
 {
-    class Jeu
+    class JeuMenu
     {
     }
 }

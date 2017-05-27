@@ -139,7 +139,7 @@ namespace TopDownGridBasedEngine
 
         public void Draw(SpriteBatch sb, Rectangle clientRect)
         {
-            float w = Map.Width;
+            float w = Map.TileWidth;
             
             List<AbsEntity> toDraw = null;
             
@@ -154,7 +154,7 @@ namespace TopDownGridBasedEngine
 
         public void DrawPlayers(SpriteBatch sb, Rectangle clientRect)
         {
-            float w = Map.Width;
+            float w = Map.TileWidth;
             for (int i = 0; i < 4; i++)
                 if (Joueurs[i] != null && Joueurs[i].IsDead == false)
                     Joueurs[i].Draw(sb, w / 30);

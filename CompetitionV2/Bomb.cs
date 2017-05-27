@@ -59,7 +59,7 @@ namespace TopDownGridBasedEngine
 
         public void Bomb_Moved(object sender, CancellableEventArgs e)
         {
-            Light.Position = new Vector2(X * Map.Width / Map.EntityPixelPerCase, Y * Map.Width / Map.EntityPixelPerCase);
+            Light.Position = new Vector2(X * Map.TileWidth / Map.EntityPixelPerCase, Y * Map.TileWidth / Map.EntityPixelPerCase);
         }
 
         public void Bomb_ChangedCase(object sender, MultiCaseEventArgs e)
