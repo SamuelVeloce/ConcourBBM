@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CompetitionV2.Projectile;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -15,6 +16,8 @@ namespace TopDownGridBasedEngine
         private object someLock;
         private int _id;
         private List<Fire> _deadFire;
+        private List<absProjectile> m_projectilesListFriendly;
+        
 
         private static EntityManager _instance;
 
@@ -30,6 +33,7 @@ namespace TopDownGridBasedEngine
             _id = numeroJoueur;
             someLock = new object();
             _deadFire = new List<Fire>();
+            m_projectilesListFriendly = new List<absProjectile>();
         }
 
         protected void FireFireStopped(object sender, MultiFireEventArgs e)
@@ -52,9 +56,11 @@ namespace TopDownGridBasedEngine
             if (_instance != null)
             {
                 _instance._entities = new List<AbsEntity>();
+                
                 _instance.Joueur = j;
                 _instance.Map = m;
                 _instance._id = ID;
+                _instance.ProjectilesListFriendly = new List<absProjectile>();
             }
             _instance = new EntityManager(j, m, ID);
         }
@@ -64,6 +70,12 @@ namespace TopDownGridBasedEngine
         public Joueur Joueur { get; private set; }
 
         public Map Map { get; set; }
+
+        public List<absProjectile> ProjectilesListFriendly
+        {
+            get { return m_projectilesListFriendly; }
+            set { m_projectilesListFriendly = value; }
+        }
 
         public void Add(AbsEntity e)
         {
@@ -87,13 +99,13 @@ namespace TopDownGridBasedEngine
             }
         }
 
-        public void TickPlayer(int idPlayer, long deltaTime, KeyWrapper wrapper)
+        public void TickPlayer(int idPlayer, GameTime gameTime, KeyWrapper wrapper)
         {
             if (!Joueur.IsDead)
-                Joueur.TickPlayer(deltaTime, wrapper);
+                Joueur.TickPlayer((int)gameTime.ElapsedGameTime.TotalMilliseconds, wrapper);
         }
 
-        public void TickEntities(long deltaTime)
+        public void TickEntities(GameTime gameTime)
         {
             lock (someLock)
             {
@@ -101,22 +113,32 @@ namespace TopDownGridBasedEngine
 
                 foreach (AbsEntity e in toUpdate)
                 {
-                    e.Tick(deltaTime);
+                    e.Tick((int)gameTime.ElapsedGameTime.TotalMilliseconds);
                     if (e is ITexturable)
-                        ((ITexturable) e).UpdateTexture(deltaTime);
+                        ((ITexturable) e).UpdateTexture((int)gameTime.ElapsedGameTime.TotalMilliseconds);
                 }
                 if (Joueur != null && Joueur.IsDead == false)
-                    Joueur.UpdateTexture(deltaTime); //Tick(DeltaTime);
+                    Joueur.UpdateTexture((int)gameTime.ElapsedGameTime.TotalMilliseconds); //Tick(DeltaTime);
                 if (Joueur.IsDead == false)
-                    Joueur.Tick(deltaTime);
+                    Joueur.Tick((int)gameTime.ElapsedGameTime.TotalMilliseconds);
                 if (_deadFire.Count != 0)
                 {
                     FireFireStopped(this, new MultiFireEventArgs(_deadFire.ToArray(), false));
                     _deadFire = new List<Fire>();
                 }
+                List<absProjectile> projli = EntityManager.Instance.ProjectilesListFriendly;
+                for (int i = projli.Count - 1; i >= 0; i--)
+                {
+                    if (projli[i].Update(gameTime))
+                    {
+                        projli.RemoveAt(i);
+                    }
+                }
             }
-
         }
+
+
+
 
         public void Draw(SpriteBatch sb, Rectangle clientRect)
         {
@@ -128,7 +150,11 @@ namespace TopDownGridBasedEngine
             {
                 toDraw = _entities.ToList();
             }
-            
+
+            foreach (absProjectile proj in ProjectilesListFriendly)
+            {
+                proj.Draw(sb, w);
+            }
             foreach (AbsEntity e in toDraw)
                 e.Draw(sb, w / 30);
         }

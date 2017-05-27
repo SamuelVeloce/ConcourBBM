@@ -28,7 +28,7 @@ namespace TopDownGridBasedEngine
         public Texture2D[] TextureFire;
         public Texture2D[] TextureBomb;
 
-        public Texture2D[] TextureBullet;
+        public static Texture2D[] TextureBullet;
         //Textures du jeu cyborg
         public static Texture2D TextureBarricade;
         public static Texture2D[] TextureTerre;

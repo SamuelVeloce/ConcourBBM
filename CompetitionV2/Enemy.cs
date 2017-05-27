@@ -108,7 +108,7 @@ namespace TopDownGridBasedEngine
             }
             if (VelX == 0 && VelY == 0)
                 bit = TextureManager.Instance.TexturePlayerDown[0];
-            sb.Draw(bit, new Rectangle((int)((X - rad) * w), (int)((Y - rad - 20) * w), (int)(rad * w * 2), (int)(rad * w * 3)), color);
+            sb.Draw(bit, new Rectangle((int)((X - rad) * w), (int)((Y - rad - 20) * w), (int)(rad * w * 1), (int)(rad * w * 1)), color);
 
         }
 

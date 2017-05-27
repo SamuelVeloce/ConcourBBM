@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace CompetitionV2
 {
-    class Entity
+    public class Entity
     {
         private Vector2 m_Position;
         private Vector2 m_Velocity;
@@ -55,10 +55,11 @@ namespace CompetitionV2
             }
         }
 
-        public virtual void Update(GameTime gametime)
+        public virtual bool Update(GameTime gametime)
         {
             m_AnimationTimerCurrentTime = gametime.TotalGameTime.TotalMilliseconds;
             m_Position = m_Position + m_Velocity * gametime.ElapsedGameTime.Milliseconds / 1000;
+            return false;
         }
 
         public Vector2 Position
@@ -110,11 +111,28 @@ namespace CompetitionV2
             set { m_AnimationTimerDuration = value; }
         }
 
-        public virtual void Draw(SpriteBatch sb)
+        public virtual void Draw(SpriteBatch sb, float w)
         {
             sb.Draw(CurrentTexture(), new Rectangle((int)m_Position.X, (int)m_Position.Y, (int)m_Size.X, (int)m_Size.Y), Color.DeepPink);
+            
+        }
+        public bool LinesCross(Vector2 Debut1, Vector2 Fin1, Vector2 Debut2, Vector2 Fin2)
+        {
+
+            float Denominator = ((Fin1.X - Debut1.X) * (Fin2.Y - Debut2.Y)) -
+                                ((Fin1.Y - Debut1.Y) * (Fin2.X - Debut2.X));
+            float Numerator1 = ((Debut1.Y - Debut2.Y) * (Fin2.X - Debut2.X)) -
+                               ((Debut1.X - Debut2.X) * (Fin2.Y - Debut2.Y));
+            float Numerator2 = ((Debut1.Y - Debut2.Y) * (Fin1.X - Debut1.X)) -
+                               ((Debut1.X - Debut2.X) * (Fin1.Y - Debut1.Y));
 
 
+            if (Denominator == 0) return Numerator1 == 0 && Numerator2 == 0;
+
+            float R = Numerator1 / Denominator;
+            float S = Numerator2 / Denominator;
+
+            return (R >= 0 && R <= 1) && (S >= 0 && S <= 1);
         }
     }
 }

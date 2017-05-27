@@ -553,45 +553,10 @@
 /processorParam:TextureFormat=Color
 /build:Textures/Warmachine2.png
 
-#begin SoundEffect/EmptyGun.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffect/EmptyGun.wav
-
-#begin SoundEffect/Explosion.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffect/Explosion.wav
-
-#begin SoundEffect/ExplosionDebris.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffect/ExplosionDebris.wav
-
-#begin SoundEffect/ImpactRobot.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffect/ImpactRobot.wav
-
-#begin SoundEffect/PistolShot.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffect/PistolShot.wav
-
-#begin SoundEffect/RifleShot.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffect/RifleShot.wav
-
-#begin SoundEffect/TrameSonore.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffect/TrameSonore.wav
+#begin Font/Font.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Font/Font.spritefont
 
