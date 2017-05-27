@@ -43,7 +43,7 @@ namespace TopDownGridBasedEngine
             if (c != null)
             {
                 Vector2 Diff = new Vector2(CurrentEntityPosition.X - c.PosX, CurrentEntityPosition.Y - c.PosY);
-                if (Diff.LengthSquared() < 0.4f)
+                if (Diff.LengthSquared() < 0.25f)
                 {
                     m_ListPath.Remove(c);
                 }
@@ -95,6 +95,13 @@ namespace TopDownGridBasedEngine
                     c = c.ParentCase;
                 }
             }
+            if (m_ListPath.Count > 7)
+                m_ListPath.RemoveRange(0, 7);
+            else
+                m_ListPath.Clear();
+
+            //foreach (Case ca in m_ListPath)
+                //ca.Wrapped.color = Color.HotPink;
         }
 
         private Case FindLowestFCost()

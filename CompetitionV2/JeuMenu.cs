@@ -33,7 +33,7 @@ namespace TopDownGridBasedEngine
 
             System.Random r = new System.Random();
             Enemy e;
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 50; i++)
             {
                 e = new Enemy(r.Next() % 900, r.Next() % 900, Map, 0.25f);
                 EntityManager.Instance.Add(e);

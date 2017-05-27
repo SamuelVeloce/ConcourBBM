@@ -56,17 +56,22 @@ namespace TopDownGridBasedEngine
 
             if (_path != null && NextPathfindTime > 0)
             {
+                
                 int x = (this.X + Size / 2) / Map.EntityPixelPerCase;
                 int y = (this.Y + Size / 2) / Map.EntityPixelPerCase;
                 Point? p = _path.NextTile(new Point(x, y));
-                if (p != null)
+                if (p.HasValue)
                 {
-                    Vector2 Velocity = new Vector2(VelX + p.Value.X * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - this.X + this.Size / 2,
-                        VelY + p.Value.Y * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - this.Y + this.Size / 2);
+                    Vector2 Velocity = new Vector2(p.Value.X * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - (this.X + this.Size / 2),
+                        p.Value.Y * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - (this.Y + this.Size / 2));
                     Velocity.Normalize();
                     Velocity *= _SpeedFactor;
                     VelX = Velocity.X;
                     VelY = Velocity.Y;
+                }
+                else
+                {
+                    VelX = VelY = 0;
                 }
             }
             else if (NextPathfindTime <= 0)

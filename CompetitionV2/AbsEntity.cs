@@ -132,8 +132,6 @@ namespace TopDownGridBasedEngine
             by = (y1 != y2);
             if (bx) n <<= 1;
             if (by) n <<= 1;
-            if (n == 2)
-                n = n;
             ret = new AbsCase[n];
             
             ret[i++] = Map[x1, y1];

@@ -45,7 +45,7 @@ namespace TopDownGridBasedEngine
                 {
                     if (x % 2 == 0 && y % 2 == 0)
                         this[x, y] = new CaseVide(x, y, this);
-                    else if (_random.Next() % 2 != 0)
+                    else if (_random.Next() % 2 != 0 && false)
                         this[x, y] = new CaseWall(x, y, this);
                     else
                         this[x, y] = new CaseVide(x, y, this);
