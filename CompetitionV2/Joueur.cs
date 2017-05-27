@@ -1,5 +1,6 @@
 ﻿using System;
 using Competition.Armes;
+using CompetitionV2.Armes;
 using CompetitionV2.Projectile;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -14,8 +15,9 @@ namespace TopDownGridBasedEngine
 
         private int _textureVariant;
 
-        Weapons m_Weapon = new Pistol();
+        Weapons[] m_WeaponList;
 
+        
 
         public event OnDropBombHandler DroppedBomb;
         public event OnBombExplodeHandler BombExploded;
@@ -41,6 +43,9 @@ namespace TopDownGridBasedEngine
             _textureVariant = 0;
 
             BombsLeft = 1;
+
+            m_WeaponList = new Weapons[] {new Pistol(), new MachineGun()};
+
 
             Lights = new Light[2];
 
@@ -101,11 +106,18 @@ namespace TopDownGridBasedEngine
 
         public override EntityType Type { get; } = EntityType.Joueur;
 
-        public Weapons Weapon
+        public Weapons[] Weapon
         {
-            get { return m_Weapon; }
-            set { m_Weapon = value; }
+            get { return m_WeaponList; }
+            set { m_WeaponList = value; }
         }
+
+        public Weapons CurrentWeapon()
+        {
+            return m_WeaponList[Math.Abs(Mouse.GetState().ScrollWheelValue/120)%m_WeaponList.Length];
+
+        }
+
 
         public override void Tick(long deltaTime)
         {

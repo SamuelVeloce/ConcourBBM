@@ -37,6 +37,9 @@ namespace TopDownGridBasedEngine
         public static Texture2D Cyborg;
         public static Texture2D Explosion;
 
+
+        public static SpriteFont Font;
+
         // Déclaration de l'instance unique de la classe
         private static TextureManager _instance;
 
@@ -165,7 +168,8 @@ namespace TopDownGridBasedEngine
             //Explosion
             Explosion = _content.Load<Texture2D>("Textures/Explode");
 
-
+            Font = _content.Load<SpriteFont>("Font/Font");
+            
             /* Sources des textures
              * Toutes les textures sont libres de droits et peuvent être redistribuées gratuitement
                 https://opengameart.org/content/dirt-004

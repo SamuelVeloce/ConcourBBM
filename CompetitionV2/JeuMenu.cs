@@ -62,7 +62,7 @@ namespace TopDownGridBasedEngine
             {
                 if (!MouseDown)
                 {
-                    Joueur.Weapon.MouseDown();
+                    Joueur.CurrentWeapon().MouseDown();
                     MouseDown = true;
                 }
                 
@@ -71,11 +71,13 @@ namespace TopDownGridBasedEngine
             {
                 if (MouseDown)
                 {
-                    Joueur.Weapon.MouseUp();
+                    Joueur.CurrentWeapon().MouseUp();
                     MouseDown = false;
                 }
             }
             
+
+
             EntityManager.Instance.TickPlayer(0, gameTime, _wrapper);
             _wrapper.ResetSpace();
             EntityManager.Instance.TickEntities(gameTime);
