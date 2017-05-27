@@ -85,7 +85,7 @@ namespace TopDownGridBasedEngine
         public void DealDamage(int Damage)
         {
             _Hp -= Damage;
-            if (_Hp < 0)
+            if (_Hp <= 0)
                 FireDied(this, new CancellableEventArgs(false));
         }
         
