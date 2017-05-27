@@ -11,8 +11,8 @@ namespace TopDownGridBasedEngine
         int _textureVariant;
         int _lifeTime;
 
-        public Fire(int x, int y, Map m, int lifeTime, bool registered, int id = 0)
-            : base(x, y, m, registered, id)
+        public Fire(int x, int y, Map m, int lifeTime)
+            : base(x, y, m)
         {
             _textureVariant = 0;
             _lifeTime = lifeTime;
@@ -44,12 +44,9 @@ namespace TopDownGridBasedEngine
         
         public override void Tick(long deltaTime)
         {
-            if (IsRegistered)
-            {
-                _lifeTime -= (int)deltaTime;
-                if (_lifeTime < 0)
-                    Update();
-            }
+            _lifeTime -= (int)deltaTime;
+            if (_lifeTime < 0)
+                Update();
         }
 
 

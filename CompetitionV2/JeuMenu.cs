@@ -27,14 +27,14 @@ namespace TopDownGridBasedEngine
             _hud = new Hud(Game1.Screen);
             Map = new Map(45, Game1.Screen.ClientBounds);
 
-            Joueur = new Joueur(40, 40, Map, 0);
+            Joueur = new Joueur(40, 40, Map);
             EntityManager.InitInstance(Joueur, Map, 0);
 
             System.Random r = new System.Random();
             for (int i = 0; i < 50; i++)
             {
                 Enemy e = new Enemy(r.Next() % Map.Width * Map.EntityPixelPerCase,
-                    r.Next() % Map.Height * Map.EntityPixelPerCase, Map, true, 0.25f);
+                    r.Next() % Map.Height * Map.EntityPixelPerCase, Map, 0.25f);
                 EntityManager.Instance.Add(e);
             }
 

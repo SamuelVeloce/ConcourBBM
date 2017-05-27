@@ -42,26 +42,19 @@ namespace TopDownGridBasedEngine
             Died?.Invoke(sender, e);
         }
 
-        protected AbsEntity(int x, int y, Map m, bool registered, int id)
+        protected AbsEntity(int x, int y, Map m)
         {
-            IsRegistered = registered;
             _x = x;
             _y = y;
             Map = m;
             Size = 15;
             IsDead = false;
-            ID = id == 0 ? (int) DateTime.Now.Ticks ^ (x << 16) ^ y : id;
         }
 
         /// <summary>
         /// Indique si l'entité est morte
         /// </summary>
         public bool IsDead { get; set; }
-
-        /// <summary>
-        /// Identifiant pseudo-unique de l'entité
-        /// </summary>
-        public int ID { get; }
 
         /// <summary>
         /// Position en X de l'entité, en pixel
@@ -90,11 +83,6 @@ namespace TopDownGridBasedEngine
         /// Carte contenant l'entité
         /// </summary>
         public Map Map { get; set; }
-
-        /// <summary>
-        /// Indique si l'entité est contenue dans l'EntityManager
-        /// </summary>
-        public bool IsRegistered { get; }
 
         /// <summary>
         /// Type de l'entité

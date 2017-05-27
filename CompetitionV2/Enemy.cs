@@ -22,10 +22,7 @@ namespace TopDownGridBasedEngine
 
         public override EntityType Type => EntityType.GenericEntity;
 
-        public Enemy(int x, int y, Map m, bool registered, float speedFactor) : this(x, y, m, registered, speedFactor, 0)
-        { }
-
-        public Enemy(int x, int y, Map m, bool registered, float speedFactor, int ID) : base(x, y, m, registered, ID)
+        public Enemy(int x, int y, Map m, float speedFactor) : base(x, y, m)
         {
             VelX = 0;
             VelY = 0;
@@ -78,7 +75,6 @@ namespace TopDownGridBasedEngine
                 {
 
                 }
-                _path?.Delete();
                 _path = new Path(new Point((this.X + this.Size / 2) / Map.EntityPixelPerCase, (this.Y + this.Size / 2) / Map.EntityPixelPerCase),
                     new Point(EntityManager.Instance.Joueur.X / Map.EntityPixelPerCase, EntityManager.Instance.Joueur.Y / Map.EntityPixelPerCase),
                     Map);

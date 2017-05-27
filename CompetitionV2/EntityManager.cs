@@ -65,29 +65,11 @@ namespace TopDownGridBasedEngine
 
         public Map Map { get; set; }
 
-        public AbsEntity EntityFromID(int ID)
-        {
-            int i = 0;
-            
-            lock (someLock)
-            {
-                while (i < _entities.Count && _entities[i].ID != ID)
-                    i++;
-            }
-            
-            return i == _entities.Count ? null : _entities[i];
-        }
-
         public void Add(AbsEntity e)
         {
             lock (someLock)
             {
                 _entities.Add(e);
-
-                for (int i = 0; i < _entities.Count; i++)
-                    if (_entities.Count(ent => ent.ID == _entities[i].ID) > 1)
-                        Console.WriteLine("L'identifiant d'entités " + _entities[i].ID +
-                                          "est déja en cours d'utilisation");
             }
         }
 
