@@ -49,6 +49,7 @@ namespace TopDownGridBasedEngine
             sb.DrawString(TextureManager.Font, EntityManager.Instance.Joueur.CurrentWeapon().Nom, new Vector2(Game1.Screen.ClientBounds.Width - 150, 10), Color.Yellow);
             sb.DrawString(TextureManager.Font, EntityManager.Instance.Entities.Count.ToString() + " Enemis restant", new Vector2(Game1.Screen.ClientBounds.Width - 150, 30), Color.Yellow);
             sb.DrawString(TextureManager.Font,strBalles , new Vector2(Game1.Screen.ClientBounds.Width - 150, 50),Color.Yellow);
+            sb.DrawString(TextureManager.Font, $"HP: {EntityManager.Instance.Joueur.Health} / {EntityManager.Instance.Joueur.MaxHealth}", new Vector2(Game1.Screen.ClientBounds.Width - 150, 70), Color.Yellow);
         }
     }
 }

@@ -44,7 +44,7 @@ namespace TopDownGridBasedEngine
 
             
             Enemy e;
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < 15; i++)
             {
 
                 p = new Point(r.Next() % Map.Width, r.Next() % Map.Height);

@@ -37,6 +37,8 @@ namespace CompetitionV2.Armes
            // throw new NotImplementedException();
         }
 
+        public override WeaponType WeaponType => WeaponType.Shotgun;
+
         public Shotgun(AbsEntity owner):base(owner)
         {
             Owner = owner;
