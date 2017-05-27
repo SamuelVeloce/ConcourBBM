@@ -89,6 +89,7 @@
     <Compile Include="Projectile\Pistol.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShootBombEventArgs.cs" />
+    <Compile Include="SoundManager.cs" />
     <Compile Include="TextureManager.cs" />
   </ItemGroup>
   <ItemGroup>

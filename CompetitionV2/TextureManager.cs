@@ -165,12 +165,13 @@ namespace TopDownGridBasedEngine
 
 
             /* Sources des textures
-            https://opengameart.org/content/dirt-004
-            https://opengameart.org/content/dirt-004
-            http://hasgraphics.com/8-bit-sinistar-clone-graphics/
-            http://untamed.wild-refuge.net/images/rpgxp/avengers/warmachine.png (Warmachine1)
-            http://untamed.wild-refuge.net/images/rpgxp/avengers/ironpatriot.png (Warmachine2)
-            http://untamed.wild-refuge.net/images/rpgxp/mandalorian.png (Cyborg)
+             * Toutes les textures sont libres de droits et peuvent être redistribuées gratuitement
+                https://opengameart.org/content/dirt-004
+                https://opengameart.org/content/dirt-004
+                http://hasgraphics.com/8-bit-sinistar-clone-graphics/
+                http://untamed.wild-refuge.net/images/rpgxp/avengers/warmachine.png (Warmachine1)
+                http://untamed.wild-refuge.net/images/rpgxp/avengers/ironpatriot.png (Warmachine2)
+                http://untamed.wild-refuge.net/images/rpgxp/mandalorian.png (Cyborg)
             */
 
         }
