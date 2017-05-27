@@ -86,7 +86,8 @@
     <Compile Include="PlayerPositions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Projectile\absProjectile.cs" />
-    <Compile Include="Projectile\Pistol.cs" />
+    <Compile Include="Armes\Pistol.cs" />
+    <Compile Include="Projectile\ProjectileBullet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShootBombEventArgs.cs" />
     <Compile Include="TextureManager.cs" />
