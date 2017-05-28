@@ -220,6 +220,8 @@
     <Content Include="Content\Textures\RobotTopRight.png" />
     <Content Include="Content\Textures\Shotgun.png" />
     <Content Include="Content\Textures\SolidWall.png" />
+    <Content Include="Content\Textures\TextureCaseFire1.png" />
+    <Content Include="Content\Textures\TextureCaseFire2.png" />
     <Content Include="Content\Textures\TileTerre1.png" />
     <Content Include="Content\Textures\TileTerre2.png" />
     <Content Include="Content\Textures\Tuto.png" />
