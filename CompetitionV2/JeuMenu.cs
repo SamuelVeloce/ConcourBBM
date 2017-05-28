@@ -77,13 +77,13 @@ namespace TopDownGridBasedEngine
 
             
             Enemy e;
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < 10; i++)
             {
 
                 p = new Point(r.Next() % Map.Width, r.Next() % Map.Height);
                 if (!Map[p.X, p.Y].IsSolid)
                 {
-                    e = new FighterRobot(p.X * Map.EntityPixelPerCase, p.Y * Map.EntityPixelPerCase, Map);
+                    e = new KamikazeRobot(p.X * Map.EntityPixelPerCase, p.Y * Map.EntityPixelPerCase, Map);
                     EntityManager.Instance.Add(e);
                 }
                 
