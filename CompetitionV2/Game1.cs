@@ -69,7 +69,7 @@ namespace TopDownGridBasedEngine
                         PartieDuJeu[i] = new Perdu();
                         break;
                     case (int)TypesDePartieDeJeu.Gagne:
-                        PartieDuJeu[i] = new Armurerie();
+                        PartieDuJeu[i] = new Gagne();
                         break;
                 }
                 Instance.GraphicsDevice.Clear(Color.Gray);
@@ -82,7 +82,7 @@ namespace TopDownGridBasedEngine
             _graphics = new GraphicsDeviceManager(this);
 
             _graphics.IsFullScreen = true;
-            int Dimension = 768;//GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height - 100;
+            int Dimension = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height - 100;
             _graphics.PreferredBackBufferHeight = Dimension;
             _graphics.PreferredBackBufferWidth = Dimension;
             _graphics.ApplyChanges();
@@ -115,7 +115,7 @@ namespace TopDownGridBasedEngine
             TextureManager.InitInstance(Content);
 
             
-            PartieDuJeu = new IPartieDeJeu[5];
+            PartieDuJeu = new IPartieDeJeu[6];
             PartieDuJeu[(int)TypesDePartieDeJeu.MenuDefaut] = new MenuDefaut();
             PartieDuJeu[(int)TypesDePartieDeJeu.Jeu] = new JeuMenu();
             //PartieDuJeu[(int)TypesDePartieDeJeu.Armurerie] = new Armurerie();

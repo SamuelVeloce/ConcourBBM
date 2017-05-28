@@ -107,6 +107,10 @@ namespace TopDownGridBasedEngine
                 if (gameTime.TotalGameTime.TotalMilliseconds - StartTime > 120000)//2 minutes
                 {
                     ProgressManager.ArgentDernierePartie = (int)(1.1*ProgressManager.ArgentDernierePartie);
+                    if (ProgressManager.LvlDebloque < 1)
+                    {
+                        ProgressManager.LvlDebloque = 1;
+                    }
                     Game1.SetPartieDeJeu((int)TypesDePartieDeJeu.Gagne);
                 }
             }

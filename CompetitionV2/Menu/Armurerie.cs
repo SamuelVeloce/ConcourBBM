@@ -24,13 +24,13 @@ namespace CompetitionV2.Menu
                     Game1.SetPartieDeJeu, (int) TypesDePartieDeJeu.MenuDefaut),
 
 
-                new ArmurerieButton("Pistolet!", TextureManager.TextureTerre[0], new Rectangle(200, 10, 250, 100),
+                new ArmurerieButton("Pistolet!", TextureManager.TextureTerre[0], new Rectangle(200, 10, 300, 100),
                     Game1.SetPartieDeJeu, (int) WeaponType.Pistol),
-                new ArmurerieButton("Fusil d'assault!", TextureManager.TextureTerre[0], new Rectangle(200, 120, 250, 100),
+                new ArmurerieButton("Fusil d'assault!", TextureManager.TextureTerre[0], new Rectangle(200, 120, 300, 100),
                     Game1.SetPartieDeJeu, (int) WeaponType.AssaultRifle),
-                new ArmurerieButton("Shotgun!", TextureManager.TextureTerre[0], new Rectangle(200, 230, 240, 100),
+                new ArmurerieButton("Shotgun!", TextureManager.TextureTerre[0], new Rectangle(200, 230, 300, 100),
                     Game1.SetPartieDeJeu, (int) WeaponType.Shotgun),
-                new ArmurerieButton("Sniper!", TextureManager.TextureTerre[0], new Rectangle(200, 340, 240, 100),
+                new ArmurerieButton("Sniper!", TextureManager.TextureTerre[0], new Rectangle(200, 340, 300, 100),
                     Game1.SetPartieDeJeu, (int) WeaponType.SemiAutoSniper),
 
 
