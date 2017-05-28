@@ -34,7 +34,7 @@ namespace CompetitionV2.Armes
         }
         public override void JouerSonTir()
         {
-            SoundManager.Pistol.Play((float)0.5, 0, 0);
+            SoundManager.Pistol.Play((float)0.2, 0, 0);
         }
 
         public override WeaponType WeaponType => WeaponType.Pistol;

@@ -64,7 +64,22 @@ namespace TopDownGridBasedEngine
 
             if (r.Next() % 6 == 0)
             {
-                Bonus b = new Bonus(this.X, this.Y, this.Map, this.Arme.WeaponType);
+                int nbTypeBonus;
+                int i = 0;
+                while(i < ProgressManager.ArmesDebloque.Length && ProgressManager.ArmesDebloque[i])
+                {
+                    i++;
+                }
+                if(i == ProgressManager.ArmesDebloque.Length)
+                {
+                    nbTypeBonus = 3;
+                }
+                else
+                {
+                    nbTypeBonus = 4;
+                }
+
+                Bonus b = new Bonus(this.X, this.Y, this.Map, (BonusType)r.Next(nbTypeBonus));
             }
 
             //Make a sound
