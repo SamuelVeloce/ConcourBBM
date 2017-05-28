@@ -35,20 +35,20 @@ namespace TopDownGridBasedEngine
                 //Sortie de jeu
                 if(m_IndexPartieDeJeu == 1)
                 {
-                    SoundManager.seiMusique.Stop();
-                    SoundManager.seiMusique = SoundManager.TrameSonoreMenu.CreateInstance();
-                    SoundManager.seiMusique.Volume = (float)1;
-                    SoundManager.seiMusique.IsLooped = true;
-                    SoundManager.seiMusique.Play();
+                    seiTrameJeu.Stop();
+                    seiTrameJeu = SoundManager.TrameSonoreMenu.CreateInstance();
+                    seiTrameJeu.Volume = (float)1;
+                    seiTrameJeu.IsLooped = true;
+                    seiTrameJeu.Play();
                 }
                 //Entrée en jeu
                 if(i == 1)
                 {
-                    SoundManager.seiMusique.Stop();
-                    SoundManager.seiMusique = SoundManager.TrameSonoreJeu.CreateInstance();
-                    SoundManager.seiMusique.Volume = (float)0.5;
-                    SoundManager.seiMusique.IsLooped = true;
-                    SoundManager.seiMusique.Play();
+                    seiTrameJeu.Stop();
+                    seiTrameJeu = SoundManager.TrameSonoreJeu.CreateInstance();
+                    seiTrameJeu.Volume = (float)0.5;
+                    seiTrameJeu.IsLooped = true;
+                    seiTrameJeu.Play();
                 }
                 
                 switch (i)
