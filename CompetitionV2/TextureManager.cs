@@ -40,7 +40,7 @@ namespace TopDownGridBasedEngine
         public static Texture2D[] Robots;
         public static Texture2D Cyborg;
         public static Texture2D Explosion;
-
+        public static Texture2D[] Bonus;
 
         public static SpriteFont Font;
 
@@ -172,10 +172,15 @@ namespace TopDownGridBasedEngine
             //Explosion
             Explosion = _content.Load<Texture2D>("Textures/Explode");
 
+            //Texte
             Font = _content.Load<SpriteFont>("Font/Font");
 
-
-
+            //Icones
+            Bonus = new Texture2D[4];
+            Bonus[0] = _content.Load<Texture2D>("Textures/ammo_icon");
+            Bonus[1] = _content.Load<Texture2D>("Textures/Cash_icon");
+            Bonus[2] = _content.Load<Texture2D>("Textures/Health_icon");
+            Bonus[3] = _content.Load<Texture2D>("Textures/new_gun_icon");
             BackgroundImage = _content.Load<Texture2D>("Textures/BackgroundBlur");
 
             /* Sources des textures
@@ -186,6 +191,7 @@ namespace TopDownGridBasedEngine
                 http://untamed.wild-refuge.net/images/rpgxp/avengers/warmachine.png (Warmachine1)
                 http://untamed.wild-refuge.net/images/rpgxp/avengers/ironpatriot.png (Warmachine2)
                 http://untamed.wild-refuge.net/images/rpgxp/mandalorian.png (Cyborg)
+                https://opengameart.org/content/power-up-icons
             */
 
         }
