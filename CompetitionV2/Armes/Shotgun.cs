@@ -19,16 +19,23 @@ namespace CompetitionV2.Armes
 
         private readonly Random m_RNG;
 
-        public override string WeaponName { get { return "Shotgun"; } }
-        private const byte m_BulletSpeed = 15;
+      //  public override string WeaponName { get { return "Shotgun"; } }
+        private const int m_BulletSpeed = 400;
         private const int m_ReloadingTime = 700;
         private const int m_SpreadAngle = 30;
-        private const int m_NumberOfBuckshot = 10;
+        private const int m_NumberOfBuckshot = 5;
         private const int m_ClipSize = 8;
         private const int m_Firerate = 600;
         private bool m_CanShoot = true;
         private bool m_Reloading;
         private readonly System.Timers.Timer m_WeaponTimer;
+
+
+
+        public override int ClipSize
+        {
+            get { return m_ClipSize; }
+        }
 
         public override void JouerSonTir()
         {
@@ -82,8 +89,8 @@ namespace CompetitionV2.Armes
                     double Radians = Math.Atan2(Target.Y / EntityManager.Instance.Map.TileWidth * Map.EntityPixelPerCase - Owner.Y, Target.X / EntityManager.Instance.Map.TileWidth * Map.EntityPixelPerCase - Owner.X) + ((m_RNG.NextDouble() * m_SpreadAngle) - m_SpreadAngle / 2.0) * (Math.PI / 180.0);
                     Vector2 MouseDir = new Vector2((float)Math.Cos(Radians), (float)Math.Sin(Radians));
                     EntityManager.Instance.ProjectilesListFriendly.Add(new ProjectileBullet(
-                        TextureManager.TextureBullet, new Vector2(Owner.X, Owner.Y), new Vector2(8, 8), MouseDir*500,
-                        100) {Friendly = true});
+                        TextureManager.TextureBullet, new Vector2(Owner.X, Owner.Y), new Vector2(8, 8), MouseDir* m_BulletSpeed,
+                        25) {Friendly = true});
                 }
                 
                 JouerSonTir();

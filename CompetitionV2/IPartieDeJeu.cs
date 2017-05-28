@@ -17,6 +17,8 @@ namespace TopDownGridBasedEngine
         Jeu = 1,
         Armurerie = 2,
         FermerJeu = 3,
+        Perdu = 4,
+        Gagne = 5,
 
     }
     public interface IPartieDeJeu

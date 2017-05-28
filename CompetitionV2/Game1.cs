@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using CompetitionV2;
 using CompetitionV2.Menu;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -34,22 +35,22 @@ namespace TopDownGridBasedEngine
                 //Sortie de jeu
                 if(m_IndexPartieDeJeu == 1)
                 {
-                    SoundManager.seiMusique.Stop();
-                    SoundManager.seiMusique = SoundManager.TrameSonoreMenu.CreateInstance();
-                    SoundManager.seiMusique.Volume = (float)1;
-                    SoundManager.seiMusique.IsLooped = true;
-                    SoundManager.seiMusique.Play();
+                    seiTrameJeu.Stop();
+                    seiTrameJeu = SoundManager.TrameSonoreMenu.CreateInstance();
+                    seiTrameJeu.Volume = (float)1;
+                    seiTrameJeu.IsLooped = true;
+                    seiTrameJeu.Play();
                 }
                 //Entrée en jeu
                 if(i == 1)
                 {
-                    SoundManager.seiMusique.Stop();
-                    SoundManager.seiMusique = SoundManager.TrameSonoreJeu.CreateInstance();
-                    SoundManager.seiMusique.Volume = (float)0.5;
-                    SoundManager.seiMusique.IsLooped = true;
-                    SoundManager.seiMusique.Play();
+                    seiTrameJeu.Stop();
+                    seiTrameJeu = SoundManager.TrameSonoreJeu.CreateInstance();
+                    seiTrameJeu.Volume = (float)0.5;
+                    seiTrameJeu.IsLooped = true;
+                    seiTrameJeu.Play();
                 }
-
+                
                 switch (i)
                 {
                     case (int)TypesDePartieDeJeu.Jeu:
@@ -64,7 +65,14 @@ namespace TopDownGridBasedEngine
                     case (int)TypesDePartieDeJeu.FermerJeu:
                         Instance.Exit();
                         break;
+                    case (int)TypesDePartieDeJeu.Perdu:
+                        PartieDuJeu[i] = new Perdu();
+                        break;
+                    case (int)TypesDePartieDeJeu.Gagne:
+                        PartieDuJeu[i] = new Armurerie();
+                        break;
                 }
+                // CRASH REPORT
                 Instance.GraphicsDevice.Clear(Color.Gray);
                 m_IndexPartieDeJeu = i;
             }
@@ -73,7 +81,13 @@ namespace TopDownGridBasedEngine
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
+
             //_graphics.IsFullScreen = true;
+            int Dimension = 768;//GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height - 100;
+            _graphics.PreferredBackBufferHeight = Dimension;
+            _graphics.PreferredBackBufferWidth = Dimension;
+            _graphics.ApplyChanges();
+
             Content.RootDirectory = "Content";
             IndexPartieDeJeu = 0;
             Instance = this;
@@ -87,10 +101,12 @@ namespace TopDownGridBasedEngine
 
         protected override void Initialize()
         {
-            int Dimension = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height - 100;
+          /*  int Dimension =GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height - 100;
             _graphics.PreferredBackBufferHeight = Dimension;
             _graphics.PreferredBackBufferWidth = Dimension;
-            _graphics.ApplyChanges();
+            _graphics.IsFullScreen = true;
+            _graphics.ApplyChanges();*/
+            
             IsMouseVisible = true;
             //Window.AllowUserResizing = true;
             Screen = Window;
@@ -100,10 +116,10 @@ namespace TopDownGridBasedEngine
             TextureManager.InitInstance(Content);
 
             
-            PartieDuJeu = new IPartieDeJeu[3];
+            PartieDuJeu = new IPartieDeJeu[5];
             PartieDuJeu[(int)TypesDePartieDeJeu.MenuDefaut] = new MenuDefaut();
             PartieDuJeu[(int)TypesDePartieDeJeu.Jeu] = new JeuMenu();
-            PartieDuJeu[(int)TypesDePartieDeJeu.Armurerie] = new Armurerie();
+            //PartieDuJeu[(int)TypesDePartieDeJeu.Armurerie] = new Armurerie();
 
             
             SoundManager.InitInstance(Content);

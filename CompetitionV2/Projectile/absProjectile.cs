@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CompetitionV2;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using TopDownGridBasedEngine;
@@ -52,7 +53,13 @@ namespace TopDownGridBasedEngine.Projectile
                     }
                     if (i >= 0)
                     {
-                        EntityManager.Instance.Entities.RemoveAt(i);
+                        (EntityManager.Instance.Entities[i] as Enemy)._Hp -= m_Damage;
+                        if ((EntityManager.Instance.Entities[i] as Enemy)._Hp <=0)
+                        {
+                            ProgressManager.ArgentDernierePartie += 10;
+                            EntityManager.Instance.Entities[i].FireDied(this, new CancellableEventArgs(false));
+                            EntityManager.Instance.Entities.RemoveAt(i);
+                        }
                         return true;
                     }
 

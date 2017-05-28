@@ -18,9 +18,9 @@ namespace CompetitionV2.Menu
     {
         private static Button[] btn = new Button[]
             {
-                new Button("Jouer!", TextureManager.TextureTerre[0], new Rectangle(10, 10, 120, 60),
+                new Button("Jouer!", TextureManager.TextureTerre[0], new Rectangle(Game1.Screen.ClientBounds.Width/3-120, Game1.Screen.ClientBounds.Height-100, 240, 100),
                     Game1.SetPartieDeJeu, (int) TypesDePartieDeJeu.Jeu),
-                new Button("Retour!", TextureManager.TextureTerre[0], new Rectangle(10, 160, 120, 60),
+                new Button("Retour!", TextureManager.TextureTerre[0], new Rectangle(Game1.Screen.ClientBounds.Width/3*2-120, Game1.Screen.ClientBounds.Height-100, 240, 100),
                     Game1.SetPartieDeJeu, (int) TypesDePartieDeJeu.MenuDefaut),
 
 
@@ -30,14 +30,16 @@ namespace CompetitionV2.Menu
                     Game1.SetPartieDeJeu, (int) WeaponType.AssaultRifle),
                 new ArmurerieButton("Shotgun!", TextureManager.TextureTerre[0], new Rectangle(200, 230, 240, 100),
                     Game1.SetPartieDeJeu, (int) WeaponType.Shotgun),
+                new ArmurerieButton("Sniper!", TextureManager.TextureTerre[0], new Rectangle(200, 340, 240, 100),
+                    Game1.SetPartieDeJeu, (int) WeaponType.SemiAutoSniper),
 
 
 
-                new ButtonInfo("Vide", TextureManager.TextureTerre[0], new Rectangle(10, 500, 250, 100),
+                new ButtonInfo("Vide", TextureManager.TextureTerre[0], new Rectangle(Game1.Screen.ClientBounds.Width/10*2-150, 500, 300, 100),
                     Game1.SetPartieDeJeu, 0), 
-                new ButtonInfo("Vide", TextureManager.TextureTerre[0], new Rectangle(270, 500, 250, 100),
+                new ButtonInfo("Vide", TextureManager.TextureTerre[0], new Rectangle(Game1.Screen.ClientBounds.Width/10*5-150, 500, 300, 100),
                     Game1.SetPartieDeJeu, 1),
-                new ButtonInfo("Vide", TextureManager.TextureTerre[0], new Rectangle(530, 500, 250, 100),
+                new ButtonInfo("Vide", TextureManager.TextureTerre[0], new Rectangle(Game1.Screen.ClientBounds.Width/10*8-150, 500, 300, 100),
                     Game1.SetPartieDeJeu, 2)
 
 
@@ -72,7 +74,7 @@ namespace CompetitionV2.Menu
 
 
             
-            if (EntityManager.Instance.Joueur?.Weapon[PartieDeJeu]?.Nom != null)
+            if (PartieDeJeu < 3 && EntityManager.Instance.Joueur?.Weapon[PartieDeJeu]?.Nom != null)
             {
                 Vector2 size = TextureManager.Font.MeasureString(EntityManager.Instance.Joueur.Weapon[PartieDeJeu].Nom);
                 sb.DrawString(TextureManager.Font, EntityManager.Instance.Joueur.Weapon[PartieDeJeu].Nom, ButtonRect.Center.ToVector2(), Color.White, 0, size * 0.5f, 2.0f,
@@ -128,9 +130,9 @@ namespace CompetitionV2.Menu
                 {
                     WasPressed = false;
 
-                    for (int i = 0; i < EntityManager.Instance.Joueur.Weapon.Length - 1; i++)
+                    for (int i = EntityManager.Instance.Joueur.Weapon.Length - 1; i >= 1; i--)
                     {
-                        EntityManager.Instance.Joueur.Weapon[i + 1] = EntityManager.Instance.Joueur.Weapon[i];
+                        EntityManager.Instance.Joueur.Weapon[i] = EntityManager.Instance.Joueur.Weapon[i-1];
                     }
                     switch (PartieDeJeu)
                     {
@@ -142,6 +144,9 @@ namespace CompetitionV2.Menu
                             break;
                         case (int) WeaponType.Shotgun:
                             EntityManager.Instance.Joueur.Weapon[0] = new Shotgun(EntityManager.Instance.Joueur);
+                            break;
+                        case (int)WeaponType.SemiAutoSniper:
+                            EntityManager.Instance.Joueur.Weapon[0] = new SemiAutomaticSniper(EntityManager.Instance.Joueur);
                             break;
                     }
                 }

@@ -22,7 +22,6 @@ namespace TopDownGridBasedEngine
         public static SoundEffect EmptyGun;
         public static SoundEffect TrameSonoreMenu;
         public static SoundEffect TrameSonoreJeu;
-        public static SoundEffectInstance seiMusique;
 
         private SoundManager(ContentManager content)
         {
@@ -52,8 +51,6 @@ namespace TopDownGridBasedEngine
             EmptyGun = _content.Load<SoundEffect>("SoundEffect/EmptyGun");
             TrameSonoreMenu = _content.Load<SoundEffect>("SoundEffect/TrameSonore");
             TrameSonoreJeu = _content.Load<SoundEffect>("SoundEffect/ExtremeAction");
-            seiMusique = TrameSonoreMenu.CreateInstance();
-
             /*
                 Tous les effets sonores sont libres de droit et ont étés 
                 téléchargés depuis https://www.zapsplat.com et édités à 

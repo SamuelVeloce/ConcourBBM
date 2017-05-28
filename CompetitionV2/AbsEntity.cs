@@ -10,7 +10,7 @@ namespace TopDownGridBasedEngine
     public delegate void OnChangeCaseHandler(object sender, MultiCaseEventArgs e);
     public delegate void OnCollideWithBlockHandler(object sender, BlockCollisionEventArgs e);
     public delegate void OnBombExplodeHandler(object sender, CaseEventArgs e);
-    public delegate void OnFireStopHandler(object sender, MultiFireEventArgs e);
+    //public delegate void OnFireStopHandler(object sender, MultiFireEventArgs e);
 
     public delegate void OnGenericMultiblockEventHandler(object sender, MultiCaseEventArgs e);
     public delegate void OnGenericBlockEventHandler(object sender, CaseEventArgs e);
@@ -18,10 +18,15 @@ namespace TopDownGridBasedEngine
     public enum EntityType
     {
         Joueur = 0,
-        Bomb,
-        Fire,
         GenericEntity,
-        Bonus
+        Bonus,
+        FighterRobot,
+        OPFighterRobot,
+        OPSniperRobot,
+        OPSoldierRobot,
+        SniperRobot,
+        SoldierRobot,
+        Kamikaze
     };
 
     public abstract class AbsEntity
@@ -34,7 +39,7 @@ namespace TopDownGridBasedEngine
         /// </summary>
         public event OnDieHandler Died;
         
-        protected void FireDied(object sender, CancellableEventArgs e)
+        public void FireDied(object sender, CancellableEventArgs e)
         {
             Died?.Invoke(sender, e);
         }

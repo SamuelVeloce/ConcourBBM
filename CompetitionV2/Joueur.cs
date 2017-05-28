@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using Competition.Armes;
+using CompetitionV2;
 using CompetitionV2.Armes;
 using TopDownGridBasedEngine.Armes;
 using TopDownGridBasedEngine.Projectile;
@@ -27,14 +28,14 @@ namespace TopDownGridBasedEngine
             set { _Hp = value; }
         }
 
-        public int MaxHealth = 1000000;
+        public int MaxHealth = 400;
 
-        public event OnDropBombHandler DroppedBomb;
-        public event OnBombExplodeHandler BombExploded;
-        public event OnGenericBlockEventHandler BombPlacedBonus;
-        public event OnGenericMultiblockEventHandler BombBrokeBlocks;
+        //public event OnDropBombHandler DroppedBomb;
+        //public event OnBombExplodeHandler BombExploded;
+        //public event OnGenericBlockEventHandler BombPlacedBonus;
+        //public event OnGenericMultiblockEventHandler BombBrokeBlocks;
 
-        protected void FireBombBrokeBlocks(object sender, MultiCaseEventArgs e)
+        /*protected void FireBombBrokeBlocks(object sender, MultiCaseEventArgs e)
         {
             BombBrokeBlocks?.Invoke(sender, e);
         }
@@ -45,16 +46,18 @@ namespace TopDownGridBasedEngine
         public void FireDroppedBomb(object sender, CaseEventArgs e)
         {
             DroppedBomb?.Invoke(sender, e);
-        }
+        }*/
 
         public Joueur(int x, int y, Map m) : base(x, y, m)
         {
             Size = 25;
             _textureVariant = 0;
 
-            BombsLeft = 1;
-
-            m_WeaponList = new Weapons[] {new Pistol(this), new AssaultRifle(this), new Shotgun(this) };
+            //BombsLeft = 1;
+            
+            m_WeaponList = new Weapons[] { new Pistol(this), new AssaultRifle(this), new Shotgun(this) };
+            
+            
             _Hp = MaxHealth;
 
             Lights = new Light[2];
@@ -62,7 +65,7 @@ namespace TopDownGridBasedEngine
             Lights[0] = new PointLight();
             Lights[0].Color = Color.DarkGray;
             Lights[0].Intensity = 1f;
-            Lights[0].Scale = new Vector2(900, 900);
+            Lights[0].Scale = new Vector2(Game1.Screen.ClientBounds.Width * 3 / 4, Game1.Screen.ClientBounds.Height * 3/4);
             Lights[0].CastsShadows = true;
             Lights[0].ShadowType = ShadowType.Occluded;
             Lights[0].Radius = 5;
@@ -71,7 +74,7 @@ namespace TopDownGridBasedEngine
             Lights[1] = new PointLight();
             Lights[1].Color = Color.DarkGray;
             Lights[1].Intensity = 1f;
-            Lights[1].Scale = new Vector2(900, 900);
+            Lights[1].Scale = new Vector2(Game1.Screen.ClientBounds.Width * 3 / 4, Game1.Screen.ClientBounds.Height * 3 / 4);
             Lights[1].CastsShadows = false;
             Lights[1].ShadowType = ShadowType.Solid;
             Lights[1].Radius = 5;
@@ -95,9 +98,9 @@ namespace TopDownGridBasedEngine
         {
             IsDead = true;
             Game1.Penumbra.Lights.Remove(Lights[0]);
-            Game1.Penumbra.Lights.Remove(Lights[1]); 
-            
-            Game1.SetPartieDeJeu((int)TypesDePartieDeJeu.MenuDefaut);
+            Game1.Penumbra.Lights.Remove(Lights[1]);
+            ProgressManager.Argent += ProgressManager.ArgentDernierePartie;
+            Game1.SetPartieDeJeu((int)TypesDePartieDeJeu.Perdu);
     }
 
         private void Joueur_Moved(object sender, CancellableEventArgs e)
@@ -112,18 +115,18 @@ namespace TopDownGridBasedEngine
 
         private void Joueur_ChangedCase(object sender, MultiCaseEventArgs e)
         {
-            foreach (AbsCase c in e.Cases)
+            /*foreach (AbsCase c in e.Cases)
             {
                 if (c.IsBreaking)
                 {
                     FireDied(this, new CancellableEventArgs(false));
                 }
-            }
+            }*/
         }
 
-        public Bomb Bomb { get; set; }
+        //public Bomb Bomb { get; set; }
 
-        public int BombsLeft { get; set; }
+        //public int BombsLeft { get; set; }
 
         public override EntityType Type { get; } = EntityType.Joueur;
 
@@ -145,6 +148,14 @@ namespace TopDownGridBasedEngine
             base.Tick(deltaTime);
             VelX *= (float)Math.Pow(0.9f, deltaTime / 8);
             VelY *= (float)Math.Pow(0.9f, deltaTime / 8);
+
+            for (int i = EntityManager.Instance.Bonus.Count - 1; i >= 0; i--)
+            {
+                if (new Rectangle(EntityManager.Instance.Bonus[i].X-5, EntityManager.Instance.Bonus[i].Y-5, EntityManager.Instance.Bonus[i].Size + 10, EntityManager.Instance.Bonus[i].Size+10).Contains(X,Y+1))
+                {
+                    //todo effet bonus
+                }
+            }
             //UpdateTexture(DeltaTime);
         }
 
@@ -167,13 +178,13 @@ namespace TopDownGridBasedEngine
                 VelX += (1.1f - VelX) / 15;
             if ((wrapper.State & KeyState.Space) > 0)
             {
-                DropBomb(X / 30, Y / 30);
+                //DropBomb(X / 30, Y / 30);
             }
             //Lights[0].Rotation = (float)Math.Atan2(Mouse.GetState().Position.Y - Y * Map.TileWidth / Map.EntityPixelPerCase,
             //    Mouse.GetState().Position.X - X * Map.TileWidth / Map.EntityPixelPerCase);
         }
 
-        public bool DropBomb(int x, int y)
+        /*public bool DropBomb(int x, int y)
         {
             if (x < 0 || y < 0 || x >= Map.NoCase || y >= Map.NoCase)
                 return false;
@@ -191,12 +202,12 @@ namespace TopDownGridBasedEngine
             cv.Bomb.PlaceBonus += FireBombPlacedBonus;
             cv.Bomb.BreakBlocks += FireBombBrokeBlocks;
             return true;
-        }
+        }*/
 
-        private void Bomb_Exploded(object sender, CaseEventArgs e)
+        /*private void Bomb_Exploded(object sender, CaseEventArgs e)
         {
             BombExploded?.Invoke(sender, e);
-        }
+        }*/
 
         public override void Draw(SpriteBatch sb, float w)
         {

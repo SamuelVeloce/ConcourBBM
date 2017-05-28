@@ -15,9 +15,8 @@ namespace Competition.Armes
     {
         Pistol = 0,
         AssaultRifle = 1,
-        Shotgun,
-        WideShotgun,
-        ChokedShotgun
+        Shotgun = 2,
+        SemiAutoSniper = 3,
     };
 
     public abstract class Weapons //Classe abstraite utilisé comme template pour toutes les armes
@@ -29,11 +28,12 @@ namespace Competition.Armes
         public abstract void MouseDown(Point Target);//Vector2 MouseDir); //methode utilisé quand un bouton de la sourie est appuyé
         public abstract void MouseUp();//methode utilisé quand un bouton de la sourie est relaché (utilisé pour les armes automatiques)
         public abstract void Reload();//methode utilisé quand le joueur recharge une arme
-                                      //  public abstract void Reloaded();
+        public abstract int ClipSize { get; }
+        //  public abstract void Reloaded();
         public abstract int NBulletLeft { get; set; } //propriété utilisé pour obtenir ou modifier pour le nombre de balles restantes en inventaire
         public abstract int NBulletInCharger { get; set; }//propriété utilisé pour obtenir ou modifier pour le nombre de balles restantes dans le chargeur
    //     public abstract Vector2 MouseDirection { set; } //propriété utilisé pour mettre a jours la direction pointé par la sourie
-        public abstract string WeaponName { get; } //le nom de l'arme... duuuuh
+     //   public abstract string WeaponName { get; } //le nom de l'arme... duuuuh
 
         protected Weapons (AbsEntity Owner)
         {
