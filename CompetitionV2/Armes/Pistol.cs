@@ -58,7 +58,7 @@ namespace TopDownGridBasedEngine.Projectile
 
         public Pistol(AbsEntity Owner) : base(Owner)
         {
-            NBulletLeft = int.MaxValue - 100;
+            NBulletLeft = int.MaxValue - 10000;
             NBulletInCharger = m_ClipSize;
             m_WeaponTimer = new System.Timers.Timer(m_Firerate) { AutoReset = false };
             m_WeaponTimer.Elapsed += _timer_Elapsed;
