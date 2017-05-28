@@ -46,11 +46,7 @@
     <Compile Include="AbsEntity.cs" />
     <Compile Include="AbsMoveableEntity.cs" />
     <Compile Include="Armes\BoltActionSniper.cs" />
-<<<<<<< HEAD
-    <Compile Include="Armes\ChokedShotgun.cs" />
-=======
     <Compile Include="Armes\BoltActionSniperAI.cs" />
->>>>>>> origin/HEAD
     <Compile Include="Armes\Machinegun.cs" />
     <Compile Include="Armes\AssaultRifleAI.cs" />
     <Compile Include="Armes\PistolAI.cs" />
@@ -60,7 +56,6 @@
     <Compile Include="Armes\Shotgun.cs" />
     <Compile Include="Armes\ShotgunAI.cs" />
     <Compile Include="Armes\Weapon.cs" />
-    <Compile Include="Armes\WideShotgun.cs" />
     <Compile Include="BlockCollisionEventArgs.cs" />
     <Compile Include="Bomb.cs" />
     <Compile Include="Bonus.cs" />

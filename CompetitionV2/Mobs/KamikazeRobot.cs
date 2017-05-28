@@ -24,13 +24,22 @@ namespace TopDownGridBasedEngine
             DistanceFromPlayer = 0;
             this.Died += KamikazeRobot_Died;
             Couleur = Color.White;
+
+            timer = new Timer();
+            timer.AutoReset = false;
+            timer.Interval = 500;
             timer.Elapsed += Timer_Elapsed;
+            exploding = false;
         }
+
+        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            FireDied(sender, new CancellableEventArgs(false));
         }
 
         private void KamikazeRobot_BOOM(object sender, EventArgs e)
         {
-            FireDied(this, new CancellableEventArgs(false));
+            exploding = true;
             timer.Start();
         }
 
