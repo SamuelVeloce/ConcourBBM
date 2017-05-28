@@ -16,10 +16,10 @@ namespace Competition.Armes
         public override int NBulletLeft { get; set; }
         public override int NBulletInCharger { get; set; }
 
-        private const int m_BulletSpeed = 2500;
+        private const int m_BulletSpeed = 3000;
         private const int m_ReloadingTime = 5000;
-        private const int m_ClipSize = 5;
-        private const int m_Firerate = 300;
+        private const int m_ClipSize = 9;
+        private const int m_Firerate = 1500;
         private const int m_SpreadAngle = 0;
 
         private readonly Random m_RNG = new Random();
@@ -49,7 +49,7 @@ namespace Competition.Armes
             NBulletInCharger = m_ClipSize;
             m_WeaponTimer = new System.Timers.Timer(m_Firerate) { AutoReset = false };
             m_WeaponTimer.Elapsed += _timer_Elapsed;
-            Nom = "Sniper";
+            Nom = "Bolt action";
         }
 
         public override int ClipSize

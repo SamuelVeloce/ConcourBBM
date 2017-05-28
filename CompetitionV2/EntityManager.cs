@@ -212,7 +212,9 @@ namespace TopDownGridBasedEngine
                     ProjectilesListHostile[i].Draw(sb, w);
                 }
                 foreach (AbsEntity e in toDraw)
+                {
                     e.Draw(sb, w / 30);
+                }
 
                 foreach (Bonus b in Bonus)
                     b.Draw(sb, w);

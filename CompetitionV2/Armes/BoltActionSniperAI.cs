@@ -17,10 +17,10 @@ namespace CompetitionV2.Armes
         public override int NBulletLeft { get; set; }
         public override int NBulletInCharger { get; set; }
 
-        private const int m_BulletSpeed = 2000;
+        private const int m_BulletSpeed = 1500;
         private const int m_ReloadingTime = 8000;
         private const int m_ClipSize = 5;
-        private const int m_Firerate = 300;
+        private const int m_Firerate = 1500;
         private const int m_SpreadAngle = 2;
 
         private readonly Random m_RNG = new Random();
@@ -50,7 +50,7 @@ namespace CompetitionV2.Armes
             NBulletInCharger = m_ClipSize;
             m_WeaponTimer = new System.Timers.Timer(m_Firerate) { AutoReset = false };
             m_WeaponTimer.Elapsed += _timer_Elapsed;
-            Nom = "Sniper";
+            Nom = "Bolt action";
         }
 
         public override int ClipSize
@@ -73,7 +73,7 @@ namespace CompetitionV2.Armes
                 NBulletInCharger--;
                 double Radians = Math.Atan2(Target.Y - Owner.Y, Target.X - Owner.X) + ((m_RNG.NextDouble() * m_SpreadAngle) - m_SpreadAngle / 2.0) * (Math.PI / 180.0);
                 Vector2 MouseDir = new Vector2((float)Math.Cos(Radians), (float)Math.Sin(Radians));
-                EntityManager.Instance.ProjectilesListHostile.Add(new ProjectileBullet(TextureManager.TextureBullet, new Vector2(Owner.X, Owner.Y), new Vector2(8, 8), MouseDir * m_BulletSpeed, 40) { Friendly = true });
+                EntityManager.Instance.ProjectilesListHostile.Add(new ProjectileBullet(TextureManager.TextureBullet, new Vector2(Owner.X, Owner.Y), new Vector2(8, 8), MouseDir * m_BulletSpeed, 30) { Friendly = false });
                 JouerSonTir();
             }
 

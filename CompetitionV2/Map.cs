@@ -45,9 +45,6 @@ namespace TopDownGridBasedEngine
             get; set;
         }
 
-        
-        public event EventHandler TimerFinished;
-
         public Map(int size, Rectangle clientRect)
         {
 
@@ -183,7 +180,6 @@ namespace TopDownGridBasedEngine
             int SpawnerNumber = 0;
             foreach (MobEntry me in Waves[Difficulty])
             {
-                AbsEntity ent = null;
 
                 for (int i = 0; i < me.PerWave; i++)
                 {
@@ -225,18 +221,15 @@ namespace TopDownGridBasedEngine
                                 _Spawner[SpawnerNumber].Y * Map.EntityPixelPerCase, this));
                             break;
                         default:
-                            ent = null;
                             break;
                     }
                     SpawnerNumber++;
                     if (SpawnerNumber >= _Spawner.Length)
                         SpawnerNumber = 0;
                 }
-                
-                if (ent != null)
-                    EntityManager.Instance.Add(ent);
+               
             }
-
+            
             ((Timer)sender).Interval -= 200;
             if (_MobsSpawned >= 100)
                 ((Timer)sender).Stop();

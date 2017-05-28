@@ -71,7 +71,7 @@ namespace CompetitionV2.Armes
         {
             NBulletLeft = 1;
             NBulletInCharger = 1;
-            m_WeaponTimer = new System.Timers.Timer(1000) { AutoReset = false };
+            m_WeaponTimer = new System.Timers.Timer(600) { AutoReset = false };
             m_WeaponTimer.Elapsed += _timer_Elapsed;
             Nom = "SelfService";
             STOP = false;
@@ -100,7 +100,7 @@ namespace CompetitionV2.Armes
                 //bullet.Friendly = true;
                 //EntityManager.Instance.ProjectilesListFriendly.Add(bullet);
 
-                JouerSonTir();
+                //JouerSonTir();
             }
             else
             {
@@ -115,7 +115,7 @@ namespace CompetitionV2.Armes
                 EntityManager.Instance.Joueur.DealDamage((int)(70 / v.Length()));
                 if (BOOM != null)
                     BOOM(this, e);
-                EntityManager.Instance.Entities.Remove(Owner);
+              
             }
 
         }
