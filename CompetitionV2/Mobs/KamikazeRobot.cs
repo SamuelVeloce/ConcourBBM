@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 
 namespace TopDownGridBasedEngine
 {
@@ -18,6 +19,7 @@ namespace TopDownGridBasedEngine
             Arme = ss;
             DistanceFromPlayer = 0;
             this.Died += KamikazeRobot_Died;
+            Couleur = Color.White;
         }
 
         private void KamikazeRobot_BOOM(object sender, EventArgs e)

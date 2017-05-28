@@ -24,6 +24,7 @@ namespace TopDownGridBasedEngine
         protected double NextPathfindTime;
         protected float _SpeedFactor;
         protected int DistanceFromPlayer;
+        protected Color Couleur;
         public int _Hp { get; set; }
         
 
@@ -133,7 +134,7 @@ namespace TopDownGridBasedEngine
 
         public override void Draw(SpriteBatch sb, float width)
         {
-            Draw(sb, width, Color.White);
+            Draw(sb, width, Couleur);
         }
 
         public virtual Texture2D Texture

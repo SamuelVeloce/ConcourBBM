@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 
 namespace TopDownGridBasedEngine
 {
@@ -13,7 +14,7 @@ namespace TopDownGridBasedEngine
 
         public SoldierRobot(int x, int y, Map m) : base(x, y, m, 0.24f) // Speedfactor changed there
         {
-            
+            Couleur = Color.White;
         }
 
         public override Texture2D Texture

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
 
 namespace TopDownGridBasedEngine
 {
@@ -16,6 +17,7 @@ namespace TopDownGridBasedEngine
             _Hp = 26;
             DistanceFromPlayer = 20;
             Arme = new BoltActionSniperAI(this);
+            Couleur = Color.BlueViolet;
         }
 
         public override Texture2D Texture

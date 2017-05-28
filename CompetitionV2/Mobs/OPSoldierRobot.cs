@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TopDownGridBasedEngine.Armes;
+using Microsoft.Xna.Framework;
 
 namespace TopDownGridBasedEngine
 {
@@ -15,6 +16,7 @@ namespace TopDownGridBasedEngine
         {
             _Hp = 26;
             Arme = new AssaultRifleAI(this);
+            Couleur = Color.Green;
 
         }
     }
