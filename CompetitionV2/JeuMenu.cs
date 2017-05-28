@@ -77,18 +77,18 @@ namespace TopDownGridBasedEngine
 
             
             Enemy e;
-            for (int i = 0; i < 1; i++)
+           /* for (int i = 0; i < 10; i++)
             {
 
                 p = new Point(r.Next() % Map.Width, r.Next() % Map.Height);
                 if (!Map[p.X, p.Y].IsSolid)
                 {
-                    e = new FighterRobot(p.X * Map.EntityPixelPerCase, p.Y * Map.EntityPixelPerCase, Map);
+                    e = new KamikazeRobot(p.X * Map.EntityPixelPerCase, p.Y * Map.EntityPixelPerCase, Map);
                     EntityManager.Instance.Add(e);
                 }
                 
                 
-            }
+            }*/
 
             _wrapper = new KeyWrapper(0, 0, 0);
 
@@ -104,12 +104,13 @@ namespace TopDownGridBasedEngine
             }
             else
             {
-                if (gameTime.TotalGameTime.TotalMilliseconds - StartTime > 120000)//2 minutes
+                if (gameTime.TotalGameTime.TotalMilliseconds - StartTime > 180000)//2 minutes
                 {
                     ProgressManager.ArgentDernierePartie = (int)(1.1*ProgressManager.ArgentDernierePartie);
-                    if (ProgressManager.LvlDebloque < 1)
+                    ProgressManager.Argent += ProgressManager.ArgentDernierePartie;
+                   // if (ProgressManager.LvlDebloque < 1)
                     {
-                        ProgressManager.LvlDebloque = 1;
+                        ProgressManager.LvlDebloque += 1;
                     }
                     Game1.SetPartieDeJeu((int)TypesDePartieDeJeu.Gagne);
                 }
