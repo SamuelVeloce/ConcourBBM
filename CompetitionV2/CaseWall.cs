@@ -1,7 +1,7 @@
 ﻿
 using Microsoft.Xna.Framework.Graphics;
 
-namespace TopDownGridBasedEngine
+namespace CompetitionV2
 {
     public class CaseWall : AbsCase
     {

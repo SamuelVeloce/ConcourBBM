@@ -1,6 +1,6 @@
 ﻿
 
-namespace TopDownGridBasedEngine
+namespace CompetitionV2
 {
     public class CaseEventArgs : CancellableEventArgs
     {

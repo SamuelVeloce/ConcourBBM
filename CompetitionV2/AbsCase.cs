@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Penumbra;
 
-namespace TopDownGridBasedEngine
+namespace CompetitionV2
 {
 
     public enum CaseType

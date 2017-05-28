@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using TopDownGridBasedEngine.Projectile;
+using CompetitionV2.Projectile;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using CompetitionV2;
 
-namespace TopDownGridBasedEngine
+namespace CompetitionV2
 {
     public class EntityManager
     {

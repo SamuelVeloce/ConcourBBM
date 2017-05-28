@@ -6,8 +6,7 @@
 
 using System;
 
-
-namespace TopDownGridBasedEngine
+namespace CompetitionV2
 {
     /// <summary>
     /// États possibles du clavier et de la souris

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace TopDownGridBasedEngine
+namespace CompetitionV2.Mobs
 {
     public class SoldierRobot : Enemy
     {
@@ -13,7 +9,7 @@ namespace TopDownGridBasedEngine
 
         public SoldierRobot(int x, int y, Map m) : base(x, y, m, 0.24f) // Speedfactor changed there
         {
-            
+            Couleur = Color.White;
         }
 
         public override Texture2D Texture

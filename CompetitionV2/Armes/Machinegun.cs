@@ -1,36 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
-using Competition.Armes;
-using TopDownGridBasedEngine.Projectile;
+using CompetitionV2.Projectile;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using TopDownGridBasedEngine;
 
-namespace TopDownGridBasedEngine.Armes
+namespace CompetitionV2.Armes
 {
     sealed class AssaultRifle : Weapons
     {
         public override int NBulletLeft { get; set; }
         public override int NBulletInCharger { get; set; }
 
-       // public override string WeaponName { get { return "Mitrailleuse antique"; } }
+        // public override string WeaponName { get { return "Mitrailleuse antique"; } }
 
         public override WeaponType WeaponType
         {
-            get
-            {
-                return WeaponType.AssaultRifle;
-            }
+            get { return WeaponType.AssaultRifle; }
         }
 
         private const int m_BulletSpeed = 400;
         private const int m_ReloadingTime = 2000;
-        private const int m_ClipSize = 30;//30;
-        private const int m_Firerate = 150;//105;
+        private const int m_ClipSize = 30; //30;
+        private const int m_Firerate = 150; //105;
         private const int m_SpreadAngle = 6;
         private readonly Random m_RNG = new Random();
         private readonly object m_WeaponLock = new object();
@@ -44,9 +35,18 @@ namespace TopDownGridBasedEngine.Armes
         {
             get { return m_ClipSize; }
         }
+
         public override void JouerSonTir()
         {
-            SoundManager.Pistol.Play((float)0.5,0,0);
+            try
+            {
+                SoundManager.Pistol.Play((float)0.5, 0, 0);
+            }
+            catch 
+            {
+                
+            }
+            
         }
         
 

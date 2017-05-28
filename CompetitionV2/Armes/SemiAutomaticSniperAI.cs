@@ -1,5 +1,4 @@
-﻿using Competition.Armes;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -7,8 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
-using TopDownGridBasedEngine;
-using TopDownGridBasedEngine.Projectile;
+using CompetitionV2.Projectile;
 
 namespace CompetitionV2.Armes
 {

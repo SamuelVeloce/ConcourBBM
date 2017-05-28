@@ -1,6 +1,6 @@
 using System;
 
-namespace TopDownGridBasedEngine
+namespace CompetitionV2
 {
     public static class Program
     {

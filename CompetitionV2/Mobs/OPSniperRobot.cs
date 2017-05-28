@@ -1,13 +1,8 @@
-﻿using Competition.Armes;
-using CompetitionV2.Armes;
+﻿using CompetitionV2.Armes;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace TopDownGridBasedEngine
+namespace CompetitionV2.Mobs
 {
     public class OPSniperRobot : Enemy
     {
@@ -16,6 +11,7 @@ namespace TopDownGridBasedEngine
             _Hp = 26;
             DistanceFromPlayer = 20;
             Arme = new BoltActionSniperAI(this);
+            Couleur = Color.BlueViolet;
         }
 
         public override Texture2D Texture

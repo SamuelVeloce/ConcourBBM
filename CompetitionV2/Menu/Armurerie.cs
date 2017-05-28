@@ -3,14 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Competition.Armes;
 using CompetitionV2.Armes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using TopDownGridBasedEngine;
-using TopDownGridBasedEngine.Armes;
-using TopDownGridBasedEngine.Projectile;
 
 namespace CompetitionV2.Menu
 {

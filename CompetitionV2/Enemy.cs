@@ -1,21 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using CompetitionV2.Armes;
+using CompetitionV2.Pathfinding;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
-using Competition.Armes;
-using TopDownGridBasedEngine.Projectile;
-using CompetitionV2.Armes;
-
-using Penumbra;
-using CompetitionV2;
-
-namespace TopDownGridBasedEngine
+namespace CompetitionV2
 {
     public class Enemy : AbsMoveableEntity, ITexturable
     {
@@ -24,6 +13,7 @@ namespace TopDownGridBasedEngine
         protected double NextPathfindTime;
         protected float _SpeedFactor;
         protected int DistanceFromPlayer;
+        protected Color Couleur;
         public int _Hp { get; set; }
         
 
@@ -136,7 +126,7 @@ namespace TopDownGridBasedEngine
 
         public override void Draw(SpriteBatch sb, float width)
         {
-            Draw(sb, width, Color.White);
+            Draw(sb, width, Couleur);
         }
 
         public virtual Texture2D Texture

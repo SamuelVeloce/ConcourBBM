@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
-using Competition.Armes;
+using CompetitionV2.Projectile;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using TopDownGridBasedEngine;
-using TopDownGridBasedEngine.Projectile;
 
 namespace CompetitionV2.Armes
 {
@@ -25,7 +23,7 @@ namespace CompetitionV2.Armes
         private const int m_SpreadAngle = 30;
         private const int m_NumberOfBuckshot = 5;
         private const int m_ClipSize = 8;
-        private const int m_Firerate = 600;
+        private const int m_Firerate = 2000;
         private bool m_CanShoot = true;
         private bool m_Reloading;
         private readonly System.Timers.Timer m_WeaponTimer;
@@ -83,10 +81,10 @@ namespace CompetitionV2.Armes
 
                 for (int i = 0; i < m_NumberOfBuckshot; i++)
                 {
-                    double Radians = Math.Atan2(Target.Y- Owner.Y, Target.X - Owner.X) + ((m_RNG.NextDouble() * m_SpreadAngle) - m_SpreadAngle / 2.0) * (Math.PI / 180.0);
+                    double Radians = Math.Atan2((Target.Y) - Owner.Y, Target.X - Owner.X) + ((m_RNG.NextDouble() * m_SpreadAngle) - m_SpreadAngle / 2.0) * (Math.PI / 180.0);
                     Vector2 MouseDir = new Vector2((float)Math.Cos(Radians), (float)Math.Sin(Radians));
                     EntityManager.Instance.ProjectilesListHostile.Add(new ProjectileBullet(
-                        TextureManager.TextureBullet, new Vector2(Owner.X, Owner.Y), new Vector2(8, 8), MouseDir * 500,
+                        TextureManager.TextureBullet, new Vector2(Owner.X, Owner.Y), new Vector2(8, 8), MouseDir * m_BulletSpeed,
                         15)
                     { Friendly = false });
                 }
@@ -95,14 +93,18 @@ namespace CompetitionV2.Armes
             }
             else
             {
-                m_Reloading = false;
-                if (NBulletInCharger > 0)
+                if (m_Reloading)
                 {
-                    m_CanShoot = true;
-                }
-                m_WeaponTimer.Interval = m_Firerate;
+                    m_Reloading = false;
+                    if (NBulletInCharger > 0)
+                    {
+                        m_CanShoot = true;
+                    }
+                    m_WeaponTimer.Interval = m_Firerate;
 
-                m_WeaponTimer.Start();
+                    m_WeaponTimer.Start();
+                }
+
             }
         }
         private void _timer_Elapsed(object sender, ElapsedEventArgs e)

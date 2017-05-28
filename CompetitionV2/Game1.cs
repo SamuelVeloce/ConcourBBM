@@ -1,15 +1,12 @@
-using System.Runtime.CompilerServices;
-using Competition.Armes;
-using CompetitionV2;
+using CompetitionV2.Armes;
 using CompetitionV2.Menu;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Audio;
 using Penumbra;
-using TopDownGridBasedEngine.Projectile;
 
-namespace TopDownGridBasedEngine
+namespace CompetitionV2
 {
     public class Game1 : Game
     {
@@ -90,7 +87,7 @@ namespace TopDownGridBasedEngine
         {
             _graphics = new GraphicsDeviceManager(this);
             
-            //_graphics.IsFullScreen = true;
+            _graphics.IsFullScreen = true;
          //   int Dimension = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
 
 
@@ -100,7 +97,7 @@ namespace TopDownGridBasedEngine
             _graphics.PreferredBackBufferHeight = Dimension;
             _graphics.PreferredBackBufferWidth = Dimension;
             _graphics.ApplyChanges();
-
+            
             Content.RootDirectory = "Content";
             IndexPartieDeJeu = 0;
             Instance = this;
@@ -125,9 +122,8 @@ namespace TopDownGridBasedEngine
             Screen = Window;
             Penumbra = new PenumbraComponent(this);
             Components.Add(Penumbra);
-            Penumbra.AmbientColor = Color.White;
+            Penumbra.AmbientColor = Color.Black;
             TextureManager.InitInstance(Content);
-
             
             PartieDuJeu = new IPartieDeJeu[6];
             PartieDuJeu[(int)TypesDePartieDeJeu.MenuDefaut] = new MenuDefaut();

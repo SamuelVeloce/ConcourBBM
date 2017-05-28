@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
-using Competition.Armes;
+using CompetitionV2.Projectile;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using TopDownGridBasedEngine;
-using TopDownGridBasedEngine.Projectile;
 
 namespace CompetitionV2.Armes
 {

@@ -3,12 +3,12 @@
  * Novembre 2016
  * Classe Singleton TextureManager, pour s'occuper des textures du jeu
  ***********************/
+
 using System;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-
-namespace TopDownGridBasedEngine
+namespace CompetitionV2
 {
     // Classe Singleton TextureManager, pour s'occuper des textures du jeu
     public class TextureManager
@@ -143,8 +143,8 @@ namespace TopDownGridBasedEngine
             TexturePlayerRight[3] = TexturePlayerRight[1];
             TexturePlayerLeft[3] = _content.Load<Texture2D>("Textures/BrownGuyLeft3");
             //TextureBomb[2] = TextureBomb[0];
-            TexturePlayerDown[2] = TexturePlayerUp[0];
-            TexturePlayerUp[2] = TexturePlayerDown[0];
+            TexturePlayerDown[2] = TexturePlayerDown[0];
+            TexturePlayerUp[2] = TexturePlayerUp[0];
             TexturePlayerRight[2] = TexturePlayerRight[0];
             TexturePlayerLeft[2] = TexturePlayerLeft[0];
 

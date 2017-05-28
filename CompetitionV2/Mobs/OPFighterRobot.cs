@@ -1,12 +1,8 @@
 ﻿using CompetitionV2.Armes;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace TopDownGridBasedEngine
+namespace CompetitionV2.Mobs
 {
     public class OPFighterRobot : Enemy
     {
@@ -15,6 +11,7 @@ namespace TopDownGridBasedEngine
             _Hp = 80;
             Arme = new ShotgunAI(this);
             DistanceFromPlayer = 3;
+            Couleur = Color.Orange;
         }
 
         public override Texture2D Texture

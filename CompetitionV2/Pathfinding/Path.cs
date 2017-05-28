@@ -1,15 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
-
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
-using Penumbra;
-
-namespace TopDownGridBasedEngine
+namespace CompetitionV2.Pathfinding
 {
     
     public class Path
@@ -112,8 +106,8 @@ namespace TopDownGridBasedEngine
             else
                 m_ListPath.Clear();
 
-            foreach (Case ca in m_ListPath)
-                ca.Wrapped.color = Color.HotPink;
+            /*foreach (Case ca in m_ListPath)
+                ca.Wrapped.color = Color.HotPink;*/
         }
 
         private Case FindLowestFCost()

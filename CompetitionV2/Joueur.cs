@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Threading;
-using Competition.Armes;
-using CompetitionV2;
 using CompetitionV2.Armes;
-using TopDownGridBasedEngine.Armes;
-using TopDownGridBasedEngine.Projectile;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Penumbra;
-using EventHandler = CompetitionV2.Menu.EventHandler;
 
 
-namespace TopDownGridBasedEngine
+namespace CompetitionV2
 {
     public class Joueur : AbsMoveableEntity, ITexturable
     {
@@ -28,7 +22,10 @@ namespace TopDownGridBasedEngine
             set { _Hp = value; }
         }
 
-        public int MaxHealth = 100;
+        
+        public int MaxHealth = 4000;
+
+
         //public event OnDropBombHandler DroppedBomb;
         //public event OnBombExplodeHandler BombExploded;
         //public event OnGenericBlockEventHandler BombPlacedBonus;
