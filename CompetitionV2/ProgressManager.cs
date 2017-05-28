@@ -28,7 +28,7 @@ namespace CompetitionV2
             //todo load from disk
             Argent = 1000;
             LvlDebloque = 5;
-            ArmesDebloque = new bool[] {true, true, true, true};
+            ArmesDebloque = new bool[] {true, true, true, true,true};
             ArmesAchete = ArmesDebloque;
             ArgentDernierePartie = 0;
             m_TempsSurvecuDernierePartie = 0;

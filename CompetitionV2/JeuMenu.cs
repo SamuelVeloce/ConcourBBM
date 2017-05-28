@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Competition.Armes;
-using CompetitionV2;
-using CompetitionV2.Armes;
-using TopDownGridBasedEngine.Projectile;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using TopDownGridBasedEngine.Armes;
 
-namespace TopDownGridBasedEngine
+namespace CompetitionV2
 {
     public class JeuMenu : IPartieDeJeu
     {
@@ -49,7 +39,7 @@ namespace TopDownGridBasedEngine
                     }
                     else
                     {
-                        Joueur tempJ = new Joueur(p.X * Map.EntityPixelPerCase, p.Y * Map.EntityPixelPerCase, Map);
+                        /*Joueur tempJ = new Joueur(p.X * Map.EntityPixelPerCase, p.Y * Map.EntityPixelPerCase, Map);
                         for (int i = 0; i < m_Joueur.Weapon.Length; i++)
                         {
                             switch (m_Joueur.Weapon[i].WeaponType)
@@ -68,7 +58,7 @@ namespace TopDownGridBasedEngine
                                     break;
                             }
                         }
-                        m_Joueur = tempJ;
+                        m_Joueur = tempJ;*/
                         ShouldRun = false;
                     }
             }

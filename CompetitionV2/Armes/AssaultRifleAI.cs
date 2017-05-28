@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
-using Competition.Armes;
-using TopDownGridBasedEngine.Projectile;
+using CompetitionV2.Projectile;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using TopDownGridBasedEngine;
 
 
 namespace CompetitionV2.Armes
@@ -99,7 +97,7 @@ namespace CompetitionV2.Armes
 
                 double Radians = Math.Atan2(Target.Y - Owner.Y, Target.X - Owner.X) + ((m_RNG.NextDouble() * m_SpreadAngle) - m_SpreadAngle / 2.0) * (Math.PI / 180.0);
                 Vector2 MouseDir = new Vector2((float)Math.Cos(Radians), (float)Math.Sin(Radians));
-                EntityManager.Instance.ProjectilesListHostile.Add(new ProjectileBullet(TextureManager.TextureBullet, new Vector2(Owner.X, Owner.Y), new Vector2(8, 8), MouseDir * 500, 10) { Friendly = false });
+                EntityManager.Instance.ProjectilesListHostile.Add(new ProjectileBullet(TextureManager.TextureBullet, new Vector2(Owner.X, Owner.Y), new Vector2(8, 8), MouseDir * 500, 8) { Friendly = false });
 
 
                 JouerSonTir();
@@ -163,7 +161,7 @@ namespace CompetitionV2.Armes
                             double Radians = Math.Atan2(Mouse.GetState().Position.Y / EntityManager.Instance.Map.TileWidth * Map.EntityPixelPerCase - EntityManager.Instance.Joueur.Y, Mouse.GetState().Position.X / EntityManager.Instance.Map.TileWidth * Map.EntityPixelPerCase - EntityManager.Instance.Joueur.X) +
                                              ((m_RNG.NextDouble() * m_SpreadAngle) - m_SpreadAngle / 2.0) * (Math.PI / 180.0);
                             Vector2 MouseDir = new Vector2((float)Math.Cos(Radians), (float)Math.Sin(Radians));
-                            EntityManager.Instance.ProjectilesListFriendly.Add(new ProjectileBullet(TextureManager.TextureBullet, new Vector2(EntityManager.Instance.Joueur.X, EntityManager.Instance.Joueur.Y), new Vector2(8, 8), MouseDir * 500, 10) { Friendly = false });
+                            EntityManager.Instance.ProjectilesListHostile.Add(new ProjectileBullet(TextureManager.TextureBullet, new Vector2(EntityManager.Instance.Joueur.X, EntityManager.Instance.Joueur.Y), new Vector2(8, 8), MouseDir * 500, 8) { Friendly = false });
                             m_WeaponTimer.Start();
                             JouerSonTir();
 

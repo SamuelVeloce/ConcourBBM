@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Microsoft.Xna.Framework;
 
-namespace TopDownGridBasedEngine
+namespace CompetitionV2
 {
     /// <summary>
     /// Sert à la construction de murs lors de la génération de la map. En décentralise le code.

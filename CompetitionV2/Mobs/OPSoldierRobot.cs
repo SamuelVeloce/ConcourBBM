@@ -1,13 +1,7 @@
 ﻿using CompetitionV2.Armes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TopDownGridBasedEngine.Armes;
 using Microsoft.Xna.Framework;
 
-namespace TopDownGridBasedEngine
+namespace CompetitionV2.Mobs
 {
     public class OPSoldierRobot : Enemy
     {

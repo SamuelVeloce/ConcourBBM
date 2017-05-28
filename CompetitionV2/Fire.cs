@@ -1,10 +1,4 @@
-﻿
-
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Penumbra;
-
-namespace TopDownGridBasedEngine
+﻿namespace CompetitionV2
 {
     /*public class Fire : AbsEntity, ITexturable
     {

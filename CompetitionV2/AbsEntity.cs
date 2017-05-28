@@ -1,8 +1,7 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace TopDownGridBasedEngine
+namespace CompetitionV2
 {
     public delegate void OnMoveHandler(object sender, CancellableEventArgs e);
     public delegate void OnDieHandler(object sender, CancellableEventArgs e);

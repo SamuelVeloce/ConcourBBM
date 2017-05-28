@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Timers;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
-using TopDownGridBasedEngine;
+﻿using Microsoft.Xna.Framework;
 
-namespace Competition.Armes
+namespace CompetitionV2.Armes
 {
 
     public enum WeaponType
@@ -17,6 +9,9 @@ namespace Competition.Armes
         AssaultRifle = 1,
         Shotgun = 2,
         SemiAutoSniper = 3,
+        BoltAction = 4,
+
+
     };
 
     public abstract class Weapons //Classe abstraite utilisé comme template pour toutes les armes

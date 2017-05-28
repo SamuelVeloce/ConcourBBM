@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
+using System.Timers;
+using CompetitionV2.Mobs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Penumbra;
 
-using System.Collections.Generic;
-using System.Timers;
-
-using CompetitionV2;
-
-namespace TopDownGridBasedEngine
+namespace CompetitionV2
 {
     /*
 
@@ -53,7 +50,7 @@ namespace TopDownGridBasedEngine
             _random = new Random();
             Walls = new List<AbsCase>();
             _MobsSpawned = 0;
-            Difficulty = ProgressManager.LvlDebloque;
+            Difficulty = Math.Min(7,ProgressManager.LvlDebloque+10);
 
             TileWidth = Math.Min((float)clientRect.Width / NoCase, (float)clientRect.Height / NoCase);
 
@@ -177,6 +174,7 @@ namespace TopDownGridBasedEngine
 
         public void T_Elapsed(object sender, ElapsedEventArgs e)
         {
+
             int RandResult;
 
             for (int SpawnerNumber = 0; SpawnerNumber < _Spawner.Length; SpawnerNumber += 1)

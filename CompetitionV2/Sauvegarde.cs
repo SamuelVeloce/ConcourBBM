@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using CompetitionV2.Armes;
 
-using Competition.Armes;
-
-namespace TopDownGridBasedEngine
+namespace CompetitionV2
 {
     [Serializable]
     public static class Sauvegarde

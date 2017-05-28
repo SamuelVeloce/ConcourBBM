@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CompetitionV2;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using TopDownGridBasedEngine;
 
-namespace TopDownGridBasedEngine.Projectile
+namespace CompetitionV2.Projectile
 {
     public abstract class absProjectile : Entity
     {

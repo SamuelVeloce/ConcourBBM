@@ -3,14 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Competition.Armes;
 using CompetitionV2.Armes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using TopDownGridBasedEngine;
-using TopDownGridBasedEngine.Armes;
-using TopDownGridBasedEngine.Projectile;
 
 namespace CompetitionV2.Menu
 {
@@ -30,8 +26,10 @@ namespace CompetitionV2.Menu
                     Game1.SetPartieDeJeu, (int) WeaponType.AssaultRifle),
                 new ArmurerieButton("Shotgun!", TextureManager.TextureTerre[0], new Rectangle(200, 230, 300, 100),
                     Game1.SetPartieDeJeu, (int) WeaponType.Shotgun),
-                new ArmurerieButton("Sniper!", TextureManager.TextureTerre[0], new Rectangle(200, 340, 300, 100),
+                new ArmurerieButton("Sniper!", TextureManager.TextureTerre[0], new Rectangle(550, 120, 300, 100),
                     Game1.SetPartieDeJeu, (int) WeaponType.SemiAutoSniper),
+                new ArmurerieButton("Bolt action!", TextureManager.TextureTerre[0], new Rectangle(550, 10, 300, 100),
+                    Game1.SetPartieDeJeu, (int) WeaponType.BoltAction),
 
 
 
@@ -74,10 +72,10 @@ namespace CompetitionV2.Menu
 
 
             
-            if (PartieDeJeu < 3 && EntityManager.Instance.Joueur?.Weapon[PartieDeJeu]?.Nom != null)
+            if (PartieDeJeu < 3 && Game1.Arma[PartieDeJeu] != null)
             {
-                Vector2 size = TextureManager.Font.MeasureString(EntityManager.Instance.Joueur.Weapon[PartieDeJeu].Nom);
-                sb.DrawString(TextureManager.Font, EntityManager.Instance.Joueur.Weapon[PartieDeJeu].Nom, ButtonRect.Center.ToVector2(), Color.White, 0, size * 0.5f, 2.0f,
+                Vector2 size = TextureManager.Font.MeasureString(Game1.Arma[PartieDeJeu].ToString());
+                sb.DrawString(TextureManager.Font, Game1.Arma[PartieDeJeu].ToString(), ButtonRect.Center.ToVector2(), Color.White, 0, size * 0.5f, 2.0f,
                 SpriteEffects.None, 0);
             }
             else
@@ -108,9 +106,9 @@ namespace CompetitionV2.Menu
             get
             {
                 bool inthere = false;
-                for (int i = 0; i < EntityManager.Instance.Joueur.Weapon.Length && !inthere; i++)
+                for (int i = 0; i < Game1.Arma.Length && !inthere; i++)
                 {
-                    inthere=((int)EntityManager.Instance.Joueur.Weapon[i].WeaponType == PartieDeJeu);
+                    inthere=((int)Game1.Arma[i] == PartieDeJeu);
                 }
                 return m_IsValid && !inthere;
             }
@@ -130,11 +128,12 @@ namespace CompetitionV2.Menu
                 {
                     WasPressed = false;
 
-                    for (int i = EntityManager.Instance.Joueur.Weapon.Length - 1; i >= 1; i--)
+                    for (int i = Game1.Arma.Length - 1; i >= 1; i--)
                     {
-                        EntityManager.Instance.Joueur.Weapon[i] = EntityManager.Instance.Joueur.Weapon[i-1];
+                        Game1.Arma[i] = Game1.Arma[i-1];
                     }
-                    switch (PartieDeJeu)
+                    Game1.Arma[0] = (WeaponType)PartieDeJeu;
+                   /* switch (PartieDeJeu)
                     {
                         case (int) WeaponType.Pistol:
                             EntityManager.Instance.Joueur.Weapon[0] = new Pistol(EntityManager.Instance.Joueur);
@@ -148,7 +147,10 @@ namespace CompetitionV2.Menu
                         case (int)WeaponType.SemiAutoSniper:
                             EntityManager.Instance.Joueur.Weapon[0] = new SemiAutomaticSniper(EntityManager.Instance.Joueur);
                             break;
-                    }
+                        case (int)WeaponType.BoltAction:
+                            EntityManager.Instance.Joueur.Weapon[0] = new BoltActionSniper(EntityManager.Instance.Joueur);
+                            break;
+                    }*/
                 }
             }
         }

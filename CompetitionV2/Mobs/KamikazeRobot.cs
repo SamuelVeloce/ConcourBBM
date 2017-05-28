@@ -1,14 +1,10 @@
-﻿using CompetitionV2.Armes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework.Graphics;
+﻿using System;
 using System.Timers;
+using CompetitionV2.Armes;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
-namespace TopDownGridBasedEngine
+namespace CompetitionV2.Mobs
 {
     class KamikazeRobot : Enemy     
     {

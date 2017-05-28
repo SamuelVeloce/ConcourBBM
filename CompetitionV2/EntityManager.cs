@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using TopDownGridBasedEngine.Projectile;
+using CompetitionV2.Projectile;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using CompetitionV2;
 
-namespace TopDownGridBasedEngine
+namespace CompetitionV2
 {
     public class EntityManager
     {
@@ -26,8 +24,10 @@ namespace TopDownGridBasedEngine
 
         //public event OnFireStopHandler FireStopped;
 
-        private EntityManager() : this(null, null, 0) { }
-        
+        private EntityManager() : this(null, null, 0)
+        {
+        }
+
         private EntityManager(Joueur j, Map m, int numeroJoueur)
         {
             _entities = new List<AbsEntity>();
@@ -51,7 +51,8 @@ namespace TopDownGridBasedEngine
             get
             {
                 if (_instance == null)
-                    return null;// throw new Exception("Instance inexistante. Utilisez InitInstance avant d'utiliser l'instance");
+                    return null;
+                        // throw new Exception("Instance inexistante. Utilisez InitInstance avant d'utiliser l'instance");
                 return _instance;
             }
         }
@@ -61,7 +62,7 @@ namespace TopDownGridBasedEngine
             if (_instance != null)
             {
                 _instance._entities = new List<AbsEntity>();
-                
+
                 _instance.Joueur = j;
                 _instance.Map = m;
                 _instance._id = ID;
@@ -105,7 +106,7 @@ namespace TopDownGridBasedEngine
             {
                 _deadFire.Add(fire);
             }*/
-            
+
             lock (someLock)
             {
                 return _entities.Remove(e);
@@ -115,7 +116,7 @@ namespace TopDownGridBasedEngine
         public void TickPlayer(int idPlayer, GameTime gameTime, KeyWrapper wrapper)
         {
             if (!Joueur.IsDead)
-                Joueur.TickPlayer((int)gameTime.ElapsedGameTime.TotalMilliseconds, wrapper);
+                Joueur.TickPlayer((int) gameTime.ElapsedGameTime.TotalMilliseconds, wrapper);
         }
 
         public void TickEntities(GameTime gameTime)
@@ -126,14 +127,14 @@ namespace TopDownGridBasedEngine
 
                 foreach (AbsEntity e in toUpdate)
                 {
-                    e.Tick((int)gameTime.ElapsedGameTime.TotalMilliseconds);
+                    e.Tick((int) gameTime.ElapsedGameTime.TotalMilliseconds);
                     if (e is ITexturable)
-                        ((ITexturable) e).UpdateTexture((int)gameTime.ElapsedGameTime.TotalMilliseconds);
+                        ((ITexturable) e).UpdateTexture((int) gameTime.ElapsedGameTime.TotalMilliseconds);
                 }
                 if (Joueur != null && Joueur.IsDead == false)
-                    Joueur.UpdateTexture((int)gameTime.ElapsedGameTime.TotalMilliseconds); //Tick(DeltaTime);
+                    Joueur.UpdateTexture((int) gameTime.ElapsedGameTime.TotalMilliseconds); //Tick(DeltaTime);
                 if (Joueur.IsDead == false)
-                    Joueur.Tick((long)gameTime.ElapsedGameTime.TotalMilliseconds);
+                    Joueur.Tick((long) gameTime.ElapsedGameTime.TotalMilliseconds);
                 /*if (_deadFire.Count != 0)
                 {
                     FireFireStopped(this, new MultiFireEventArgs(_deadFire.ToArray(), false));
@@ -146,17 +147,35 @@ namespace TopDownGridBasedEngine
                 {
                     for (int i = projli.Count - 1; i >= 0; i--)
                     {
-                        if (projli[i].Update(gameTime))
+                        try
                         {
-                            projli.RemoveAt(i);
+                            if (projli[i].Update(gameTime))
+                            {
+                                projli.RemoveAt(i);
+                            }
                         }
+                        catch
+                        {
+
+
+                        }
+
                     }
                     for (int i = projho.Count - 1; i >= 0; i--)
                     {
-                        if (projho[i].Update(gameTime))
+                        try
                         {
-                            projho.RemoveAt(i);
+                            if (projho[i].Update(gameTime))
+                            {
+                                projho.RemoveAt(i);
+                            }
                         }
+                        catch
+                        {
+
+
+                        }
+                        
                     }
                     for (int i = this.Bonus.Count - 1; i >= 0; i--)
                     {

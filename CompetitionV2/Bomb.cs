@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Penumbra;
-
-namespace TopDownGridBasedEngine
+﻿namespace CompetitionV2
 {
     /*public class Bomb : AbsMoveableEntity, ITexturable
     {

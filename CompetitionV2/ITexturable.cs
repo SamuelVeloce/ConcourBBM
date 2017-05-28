@@ -1,5 +1,5 @@
 ﻿
-namespace TopDownGridBasedEngine
+namespace CompetitionV2
 {
     interface ITexturable
     {

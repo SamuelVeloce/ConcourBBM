@@ -1,13 +1,12 @@
-using System.Runtime.CompilerServices;
-using CompetitionV2;
+using CompetitionV2.Armes;
 using CompetitionV2.Menu;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Audio;
 using Penumbra;
 
-namespace TopDownGridBasedEngine
+namespace CompetitionV2
 {
     public class Game1 : Game
     {
@@ -27,6 +26,12 @@ namespace TopDownGridBasedEngine
         static IPartieDeJeu[] PartieDuJeu;
         private static int m_IndexPartieDeJeu;
         private static Game1 Instance;
+
+        public static WeaponType[] Arma = new WeaponType[]
+        {
+            WeaponType.Pistol, WeaponType.AssaultRifle, WeaponType.Shotgun
+        };
+
 
         public static void SetPartieDeJeu(int i)
         {

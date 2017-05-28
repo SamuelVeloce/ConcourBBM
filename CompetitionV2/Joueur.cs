@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Threading;
-using Competition.Armes;
-using CompetitionV2;
 using CompetitionV2.Armes;
-using TopDownGridBasedEngine.Armes;
-using TopDownGridBasedEngine.Projectile;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Penumbra;
-using EventHandler = CompetitionV2.Menu.EventHandler;
 
 
-namespace TopDownGridBasedEngine
+namespace CompetitionV2
 {
     public class Joueur : AbsMoveableEntity, ITexturable
     {
@@ -27,7 +21,9 @@ namespace TopDownGridBasedEngine
             get { return _Hp; }
             set { _Hp = value; }
         }
+
         public int MaxHealth = 400;
+
         //public event OnDropBombHandler DroppedBomb;
         //public event OnBombExplodeHandler BombExploded;
         //public event OnGenericBlockEventHandler BombPlacedBonus;
@@ -54,8 +50,28 @@ namespace TopDownGridBasedEngine
             //BombsLeft = 1;
             
             m_WeaponList = new Weapons[] { new Pistol(this), new AssaultRifle(this), new Shotgun(this) };
-            
-            
+
+            for (int i = 0; i < m_WeaponList.Length; i++)
+            {
+                switch (Game1.Arma[i])
+                {
+                    case WeaponType.Pistol:
+                        m_WeaponList[i] = new Pistol(this);
+                        break;
+                    case WeaponType.AssaultRifle:
+                        m_WeaponList[i] = new AssaultRifle(this);
+                        break;
+                    case WeaponType.Shotgun:
+                        m_WeaponList[i] = new Shotgun(this);
+                        break;
+                    case WeaponType.SemiAutoSniper:
+                        m_WeaponList[i] = new SemiAutomaticSniper(this);
+                        break;
+                    case WeaponType.BoltAction:
+                        m_WeaponList[i] = new BoltActionSniper(this);
+                        break;
+                }
+            }
             _Hp = MaxHealth;
 
             Lights = new Light[2];

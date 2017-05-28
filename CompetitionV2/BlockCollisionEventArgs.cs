@@ -1,7 +1,6 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace TopDownGridBasedEngine
+namespace CompetitionV2
 {
     public class BlockCollisionEventArgs : CancellableEventArgs
     {

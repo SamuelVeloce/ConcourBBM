@@ -3,12 +3,12 @@
  * Novembre 2016
  * Classe Singleton TextureManager, pour s'occuper des textures du jeu
  ***********************/
+
 using System;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-
-namespace TopDownGridBasedEngine
+namespace CompetitionV2
 {
     // Classe Singleton TextureManager, pour s'occuper des textures du jeu
     public class TextureManager
