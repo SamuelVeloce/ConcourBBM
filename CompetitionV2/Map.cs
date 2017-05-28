@@ -55,7 +55,6 @@ namespace TopDownGridBasedEngine
             Walls = new List<AbsCase>();
             _MobsSpawned = 0;
             Difficulty = 7;
-            TimeLeft = 120;
 
             TileWidth = Math.Min((float)clientRect.Width / NoCase, (float)clientRect.Height / NoCase);
 

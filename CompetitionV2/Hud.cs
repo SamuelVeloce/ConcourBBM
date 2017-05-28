@@ -63,14 +63,7 @@ namespace TopDownGridBasedEngine
             sb.DrawString(TextureManager.Font, strBalles, new Vector2(Game1.Screen.ClientBounds.Width - 200, 50), Color.Yellow);
             sb.DrawString(TextureManager.Font, TotalBalle, new Vector2(Game1.Screen.ClientBounds.Width - 200, 70), Color.Yellow);
             sb.DrawString(TextureManager.Font, $"HP: {EntityManager.Instance.Joueur.Health} / {EntityManager.Instance.Joueur.MaxHealth}", new Vector2(Game1.Screen.ClientBounds.Width - 200, 90), Color.Yellow);
-            TimeSpan Time = TimeSpan.FromSeconds(EntityManager.Instance.Map.TimeLeft);
-            string t = Time.Minutes.ToString() + ":" + Time.ToString("ss");
-            sb.DrawString(TextureManager.Font, t, new Vector2(Game1.Screen.ClientBounds.Width - 200, 110), Color.Yellow);
 
-            if (EntityManager.Instance.Map.Difficulty == 0)
-            {
-
-            }
         }
     }
 }

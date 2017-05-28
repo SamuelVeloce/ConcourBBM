@@ -154,16 +154,11 @@ namespace TopDownGridBasedEngine
                     else
                         return TextureManager.Instance.TextureDroneUp[_textureVariant / 20];
                 }
-                if (VelX == 0 && VelY == 0)
-                    return TextureManager.Instance.TextureDroneDown[0];
-                
             }
         }
 
         public override void Draw(SpriteBatch sb, float w, Color color)
         {
-            Texture2D bit;
-            
             sb.Draw(TextureManager.TextureTerre[0], new Rectangle((int)(X * w), (int)(Y * w), (int)(Size * w), (int)(Size * w)), color);
             sb.Draw(Texture, new Rectangle((int)(X * w), (int)(Y * w), (int)(Size * w), (int)(Size * w)), color);
 
