@@ -177,7 +177,6 @@ namespace TopDownGridBasedEngine
 
         public void T_Elapsed(object sender, ElapsedEventArgs e)
         {
-<<<<<<< HEAD
             int RandResult;
 
             for (int SpawnerNumber = 0; SpawnerNumber < _Spawner.Length; SpawnerNumber += 1)
@@ -189,65 +188,7 @@ namespace TopDownGridBasedEngine
 
             if (((Timer)sender).Interval < 2000)
                 ((Timer)sender).Interval -= 100;
-=======
-            int SpawnerNumber = 0;
-            foreach (MobEntry me in Waves[Difficulty])
-            {
 
-                for (int i = 0; i < me.PerWave; i++)
-                {
-                    switch (me.Type)
-                    {
-                        case EntityType.FighterRobot:
-                            EntityManager.Instance.Add(
-                                new FighterRobot(_Spawner[SpawnerNumber].X * Map.EntityPixelPerCase,
-                                _Spawner[SpawnerNumber].Y * Map.EntityPixelPerCase, this));
-                            break;
-                        case EntityType.OPFighterRobot:
-                            EntityManager.Instance.Add(
-                                new OPFighterRobot(_Spawner[SpawnerNumber].X * Map.EntityPixelPerCase,
-                                _Spawner[SpawnerNumber].Y * Map.EntityPixelPerCase, this));
-                            break;
-                        case EntityType.SoldierRobot:
-                            EntityManager.Instance.Add(
-                                new SoldierRobot(_Spawner[SpawnerNumber].X * Map.EntityPixelPerCase,
-                                _Spawner[SpawnerNumber].Y * Map.EntityPixelPerCase, this));
-                            break;
-                        case EntityType.OPSoldierRobot:
-                            EntityManager.Instance.Add(
-                                new OPSoldierRobot(_Spawner[SpawnerNumber].X * Map.EntityPixelPerCase,
-                                _Spawner[SpawnerNumber].Y * Map.EntityPixelPerCase, this));
-                            break;
-                        case EntityType.SniperRobot:
-                            EntityManager.Instance.Add(
-                                new SniperRobot(_Spawner[SpawnerNumber].X * Map.EntityPixelPerCase,
-                                _Spawner[SpawnerNumber].Y * Map.EntityPixelPerCase, this));
-                            break;
-                        case EntityType.OPSniperRobot:
-                            EntityManager.Instance.Add(
-                                new OPSniperRobot(_Spawner[SpawnerNumber].X * Map.EntityPixelPerCase,
-                                _Spawner[SpawnerNumber].Y * Map.EntityPixelPerCase, this));
-                            break;
-                        case EntityType.Kamikaze:
-                            EntityManager.Instance.Add(
-                                new KamikazeRobot(_Spawner[SpawnerNumber].X * Map.EntityPixelPerCase,
-                                _Spawner[SpawnerNumber].Y * Map.EntityPixelPerCase, this));
-                            break;
-                        default:
-                            break;
-                    }
-                    SpawnerNumber++;
-                    if (SpawnerNumber >= _Spawner.Length)
-                        SpawnerNumber = 0;
-                }
-               
-            }
-            
-            ((Timer)sender).Interval -= 200;
-            if (_MobsSpawned >= 100)
-                ((Timer)sender).Stop();
-
->>>>>>> origin/HEAD
         }
 
         private void Generate()
