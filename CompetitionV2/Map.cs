@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Penumbra;
 
 using System.Collections.Generic;
+using System.Timers;
 
 namespace TopDownGridBasedEngine
 {
@@ -27,14 +28,18 @@ namespace TopDownGridBasedEngine
 
         public List<AbsCase> Walls;
 
+        private CaseVide[] _Spawner;
+        private int _MobsSpawned;
+
         public Map(int size, Rectangle clientRect)
         {
-            
+
             _noCase = size + (size % 2 - 1);
             _cases = new AbsCase[size, size];
             _random = new Random();
             Walls = new List<AbsCase>();
-            
+            _MobsSpawned = 0;
+
             TileWidth = Math.Min((float)clientRect.Width / NoCase, (float)clientRect.Height / NoCase);
 
             #region oldgen
@@ -114,6 +119,58 @@ namespace TopDownGridBasedEngine
             #endregion
 
             Generate();
+
+            Random r = new Random();
+            _Spawner = new CaseVide[6] { null, null, null, null, null, null };
+
+            do
+            {
+                _Spawner[0] = this[r.Next() % Width, 0] as CaseVide;
+            } while (_Spawner[0] == null);
+            do
+            {
+                int p = r.Next() % Width;
+                if (p != _Spawner[0].X)
+                    _Spawner[1] = this[p, 0] as CaseVide;
+            } while (_Spawner[1] == null);
+            do
+            {
+                _Spawner[2] = this[r.Next() % Width, Height - 1] as CaseVide;
+            } while (_Spawner[2] == null);
+            do
+            {
+                int p = r.Next() % Width;
+                if (p != _Spawner[2].X)
+                    _Spawner[3] = this[p, Height - 1] as CaseVide;
+            } while (_Spawner[3] == null);
+            do
+            {
+                _Spawner[4] = this[0, r.Next() % Height] as CaseVide;
+            } while (_Spawner[4] == null);
+            do
+            {
+                _Spawner[5] = this[0, r.Next() % Height] as CaseVide;
+            } while (_Spawner[5] == null);
+
+            Timer t = new Timer();
+            t.Interval = 20000;
+            t.Elapsed += T_Elapsed;
+            t.Start();
+
+        }
+
+        private void T_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            foreach (CaseVide cv in _Spawner)
+            {
+                Enemy en = new Enemy(cv.X * Map.EntityPixelPerCase, cv.Y * Map.EntityPixelPerCase, this, 0.3f);
+                EntityManager.Instance.Add(en);
+                _MobsSpawned++;
+                
+            }
+            ((Timer)sender).Interval -= 200;
+            if (_MobsSpawned >= 100)
+                ((Timer)sender).Stop();
 
         }
 
