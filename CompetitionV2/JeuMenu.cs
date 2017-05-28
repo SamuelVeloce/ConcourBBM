@@ -73,7 +73,7 @@ namespace TopDownGridBasedEngine
             EntityManager.InitInstance(m_Joueur, Map, 0);
 
             
-            Enemy e;
+            /*Enemy e;
             for (int i = 0; i < 50; i++)
             {
 
@@ -85,7 +85,7 @@ namespace TopDownGridBasedEngine
                 }
                 
                 
-            }
+            }*/
 
             _wrapper = new KeyWrapper(0, 0, 0);
 

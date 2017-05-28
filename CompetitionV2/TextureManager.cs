@@ -111,10 +111,10 @@ namespace TopDownGridBasedEngine
 
             // Textures de joueurs et de bombes
             TextureBomb[0] = _content.Load<Texture2D>("Textures/TextureBomb1");
-            TexturePlayerUp[0] = _content.Load<Texture2D>("Textures/Player2");
-            TexturePlayerDown[0] =  _content.Load<Texture2D>("Textures/Player0");
-            TexturePlayerRight[0] = _content.Load<Texture2D>("Textures/Player1");
-            TexturePlayerLeft[0] = _content.Load<Texture2D>("Textures/Player3");
+            TexturePlayerUp[0] = _content.Load<Texture2D>("Textures/BrownGuyFace1");
+            TexturePlayerDown[0] =  _content.Load<Texture2D>("Textures/BrownGuyBack1");
+            TexturePlayerRight[0] = _content.Load<Texture2D>("Textures/BrownGuyRight1");
+            TexturePlayerLeft[0] = _content.Load<Texture2D>("Textures/BrownGuyLeft1");
             TextureBomb[1] = _content.Load<Texture2D>("Textures/TextureBomb2");
             TexturePlayerUp[1] = TexturePlayerUp[0];
             TexturePlayerDown[1] = TexturePlayerDown[0];
