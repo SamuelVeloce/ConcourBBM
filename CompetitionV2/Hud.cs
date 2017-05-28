@@ -6,15 +6,14 @@ namespace CompetitionV2
 {
     public class Hud
     {
-        private GameWindow _window;
+        //private GameWindow _window;
         private bool ShowTuto;
         //private Joueur _joueur;
 
         public Hud(GameWindow win)
         {
-            _window = win;
-            Timer tutoTimer = new Timer();
-            tutoTimer.Interval = 10000;
+            //_window = win;
+            Timer tutoTimer = new Timer {Interval = 10000};
             tutoTimer.Elapsed += TutoTimer_Elapsed;
             ShowTuto = true;
         }

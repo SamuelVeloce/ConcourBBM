@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CompetitionV2.Armes;
+﻿using CompetitionV2.Armes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -12,7 +7,7 @@ namespace CompetitionV2
     public enum BonusType {Argent,Munitions,Sante, Arme };
     public class Bonus : AbsEntity
     {
-        private BonusType bonType;
+        private readonly BonusType bonType;
         public Texture2D Texture;
 
         public Bonus(int x, int y, Map m, BonusType Type) : base(x, y, m)

@@ -8,9 +8,9 @@ namespace CompetitionV2.Projectile
     public abstract class absProjectile : Entity
     {
         private bool m_Friendly;
-        private int m_Damage;
+        private readonly int m_Damage;
 
-        public absProjectile(Texture2D[] EntityTextures, Vector2 StartPosition, Vector2 StartSize, Vector2 StartVelocity, int pDamage) : base(EntityTextures,StartPosition,StartSize,StartVelocity)
+        protected absProjectile(Texture2D[] EntityTextures, Vector2 StartPosition, Vector2 StartSize, Vector2 StartVelocity, int pDamage) : base(EntityTextures,StartPosition,StartSize,StartVelocity)
         {
             m_Damage = pDamage;
         }
@@ -48,8 +48,11 @@ namespace CompetitionV2.Projectile
                     }
                     if (i >= 0)
                     {
-                        (EntityManager.Instance.Entities[i] as Enemy)._Hp -= m_Damage;
-                        if ((EntityManager.Instance.Entities[i] as Enemy)._Hp <=0)
+                        Enemy Enemy = EntityManager.Instance.Entities[i] as Enemy;
+                        if (Enemy != null)
+                            Enemy._Hp -= m_Damage;
+                        Enemy O = EntityManager.Instance.Entities[i] as Enemy;
+                        if (O != null && O._Hp <=0)
                         {
                             ProgressManager.ArgentDernierePartie += 10;
                             EntityManager.Instance.Entities[i].FireDied(this, new CancellableEventArgs(false));

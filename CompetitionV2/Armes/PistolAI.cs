@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using System.Timers;
 using CompetitionV2.Projectile;
-using Microsoft.Xna.Framework.Input;
 
 namespace CompetitionV2.Armes
 {
-    class PistolAI : Weapons
+    sealed class PistolAI : Weapons
     {
         public override int NBulletLeft { get; set; }
         public override int NBulletInCharger { get; set; }

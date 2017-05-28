@@ -76,13 +76,15 @@ namespace CompetitionV2
 
             Lights = new Light[2];
 
-            Lights[0] = new PointLight();
-            Lights[0].Color = Color.DarkGray;
-            Lights[0].Intensity = 1f;
-            Lights[0].Scale = new Vector2(Game1.Screen.ClientBounds.Width * 3 / 4, Game1.Screen.ClientBounds.Height * 3/4);
-            Lights[0].CastsShadows = true;
-            Lights[0].ShadowType = ShadowType.Occluded;
-            Lights[0].Radius = 5;
+            Lights[0] = new PointLight
+            {
+                Color = Color.DarkGray,
+                Intensity = 1f,
+                Scale = new Vector2(Game1.Screen.ClientBounds.Width*3/4, Game1.Screen.ClientBounds.Height*3/4),
+                CastsShadows = true,
+                ShadowType = ShadowType.Occluded,
+                Radius = 5
+            };
             Game1.Penumbra.Lights.Add(Lights[0]);
 
             Lights[1] = new PointLight();

@@ -1,15 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
 
 namespace CompetitionV2.Armes
 {
-    class SelfService : Weapons
+    sealed class SelfService : Weapons
     {
         public override int NBulletLeft { get; set; }
         public override int NBulletInCharger { get; set; }
@@ -110,9 +105,7 @@ namespace CompetitionV2.Armes
             {
                 Vector2 v = new Vector2((Target.X - Owner.X) / Map.EntityPixelPerCase, (Target.Y - Owner.Y) / Map.EntityPixelPerCase);
                 EntityManager.Instance.Joueur.DealDamage((int)(70 / v.Length()));
-                if (BOOM != null)
-                    BOOM(this, e);
-              
+                BOOM?.Invoke(this, e);
             }
 
         }

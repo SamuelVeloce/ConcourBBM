@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace CompetitionV2.Armes
 {
-    class BoltActionSniper : Weapons
+    sealed class BoltActionSniper : Weapons
     {
         public override int NBulletLeft { get; set; }
         public override int NBulletInCharger { get; set; }

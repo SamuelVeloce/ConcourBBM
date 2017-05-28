@@ -99,11 +99,11 @@ namespace CompetitionV2
         public AbsCase[] GetCasesIn(int x, int y)
         {
             int n = 1, i = 0;
-            int x1, x2, y1, y2;
+            int x2, y1, y2;
             bool bx, by;
             AbsCase[] ret;
             
-            x1 = (x) / Map.EntityPixelPerCase;
+            int x1 = (x) / Map.EntityPixelPerCase;
             x2 = (x + Size- 1) / Map.EntityPixelPerCase;
             y1 = (y) / Map.EntityPixelPerCase;
             y2 = (y + Size - 1) / Map.EntityPixelPerCase;

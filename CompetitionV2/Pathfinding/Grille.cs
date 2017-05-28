@@ -6,8 +6,8 @@ namespace CompetitionV2.Pathfinding
     {
         public Case BeginPoint;
         public Case EndPoint;
-        Case[,] m_tCase;
-        private Map map;
+        readonly Case[,] m_tCase;
+      //  private Map map;
 
         public int Width, Height;
 
@@ -15,7 +15,7 @@ namespace CompetitionV2.Pathfinding
         {
             Width = m.NoCase;
             Height = Width; // Maybe have to change this to allow for non-square maps
-            map = m;
+            //map = m;
             m_tCase = new Case[Width, Height];
             for (int I = 0; I < Height; I++)
                 for (int J = 0; J < Width; J++)

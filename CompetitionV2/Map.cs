@@ -17,7 +17,7 @@ namespace CompetitionV2
     public class Map
     {
         private readonly AbsCase[,] _cases;
-        private int _noCase;
+        private readonly int _noCase;
 
         private readonly Random _random;
 
@@ -33,7 +33,7 @@ namespace CompetitionV2
 
         public List<AbsCase> Walls;
 
-        private CaseVide[] _Spawner;
+        private readonly CaseVide[] _Spawner;
         private int _MobsSpawned;
         public int Difficulty;
 
@@ -50,7 +50,7 @@ namespace CompetitionV2
             _random = new Random();
             Walls = new List<AbsCase>();
             _MobsSpawned = 0;
-            Difficulty = Math.Min(7,ProgressManager.LvlDebloque+10);
+            Difficulty = Math.Min(7,ProgressManager.LvlDebloque);
 
             TileWidth = Math.Min((float)clientRect.Width / NoCase, (float)clientRect.Height / NoCase);
 
@@ -336,9 +336,9 @@ namespace CompetitionV2
 
         struct MobEntry
         {
-            public int Total;
-            public int PerWave;
-            public EntityType Type;
+            private int Total;
+            private int PerWave;
+            private EntityType Type;
             public MobEntry(EntityType type, int Nb, int perwave)
             {
                 Total = Nb;
@@ -386,9 +386,7 @@ namespace CompetitionV2
                         new OPFighterRobot(_Spawner[SpawnerNumber].X * Map.EntityPixelPerCase,
                         _Spawner[SpawnerNumber].Y * Map.EntityPixelPerCase, this));
                     break;
-                default:
-                    ;
-                    break;
+                
             }
 
         }
