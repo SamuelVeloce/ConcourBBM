@@ -15,8 +15,8 @@ namespace CompetitionV2
         private static bool[] m_ArmesAchete;
 
         private static int m_ArgentDernierePartie;
-        
 
+        private static double m_TempsSurvecuDernierePartie;
      
         static ProgressManager()
         {
@@ -31,6 +31,7 @@ namespace CompetitionV2
             ArmesDebloque = new bool[] {true, true, true, true};
             ArmesAchete = ArmesDebloque;
             ArgentDernierePartie = 0;
+            m_TempsSurvecuDernierePartie = 0;
         }
 
 
@@ -70,6 +71,12 @@ namespace CompetitionV2
         {
             get { return m_ArgentDernierePartie; }
             set { m_ArgentDernierePartie = value; }
+        }
+
+        public static double TempsSurvecuDernierePartie
+        {
+            get { return m_TempsSurvecuDernierePartie; }
+            set { m_TempsSurvecuDernierePartie = value; }
         }
     }
 }

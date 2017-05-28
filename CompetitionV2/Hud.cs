@@ -59,8 +59,8 @@ namespace TopDownGridBasedEngine
 
             //Dessine les informations dans le coin supérieur droit
             sb.DrawString(TextureManager.Font, EntityManager.Instance.Joueur.CurrentWeapon().Nom, new Vector2(Game1.Screen.ClientBounds.Width - 200, 10), Color.Yellow);
-            sb.DrawString(TextureManager.Font, EntityManager.Instance.Entities.Count.ToString() + " Enemis restant", new Vector2(Game1.Screen.ClientBounds.Width - 200, 30), Color.Yellow);
-            sb.DrawString(TextureManager.Font, strBalles, new Vector2(Game1.Screen.ClientBounds.Width - 200, 50), Color.Yellow);
+            sb.DrawString(TextureManager.Font, EntityManager.Instance.Entities.Count.ToString() + " Enemis", new Vector2(Game1.Screen.ClientBounds.Width - 200, 30), Color.Yellow);
+            sb.DrawString(TextureManager.Font, strBalles, new Vector2(Game1.Screen.ClientBounds.Width - 200, 50), Color.Red);
             sb.DrawString(TextureManager.Font, TotalBalle, new Vector2(Game1.Screen.ClientBounds.Width - 200, 70), Color.Yellow);
             sb.DrawString(TextureManager.Font, $"HP: {EntityManager.Instance.Joueur.Health} / {EntityManager.Instance.Joueur.MaxHealth}", new Vector2(Game1.Screen.ClientBounds.Width - 200, 90), Color.Yellow);
 
