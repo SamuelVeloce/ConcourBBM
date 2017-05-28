@@ -82,7 +82,7 @@ namespace TopDownGridBasedEngine
         {
             _graphics = new GraphicsDeviceManager(this);
             
-            _graphics.IsFullScreen = true;
+            //_graphics.IsFullScreen = true;
          //   int Dimension = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
 
 
@@ -123,7 +123,7 @@ namespace TopDownGridBasedEngine
             
             PartieDuJeu = new IPartieDeJeu[6];
             PartieDuJeu[(int)TypesDePartieDeJeu.MenuDefaut] = new MenuDefaut();
-            PartieDuJeu[(int)TypesDePartieDeJeu.Jeu] = new JeuMenu();
+            //PartieDuJeu[(int)TypesDePartieDeJeu.Jeu] = new JeuMenu();
             //PartieDuJeu[(int)TypesDePartieDeJeu.Armurerie] = new Armurerie();
 
             
