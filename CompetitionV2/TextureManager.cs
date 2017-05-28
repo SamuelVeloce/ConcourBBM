@@ -235,6 +235,7 @@ namespace TopDownGridBasedEngine
                 http://untamed.wild-refuge.net/images/rpgxp/avengers/ironpatriot.png (Warmachine2)
                 http://untamed.wild-refuge.net/images/rpgxp/mandalorian.png (Cyborg)
                 https://opengameart.org/content/power-up-icons
+                https://opengameart.org/content/city-background-repetitive (City)
             */
 
         }
