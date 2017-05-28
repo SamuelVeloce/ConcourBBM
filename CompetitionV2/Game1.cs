@@ -72,6 +72,7 @@ namespace TopDownGridBasedEngine
                         PartieDuJeu[i] = new Gagne();
                         break;
                 }
+                // CRASH REPORT
                 Instance.GraphicsDevice.Clear(Color.Gray);
                 m_IndexPartieDeJeu = i;
             }
@@ -81,8 +82,12 @@ namespace TopDownGridBasedEngine
         {
             _graphics = new GraphicsDeviceManager(this);
 
+
             _graphics.IsFullScreen = true;
-            int Dimension = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+         //   int Dimension = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+
+            int Dimension = 768;//GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height - 100;
+
             _graphics.PreferredBackBufferHeight = Dimension;
             _graphics.PreferredBackBufferWidth = Dimension;
             _graphics.ApplyChanges();

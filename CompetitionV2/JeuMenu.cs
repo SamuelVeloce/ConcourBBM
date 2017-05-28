@@ -32,7 +32,7 @@ namespace TopDownGridBasedEngine
             Game1.Penumbra.AmbientColor = Color.Black;
 
             _hud = new Hud(Game1.Screen);
-            Map = new Map(45, Game1.Screen.ClientBounds);
+            Map = new Map(45, Game1.Screen.ClientBounds, 0);
            // m_Joueur = null;
 
             System.Random r = new System.Random();
@@ -76,19 +76,19 @@ namespace TopDownGridBasedEngine
             EntityManager.InitInstance(m_Joueur, Map, 0);
 
             
-            /*Enemy e;
-            for (int i = 0; i < 50; i++)
+            Enemy e;
+            for (int i = 0; i < 1; i++)
             {
 
                 p = new Point(r.Next() % Map.Width, r.Next() % Map.Height);
                 if (!Map[p.X, p.Y].IsSolid)
                 {
-                    e = new Enemy(p.X * Map.EntityPixelPerCase, p.Y * Map.EntityPixelPerCase, Map, 0.25f);
+                    e = new FighterRobot(p.X * Map.EntityPixelPerCase, p.Y * Map.EntityPixelPerCase, Map);
                     EntityManager.Instance.Add(e);
                 }
                 
                 
-            }*/
+            }
 
             _wrapper = new KeyWrapper(0, 0, 0);
 

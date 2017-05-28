@@ -26,7 +26,7 @@ namespace CompetitionV2.Armes
         private readonly Random m_RNG = new Random();
         private bool m_CanShoot = true;
         private bool m_Reloading;
-        private const int m_BulletSpeed = 500;
+        private const int m_BulletSpeed = 200;
         private readonly System.Timers.Timer m_WeaponTimer;
         public override int ClipSize
         {

@@ -19,19 +19,29 @@ namespace TopDownGridBasedEngine
         public Texture2D TextureCaseWall;
         public Texture2D TextureCaseSolidWall;
         public Texture2D TextureCaseVerte;
-        public Texture2D[,] TextureCaseBonus;
+        //public Texture2D[,] TextureCaseBonus;
 
         public Texture2D[] TexturePlayerLeft;
         public Texture2D[] TexturePlayerRight;
         public Texture2D[] TexturePlayerUp;
         public Texture2D[] TexturePlayerDown;
 
-        public Texture2D[] TextureFire;
-        public Texture2D[] TextureBomb;
-        
+        //Drones
+        public Texture2D[] TextureDroneLeft;
+        public Texture2D[] TextureDroneRight;
+        public Texture2D[] TextureDroneUp;
+        public Texture2D[] TextureDroneDown;
+
+        //public Texture2D[] TextureFire;
+        //public Texture2D[] TextureBomb;
+
         public static Texture2D[] TextureBullet;
 
+        public Texture2D[] TextureLapin;
+
         public static Texture2D BackgroundImage;
+
+        public Texture2D Tuto;
         
         
         //Textures du jeu cyborg
@@ -94,9 +104,16 @@ namespace TopDownGridBasedEngine
             TexturePlayerRight = new Texture2D[4];
             TexturePlayerUp = new Texture2D[4];
             TexturePlayerDown = new Texture2D[4];
-            TextureCaseBonus = new Texture2D[6, 2];
-            TextureFire = new Texture2D[2];
-            TextureBomb = new Texture2D[4];
+
+            TextureDroneLeft = new Texture2D[4];
+            TextureDroneRight = new Texture2D[4];
+            TextureDroneUp = new Texture2D[4];
+            TextureDroneDown = new Texture2D[4];
+
+            TextureLapin = new Texture2D[3];
+            //TextureCaseBonus = new Texture2D[6, 2];
+            //TextureFire = new Texture2D[2];
+            //TextureBomb = new Texture2D[4];
             TextureBullet = new Texture2D[1];
 
 
@@ -106,33 +123,59 @@ namespace TopDownGridBasedEngine
             TextureCaseSolidWall = _content.Load<Texture2D>("Textures/SolidWall");
             TextureCaseVerte = _content.Load<Texture2D>("Textures/Grass");
 
-            TextureFire[0] = _content.Load<Texture2D>("Textures/TextureCaseFire1");
-            TextureFire[1] = _content.Load<Texture2D>("Textures/TextureCaseFire2");
+            //TextureFire[0] = _content.Load<Texture2D>("Textures/TextureCaseFire1");
+            //TextureFire[1] = _content.Load<Texture2D>("Textures/TextureCaseFire2");
 
             // Textures de joueurs et de bombes
-            TextureBomb[0] = _content.Load<Texture2D>("Textures/TextureBomb1");
+            //TextureBomb[0] = _content.Load<Texture2D>("Textures/TextureBomb1");
             TexturePlayerUp[0] = _content.Load<Texture2D>("Textures/BrownGuyFace1");
             TexturePlayerDown[0] =  _content.Load<Texture2D>("Textures/BrownGuyBack1");
             TexturePlayerRight[0] = _content.Load<Texture2D>("Textures/BrownGuyRight1");
             TexturePlayerLeft[0] = _content.Load<Texture2D>("Textures/BrownGuyLeft1");
-            TextureBomb[1] = _content.Load<Texture2D>("Textures/TextureBomb2");
-            TexturePlayerUp[1] = TexturePlayerUp[0];
-            TexturePlayerDown[1] = TexturePlayerDown[0];
-            TexturePlayerRight[1] = TexturePlayerRight[0];
-            TexturePlayerLeft[1] = TexturePlayerLeft[0];
-            TextureBomb[3] = _content.Load<Texture2D>("Textures/TextureBomb4");
-            TexturePlayerUp[3] = TexturePlayerUp[0];
-            TexturePlayerDown[3] = TexturePlayerDown[0];;
-            TexturePlayerRight[3] = TexturePlayerRight[0];;
-            TexturePlayerLeft[3] = TexturePlayerLeft[0];
-            TextureBomb[2] = TextureBomb[0];
+            //TextureBomb[1] = _content.Load<Texture2D>("Textures/TextureBomb2");
+            TexturePlayerUp[1] = _content.Load<Texture2D>("Textures/BrownGuyFace2");
+            TexturePlayerDown[1] = _content.Load<Texture2D>("Textures/BrownGuyBack2");
+            TexturePlayerRight[1] = _content.Load<Texture2D>("Textures/BrownGuyRight2");
+            TexturePlayerLeft[1] = _content.Load<Texture2D>("Textures/BrownGuyLeft2");
+            //TextureBomb[3] = _content.Load<Texture2D>("Textures/TextureBomb4");
+            TexturePlayerUp[3] = _content.Load<Texture2D>("Textures/BrownGuyFace3");
+            TexturePlayerDown[3] = _content.Load<Texture2D>("Textures/BrownGuyBack3");
+            TexturePlayerRight[3] = TexturePlayerRight[1];
+            TexturePlayerLeft[3] = _content.Load<Texture2D>("Textures/BrownGuyLeft3");
+            //TextureBomb[2] = TextureBomb[0];
             TexturePlayerUp[2] = TexturePlayerUp[0];
             TexturePlayerDown[2] = TexturePlayerDown[0];
             TexturePlayerRight[2] = TexturePlayerRight[0];
             TexturePlayerLeft[2] = TexturePlayerLeft[0];
-                        
+
+
+            //TextureBomb[0] = _content.Load<Texture2D>("Textures/TextureBomb1");
+            TextureDroneUp[0] = _content.Load<Texture2D>("Textures/RobotBack");
+            TextureDroneDown[0] = _content.Load<Texture2D>("Textures/RobotFront");
+            TextureDroneRight[0] = _content.Load<Texture2D>("Textures/RobotRight");
+            TextureDroneLeft[0] = _content.Load<Texture2D>("Textures/RobotLeft");
+            //TextureBomb[1] = _content.Load<Texture2D>("Textures/TextureBomb2");
+            TextureDroneUp[1] = TexturePlayerUp[0];
+            TextureDroneDown[1] = TexturePlayerDown[0];
+            TextureDroneRight[1] = TexturePlayerRight[0];
+            TextureDroneLeft[1] = TexturePlayerLeft[0];
+            //TextureBomb[3] = _content.Load<Texture2D>("Textures/TextureBomb4");
+            TextureDroneUp[3] = TexturePlayerUp[0];
+            TextureDroneDown[3] = TexturePlayerDown[0];
+            TextureDroneRight[3] = TexturePlayerRight[0];
+            TextureDroneLeft[3] = TexturePlayerLeft[0];
+            //TextureBomb[2] = TextureBomb[0];
+            TextureDroneUp[2] = TexturePlayerUp[0];
+            TextureDroneDown[2] = TexturePlayerDown[0];
+            TextureDroneRight[2] = TexturePlayerRight[0];
+            TextureDroneLeft[2] = TexturePlayerLeft[0];
+
+            TextureLapin[0] = _content.Load<Texture2D>("Textures/Lapin1");
+            TextureLapin[1] = _content.Load<Texture2D>("Textures/Lapin2");
+            TextureLapin[2] = _content.Load<Texture2D>("Textures/Lapin3");
+
             // Textures des bonus
-            TextureCaseBonus[0, 0] = _content.Load<Texture2D>("Textures/TextureBonusExtraBomb");
+            /*TextureCaseBonus[0, 0] = _content.Load<Texture2D>("Textures/TextureBonusExtraBomb");
             TextureCaseBonus[0, 1] = _content.Load<Texture2D>("Textures/TextureBonusExtraBomb2");
             TextureCaseBonus[1, 0] = _content.Load<Texture2D>("Textures/TextureBonusPower");
             TextureCaseBonus[1, 1] = _content.Load<Texture2D>("Textures/TextureBonusPower2");
@@ -143,7 +186,7 @@ namespace TopDownGridBasedEngine
             TextureCaseBonus[4, 0] = _content.Load<Texture2D>("Textures/TextureBonusKick");
             TextureCaseBonus[4, 1] = _content.Load<Texture2D>("Textures/TextureBonusKick2");
             TextureCaseBonus[5, 0] = _content.Load<Texture2D>("Textures/TextureBonusMaxExplosion");
-            TextureCaseBonus[5, 1] = _content.Load<Texture2D>("Textures/TextureBonusMaxExplosion2");
+            TextureCaseBonus[5, 1] = _content.Load<Texture2D>("Textures/TextureBonusMaxExplosion2");*/
 
 
             TextureBullet[0] = _content.Load<Texture2D>("Textures/Bullet");
@@ -152,7 +195,7 @@ namespace TopDownGridBasedEngine
             //
 
             //Environnement
-            TextureBarricade = _content.Load<Texture2D>("Textures/TileBarricade");
+            //TextureBarricade = _content.Load<Texture2D>("Textures/TileBarricade");
 
             //Arrière-Plan
             TextureTerre = new Texture2D[2];

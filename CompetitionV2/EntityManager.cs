@@ -15,7 +15,7 @@ namespace TopDownGridBasedEngine
 
         private object someLock;
         private int _id;
-        private List<Fire> _deadFire;
+        //private List<Fire> _deadFire;
         private List<absProjectile> m_projectilesListFriendly;
         private List<absProjectile> m_projectilesListHostile;
         private List<Bonus> m_listBonus;
@@ -24,7 +24,7 @@ namespace TopDownGridBasedEngine
 
         private static EntityManager _instance;
 
-        public event OnFireStopHandler FireStopped;
+        //public event OnFireStopHandler FireStopped;
 
         private EntityManager() : this(null, null, 0) { }
         
@@ -35,16 +35,16 @@ namespace TopDownGridBasedEngine
             Map = m;
             _id = numeroJoueur;
             someLock = new object();
-            _deadFire = new List<Fire>();
+            //_deadFire = new List<Fire>();
             m_projectilesListFriendly = new List<absProjectile>();
             m_projectilesListHostile = new List<absProjectile>();
             m_listBonus = new List<Bonus>();
         }
 
-        protected void FireFireStopped(object sender, MultiFireEventArgs e)
+        /*protected void FireFireStopped(object sender, MultiFireEventArgs e)
         {
             FireStopped?.Invoke(sender, e);
-        }
+        }*/
 
         public static EntityManager Instance
         {
@@ -100,11 +100,11 @@ namespace TopDownGridBasedEngine
 
         public bool Remove(AbsEntity e)
         {
-            Fire fire = e as Fire;
-            if (fire != null)
+            //Fire fire = e as Fire;
+            /*if (fire != null)
             {
                 _deadFire.Add(fire);
-            }
+            }*/
             
             lock (someLock)
             {
@@ -134,11 +134,11 @@ namespace TopDownGridBasedEngine
                     Joueur.UpdateTexture((int)gameTime.ElapsedGameTime.TotalMilliseconds); //Tick(DeltaTime);
                 if (Joueur.IsDead == false)
                     Joueur.Tick((long)gameTime.ElapsedGameTime.TotalMilliseconds);
-                if (_deadFire.Count != 0)
+                /*if (_deadFire.Count != 0)
                 {
                     FireFireStopped(this, new MultiFireEventArgs(_deadFire.ToArray(), false));
                     _deadFire = new List<Fire>();
-                }
+                }*/
                 List<absProjectile> projli = EntityManager.Instance.ProjectilesListFriendly;
                 List<absProjectile> projho = EntityManager.Instance.ProjectilesListHostile;
 

@@ -7,7 +7,7 @@ using Penumbra;
 
 namespace TopDownGridBasedEngine
 {
-    public class Bomb : AbsMoveableEntity, ITexturable
+    /*public class Bomb : AbsMoveableEntity, ITexturable
     {
         private int _textureVariant;
         private readonly int _power;
@@ -209,10 +209,10 @@ namespace TopDownGridBasedEngine
             int rad = Size + 5;
             Texture2D texture = TextureManager.Instance.TextureBomb[(_textureVariant / 20) % 4];
             //g.DrawImage(bit, _x * Width, _y * Width, Width, Width);
-            if (/*VelX == 0 && VelY == 0 && */!Carried)
+            if (/*VelX == 0 && VelY == 0 && *//*!Carried)
                 sb.Draw(texture, new Rectangle((int)((X - X % 30) * width), (int)((Y - Y % 30) * width), (int)(rad * 2 * width), (int)(rad * 2 * width)), color);
             else
-                sb.Draw(texture, new Rectangle((int)((X - 15) * width), (int)((Y - 15 - Z) * width), (int)(rad * 2 * width), (int)(rad * 2 * width)), color);
+                sb.Draw(texture, new Rectangle((int)((X - 15) * width), (int)((Y - 15 - Z) * width), (int)(rad * 2 * width), (int)(rad * 2 * width)), color);*/
             /*if (_velx == 0 && _vely == 0 && !_carried)
                 g.DrawImage(bit, new Rectangle((int)((_x - _x % 30) * Width), (int)((_y - _y % 30) * Width), (int)(rad * 2 * Width), (int)(rad * 2 * Width)),
                     0, 0, bit.Width, bit.Height, GraphicsUnit.Pixel, TextureManager.PlayerColorAttribute[0]);
@@ -225,7 +225,7 @@ namespace TopDownGridBasedEngine
         /// Appelée par l'EntityManager. Fait ce qui est nécessaire
         /// </summary>
         /// <param name="deltaTime"></param>
-        public override void Tick(long deltaTime)
+        /*public override void Tick(long deltaTime)
         {
             if (!Carried && !Flying)
             {
@@ -574,7 +574,8 @@ namespace TopDownGridBasedEngine
             // Retourner la case dans laquelle on tombe.
             return ret;
         }
-
+        
         #endregion
+        
     }
-}
+}*/

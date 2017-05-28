@@ -9,6 +9,12 @@ using System.Timers;
 
 namespace TopDownGridBasedEngine
 {
+    /*
+
+        LES PARTIES SONT EN STATIQUE EN BAS DE LA PAGE
+
+    */
+
     public class Map
     {
         private readonly AbsCase[,] _cases;
@@ -30,8 +36,17 @@ namespace TopDownGridBasedEngine
 
         private CaseVide[] _Spawner;
         private int _MobsSpawned;
+        public int Difficulty;
 
-        public Map(int size, Rectangle clientRect)
+        public int TimeLeft
+        {
+            get; set;
+        }
+
+        
+        public event EventHandler TimerFinished;
+
+        public Map(int size, Rectangle clientRect, int Difficulty)
         {
 
             _noCase = size + (size % 2 - 1);
@@ -39,6 +54,7 @@ namespace TopDownGridBasedEngine
             _random = new Random();
             Walls = new List<AbsCase>();
             _MobsSpawned = 0;
+            Difficulty = 7;
 
             TileWidth = Math.Min((float)clientRect.Width / NoCase, (float)clientRect.Height / NoCase);
 
@@ -157,17 +173,68 @@ namespace TopDownGridBasedEngine
             t.Elapsed += T_Elapsed;
             t.Start();
 
+
         }
 
-        private void T_Elapsed(object sender, ElapsedEventArgs e)
+        public void T_Elapsed(object sender, ElapsedEventArgs e)
         {
-            foreach (CaseVide cv in _Spawner)
+            int SpawnerNumber = 0;
+            foreach (MobEntry me in Waves[Difficulty])
             {
-                Enemy en = new Enemy(cv.X * Map.EntityPixelPerCase, cv.Y * Map.EntityPixelPerCase, this, 0.3f);
-                EntityManager.Instance.Add(en);
-                _MobsSpawned++;
+                AbsEntity ent = null;
+
+                for (int i = 0; i < me.PerWave; i++)
+                {
+                    switch (me.Type)
+                    {
+                        case EntityType.FighterRobot:
+                            EntityManager.Instance.Add(
+                                new FighterRobot(_Spawner[SpawnerNumber].X * Map.EntityPixelPerCase,
+                                _Spawner[SpawnerNumber].Y * Map.EntityPixelPerCase, this));
+                            break;
+                        case EntityType.OPFighterRobot:
+                            EntityManager.Instance.Add(
+                                new OPFighterRobot(_Spawner[SpawnerNumber].X * Map.EntityPixelPerCase,
+                                _Spawner[SpawnerNumber].Y * Map.EntityPixelPerCase, this));
+                            break;
+                        case EntityType.SoldierRobot:
+                            EntityManager.Instance.Add(
+                                new SoldierRobot(_Spawner[SpawnerNumber].X * Map.EntityPixelPerCase,
+                                _Spawner[SpawnerNumber].Y * Map.EntityPixelPerCase, this));
+                            break;
+                        case EntityType.OPSoldierRobot:
+                            EntityManager.Instance.Add(
+                                new OPSoldierRobot(_Spawner[SpawnerNumber].X * Map.EntityPixelPerCase,
+                                _Spawner[SpawnerNumber].Y * Map.EntityPixelPerCase, this));
+                            break;
+                        case EntityType.SniperRobot:
+                            EntityManager.Instance.Add(
+                                new SniperRobot(_Spawner[SpawnerNumber].X * Map.EntityPixelPerCase,
+                                _Spawner[SpawnerNumber].Y * Map.EntityPixelPerCase, this));
+                            break;
+                        case EntityType.OPSniperRobot:
+                            EntityManager.Instance.Add(
+                                new OPSniperRobot(_Spawner[SpawnerNumber].X * Map.EntityPixelPerCase,
+                                _Spawner[SpawnerNumber].Y * Map.EntityPixelPerCase, this));
+                            break;
+                        case EntityType.Kamikaze:
+                            EntityManager.Instance.Add(
+                                new KamikazeRobot(_Spawner[SpawnerNumber].X * Map.EntityPixelPerCase,
+                                _Spawner[SpawnerNumber].Y * Map.EntityPixelPerCase, this));
+                            break;
+                        default:
+                            ent = null;
+                            break;
+                    }
+                    SpawnerNumber++;
+                    if (SpawnerNumber >= _Spawner.Length)
+                        SpawnerNumber = 0;
+                }
                 
+                if (ent != null)
+                    EntityManager.Instance.Add(ent);
             }
+
             ((Timer)sender).Interval -= 200;
             if (_MobsSpawned >= 100)
                 ((Timer)sender).Stop();
@@ -298,13 +365,13 @@ namespace TopDownGridBasedEngine
                                     }
                             }
                         }
-                        if (this[x, y].Fire != null)
-                            this[x, y].Fire = null;
+                        /*if (this[x, y].Fire != null)
+                            this[x, y].Fire = null;*/
 
-                        CaseVide vide = this[x, y] as CaseVide;
+                        /*CaseVide vide = this[x, y] as CaseVide;
                         if (vide != null)
                             if (vide.ContainsBomb)
-                                vide.Bomb = null;
+                                vide.Bomb = null;*/
                     }
                     
                     if (value.IsSolid)
@@ -321,5 +388,32 @@ namespace TopDownGridBasedEngine
                 c.Draw(sb, TileWidth);
         }
 
+        struct MobEntry
+        {
+            public int Total;
+            public int PerWave;
+            public EntityType Type;
+            public MobEntry(EntityType type, int Nb, int perwave)
+            {
+                Total = Nb;
+                PerWave = perwave;
+                Type = type;
+            }
+        }
+
+        private static MobEntry[][] Waves =
+        {
+            new MobEntry[] {new MobEntry(EntityType.SoldierRobot, 50, 3)},
+            new MobEntry[] {new MobEntry(EntityType.SoldierRobot, 50, 4)},
+            new MobEntry[] {new MobEntry(EntityType.SoldierRobot, 30, 4), new MobEntry(EntityType.FighterRobot, 10, 1)},
+            new MobEntry[] {new MobEntry(EntityType.SoldierRobot, 30, 3), new MobEntry(EntityType.FighterRobot, 10, 2)},
+            new MobEntry[] {new MobEntry(EntityType.SoldierRobot, 30, 3), new MobEntry(EntityType.OPFighterRobot, 30, 3)},
+            new MobEntry[] {new MobEntry(EntityType.SoldierRobot, 50, 3), new MobEntry(EntityType.SniperRobot, 10, 1)},
+            new MobEntry[] {new MobEntry(EntityType.FighterRobot, 30, 3), new MobEntry(EntityType.OPFighterRobot, 10, 1), new MobEntry(EntityType.SniperRobot, 10, 1)},
+            new MobEntry[] {new MobEntry(EntityType.OPSoldierRobot, 50, 3), new MobEntry(EntityType.OPSniperRobot, 10, 1), new MobEntry(EntityType.Kamikaze, 10, 1)}
+        };
+
     }
+
+
 }
