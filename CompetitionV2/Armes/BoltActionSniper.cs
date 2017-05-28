@@ -16,7 +16,10 @@ namespace Competition.Armes
         {
 
         }
-
+        public override int ClipSize
+        {
+            get { return 0; } //m_ClipSize; }
+        }
         public override int NBulletInCharger
         {
             get
@@ -43,14 +46,7 @@ namespace Competition.Armes
             }
         }
 
-        public override string WeaponName
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
+        
         public override WeaponType WeaponType
         {
             get
