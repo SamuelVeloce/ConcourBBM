@@ -246,6 +246,15 @@ namespace TopDownGridBasedEngine
         /// <param name="DeltaTime"></param>
         public override void Tick(long deltaTime)
         {
+            Enemy ent = this as Enemy;
+            if (ent != null)
+            {
+                if (ent._path == null)
+                {
+                    int i = 0;
+                }
+            }
+
             float dt = deltaTime / 2;
             //VelY += 0.2f;
             int vx = (int)(VelX * dt);

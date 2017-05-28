@@ -19,7 +19,7 @@ namespace TopDownGridBasedEngine
 
         int m_Distance;
 
-        List<Case> m_ListPath;
+        public List<Case> m_ListPath;
 
         List<Case> m_ListToCheck;
 

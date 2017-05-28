@@ -20,7 +20,7 @@ namespace TopDownGridBasedEngine
     public class Enemy : AbsMoveableEntity, ITexturable
     {
         protected int _textureVariant;
-        protected Path _path;
+        public Path _path;
         protected double NextPathfindTime;
         protected float _SpeedFactor;
         protected int DistanceFromPlayer;
@@ -127,8 +127,10 @@ namespace TopDownGridBasedEngine
                 _path = new Path(new Point((this.X + this.Size / 2) / Map.EntityPixelPerCase, (this.Y + this.Size / 2) / Map.EntityPixelPerCase),
                     new Point(EntityManager.Instance.Joueur.X / Map.EntityPixelPerCase, EntityManager.Instance.Joueur.Y / Map.EntityPixelPerCase),
                     Map, DistanceFromPlayer);
+
                 
             }
+
             base.Tick(deltaTime);
         }
 

@@ -45,9 +45,6 @@ namespace TopDownGridBasedEngine
             get; set;
         }
 
-        
-        public event EventHandler TimerFinished;
-
         public Map(int size, Rectangle clientRect)
         {
 
