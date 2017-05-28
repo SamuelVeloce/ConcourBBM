@@ -179,12 +179,17 @@ namespace TopDownGridBasedEngine
             {
                 toDraw = _entities.ToList();
 
-                foreach (absProjectile proj in ProjectilesListFriendly)
-                    proj.Draw(sb, w);
+                for (int i = ProjectilesListFriendly.Count - 1; i >= 0; i--)
+                {
+                    ProjectilesListFriendly[i].Draw(sb, w);
+                }
 
-                foreach (absProjectile proj in ProjectilesListHostile)
-                    proj.Draw(sb, w);
 
+                
+                for (int i = ProjectilesListHostile.Count - 1; i >= 0; i--)
+                {
+                    ProjectilesListHostile[i].Draw(sb, w);
+                }
                 foreach (AbsEntity e in toDraw)
                     e.Draw(sb, w / 30);
 

@@ -25,7 +25,7 @@ namespace CompetitionV2.Armes
         private const int m_SpreadAngle = 30;
         private const int m_NumberOfBuckshot = 5;
         private const int m_ClipSize = 8;
-        private const int m_Firerate = 600;
+        private const int m_Firerate = 1000;
         private bool m_CanShoot = true;
         private bool m_Reloading;
         private readonly System.Timers.Timer m_WeaponTimer;
@@ -90,21 +90,25 @@ namespace CompetitionV2.Armes
                     Vector2 MouseDir = new Vector2((float)Math.Cos(Radians), (float)Math.Sin(Radians));
                     EntityManager.Instance.ProjectilesListFriendly.Add(new ProjectileBullet(
                         TextureManager.TextureBullet, new Vector2(Owner.X, Owner.Y), new Vector2(8, 8), MouseDir* m_BulletSpeed,
-                        25) {Friendly = true});
+                        15) {Friendly = true});
                 }
                 
                 JouerSonTir();
             }
             else
             {
-                m_Reloading = false;
-                if (NBulletInCharger > 0)
+                if (m_Reloading)
                 {
-                    m_CanShoot = true;
-                }
-                m_WeaponTimer.Interval = m_Firerate;
+                    m_Reloading = false;
+                    if (NBulletInCharger > 0)
+                    {
+                        m_CanShoot = true;
+                    }
+                    m_WeaponTimer.Interval = m_Firerate;
 
-                m_WeaponTimer.Start();
+                    m_WeaponTimer.Start();
+                }
+                
             }
         }
         private void _timer_Elapsed(object sender, ElapsedEventArgs e)
