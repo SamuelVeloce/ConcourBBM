@@ -14,15 +14,34 @@ namespace CompetitionV2
     public class Bonus : AbsEntity
     {
         private BonusType bonType;
+        public Texture2D Texture;
 
         public Bonus(int x, int y, Map m, BonusType Type) : base(x, y, m)
         {
-            this.Size = 10;
+            this.Size = 20;
             bonType = Type;
+
+            switch (this.bonType)
+            {
+                case BonusType.Argent:
+                    Texture = TextureManager.Bonus[1];
+                    break;
+
+                case BonusType.Arme:
+                    Texture = TextureManager.Bonus[3];
+                    break;
+
+                case BonusType.Munitions:
+                    Texture = TextureManager.Bonus[0];
+                    break;
+
+                case BonusType.Sante:
+                    Texture = TextureManager.Bonus[2];
+                    break;
+            }
+
             EntityManager.Instance.Bonus.Add(this);
         }
-
-        public Texture2D Texture => TextureManager.TextureBullet[0];
 
         public override EntityType Type => EntityType.Bonus;
 
@@ -45,12 +64,13 @@ namespace CompetitionV2
                 switch(this.bonType)
                 {
                     case BonusType.Argent:
-                        //*************
+                        //Bonus d'argent
+                        ProgressManager.ArgentDernierePartie += 100;
                         break;
 
                     case BonusType.Arme:
                         int i = 0;
-                        //trouve la prochaine arme à ssss
+                        //trouve la prochaine arme à débloquer
                         while (i < ProgressManager.ArmesDebloque.Length && ProgressManager.ArmesDebloque[i])
                         {
                             i++;
