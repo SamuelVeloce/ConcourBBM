@@ -23,6 +23,8 @@ namespace TopDownGridBasedEngine
             Arme = ss;
             DistanceFromPlayer = 0;
             this.Died += KamikazeRobot_Died;
+            Couleur = Color.White;
+
             timer = new Timer();
             timer.AutoReset = false;
             timer.Interval = 500;

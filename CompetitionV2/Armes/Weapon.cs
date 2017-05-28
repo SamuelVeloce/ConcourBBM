@@ -17,7 +17,6 @@ namespace Competition.Armes
         AssaultRifle = 1,
         Shotgun = 2,
         SemiAutoSniper = 3,
-
     };
 
     public abstract class Weapons //Classe abstraite utilisé comme template pour toutes les armes

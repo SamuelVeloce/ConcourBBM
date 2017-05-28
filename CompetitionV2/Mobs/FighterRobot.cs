@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 
 namespace TopDownGridBasedEngine
 {
@@ -15,7 +16,7 @@ namespace TopDownGridBasedEngine
             _Hp = 50;
             DistanceFromPlayer = 3;
             Arme = new ShotgunAI(this);
-
+            Couleur = Color.Red;
         }
 
         public override Texture2D Texture

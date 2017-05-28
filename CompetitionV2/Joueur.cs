@@ -27,7 +27,13 @@ namespace TopDownGridBasedEngine
             get { return _Hp; }
             set { _Hp = value; }
         }
+<<<<<<< HEAD
+        
+        public int MaxHealth = 400;
+
+=======
         public int MaxHealth = 100;
+>>>>>>> origin/HEAD
         //public event OnDropBombHandler DroppedBomb;
         //public event OnBombExplodeHandler BombExploded;
         //public event OnGenericBlockEventHandler BombPlacedBonus;

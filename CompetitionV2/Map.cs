@@ -168,7 +168,7 @@ namespace TopDownGridBasedEngine
             } while (_Spawner[5] == null);
 
             Timer t = new Timer();
-            t.Interval = 20000;
+            t.Interval = 8000;
             t.Elapsed += T_Elapsed;
             t.Start();
 
@@ -177,6 +177,19 @@ namespace TopDownGridBasedEngine
 
         public void T_Elapsed(object sender, ElapsedEventArgs e)
         {
+<<<<<<< HEAD
+            int RandResult;
+
+            for (int SpawnerNumber = 0; SpawnerNumber < _Spawner.Length; SpawnerNumber += 1)
+            {
+                RandResult = _random.Next(10);
+                if (RandResult <= Difficulty)
+                    SpawnMob(SpawnerNumber, RandResult);
+            }
+
+            if (((Timer)sender).Interval < 2000)
+                ((Timer)sender).Interval -= 100;
+=======
             int SpawnerNumber = 0;
             foreach (MobEntry me in Waves[Difficulty])
             {
@@ -234,6 +247,7 @@ namespace TopDownGridBasedEngine
             if (_MobsSpawned >= 100)
                 ((Timer)sender).Stop();
 
+>>>>>>> origin/HEAD
         }
 
         private void Generate()
@@ -296,8 +310,6 @@ namespace TopDownGridBasedEngine
             } while (listeMur.Count > 0);
 
             // Mettre ici le code pour remplacer de la terre par de l'herbe si besoin.       
-
-             // Version unsafe
              currPos = _random.Next(mapLength / 30);
              do
              {
@@ -307,28 +319,28 @@ namespace TopDownGridBasedEngine
             
         }
 
-                void PousserHerbe(int pos)
-                {
-                    Point Centre = new Point(pos % Width, pos / Width);
-                    int Rayon = (_random.Next(0, 6) + 1) << 1;
-                    int Step = 0;
+        void PousserHerbe(int pos)
+        {
+            Point Centre = new Point(pos % Width, pos / Width);
+            int Rayon = (_random.Next(0, 6) + 1) << 1;
+            int Step = 0;
 
-                    for (int j = 0; j < Rayon; j += 1)
-                    {
-                        Step = Rayon - j;
-                        for (int i = 0; i < Step; i += 1)
-                        {
-                            if (Centre.X - j >= 0 && Centre.Y - i >= 0 && this[Centre.X - j, Centre.Y - i].Type == CaseType.Vide)
-                                this[Centre.X - j, Centre.Y - i] = new CaseVerte(Centre.X - j, Centre.Y - i, this);
-                            if (Centre.X - j >= 0 && Centre.Y + i < Height && this[Centre.X - j, Centre.Y + i].Type == CaseType.Vide)
-                                this[Centre.X - j, Centre.Y + i] = new CaseVerte(Centre.X - j, Centre.Y + i, this);
-                            if (Centre.X + j < Width && Centre.Y - i >= 0 && this[Centre.X + j, Centre.Y - i].Type == CaseType.Vide)
-                                this[Centre.X + j, Centre.Y - i] = new CaseVerte(Centre.X + j, Centre.Y - i, this);
-                            if (Centre.X + j < Width && Centre.Y + i < Height &&  this[Centre.X + j, Centre.Y + i].Type == CaseType.Vide)
-                                this[Centre.X + j, Centre.Y + i] = new CaseVerte(Centre.X + j, Centre.Y + i, this);
-                        }
-                    }
+            for (int j = 0; j < Rayon; j += 1)
+            {
+                Step = Rayon - j;
+                for (int i = 0; i < Step; i += 1)
+                {
+                    if (Centre.X - j >= 0 && Centre.Y - i >= 0 && this[Centre.X - j, Centre.Y - i].Type == CaseType.Vide)
+                        this[Centre.X - j, Centre.Y - i] = new CaseVerte(Centre.X - j, Centre.Y - i, this);
+                    if (Centre.X - j >= 0 && Centre.Y + i < Height && this[Centre.X - j, Centre.Y + i].Type == CaseType.Vide)
+                        this[Centre.X - j, Centre.Y + i] = new CaseVerte(Centre.X - j, Centre.Y + i, this);
+                    if (Centre.X + j < Width && Centre.Y - i >= 0 && this[Centre.X + j, Centre.Y - i].Type == CaseType.Vide)
+                        this[Centre.X + j, Centre.Y - i] = new CaseVerte(Centre.X + j, Centre.Y - i, this);
+                    if (Centre.X + j < Width && Centre.Y + i < Height &&  this[Centre.X + j, Centre.Y + i].Type == CaseType.Vide)
+                        this[Centre.X + j, Centre.Y + i] = new CaseVerte(Centre.X + j, Centre.Y + i, this);
                 }
+            }
+        }
 
         // Indexeur pour aller chercher facilement des cases
         public AbsCase this[int x, int y]
@@ -396,17 +408,65 @@ namespace TopDownGridBasedEngine
             }
         }
 
-        private static MobEntry[][] Waves =
+        private void SpawnMob(int SpawnerNumber, int MobType)
         {
-            new MobEntry[] {new MobEntry(EntityType.SoldierRobot, 50, 3)},
-            new MobEntry[] {new MobEntry(EntityType.SoldierRobot, 50, 4)},
-            new MobEntry[] {new MobEntry(EntityType.SoldierRobot, 30, 4), new MobEntry(EntityType.FighterRobot, 10, 1)},
-            new MobEntry[] {new MobEntry(EntityType.SoldierRobot, 30, 3), new MobEntry(EntityType.FighterRobot, 10, 2)},
-            new MobEntry[] {new MobEntry(EntityType.SoldierRobot, 30, 3), new MobEntry(EntityType.OPFighterRobot, 30, 3)},
-            new MobEntry[] {new MobEntry(EntityType.SoldierRobot, 50, 3), new MobEntry(EntityType.SniperRobot, 10, 1)},
-            new MobEntry[] {new MobEntry(EntityType.FighterRobot, 30, 3), new MobEntry(EntityType.OPFighterRobot, 10, 1), new MobEntry(EntityType.SniperRobot, 10, 1)},
-            new MobEntry[] {new MobEntry(EntityType.OPSoldierRobot, 50, 3), new MobEntry(EntityType.OPSniperRobot, 10, 1), new MobEntry(EntityType.Kamikaze, 10, 1)}
-        };
+            switch (MobType)
+            {
+                case 0:
+                    EntityManager.Instance.Add(
+                        new KamikazeRobot(_Spawner[SpawnerNumber].X * Map.EntityPixelPerCase,
+                        _Spawner[SpawnerNumber].Y * Map.EntityPixelPerCase, this));
+                    break;
+                case 1:
+                    EntityManager.Instance.Add(
+                        new SoldierRobot(_Spawner[SpawnerNumber].X * Map.EntityPixelPerCase,
+                        _Spawner[SpawnerNumber].Y * Map.EntityPixelPerCase, this));
+                    break;
+                case 2:
+                    EntityManager.Instance.Add(
+                        new OPSoldierRobot(_Spawner[SpawnerNumber].X * Map.EntityPixelPerCase,
+                        _Spawner[SpawnerNumber].Y * Map.EntityPixelPerCase, this));
+                    break;
+                case 3:
+                    EntityManager.Instance.Add(
+                        new SniperRobot(_Spawner[SpawnerNumber].X * Map.EntityPixelPerCase,
+                        _Spawner[SpawnerNumber].Y * Map.EntityPixelPerCase, this));
+                    break;
+                case 4:
+                    EntityManager.Instance.Add(
+                        new FighterRobot(_Spawner[SpawnerNumber].X * Map.EntityPixelPerCase,
+                        _Spawner[SpawnerNumber].Y * Map.EntityPixelPerCase, this));
+                    break;
+                case 5:
+                    EntityManager.Instance.Add(
+                        new OPSniperRobot(_Spawner[SpawnerNumber].X * Map.EntityPixelPerCase,
+                        _Spawner[SpawnerNumber].Y * Map.EntityPixelPerCase, this));
+                    break;
+                case 6:
+                    EntityManager.Instance.Add(
+                        new OPFighterRobot(_Spawner[SpawnerNumber].X * Map.EntityPixelPerCase,
+                        _Spawner[SpawnerNumber].Y * Map.EntityPixelPerCase, this));
+                    break;
+                default:
+                    ;
+                    break;
+            }
+
+        }
+
+  //      private static MobEntry[][] Waves =
+  //      {
+  //          new MobEntry[] {new MobEntry(EntityType.SoldierRobot, 50, 3)},
+  //          new MobEntry[] {new MobEntry(EntityType.SoldierRobot, 50, 4)},
+  //          new MobEntry[] {new MobEntry(EntityType.SoldierRobot, 30, 4), new MobEntry(EntityType.FighterRobot, 10, 1)},
+  //          new MobEntry[] {new MobEntry(EntityType.SoldierRobot, 30, 3), new MobEntry(EntityType.FighterRobot, 10, 2)},
+  //          new MobEntry[] {new MobEntry(EntityType.SoldierRobot, 30, 3), new MobEntry(EntityType.OPFighterRobot, 30, 3)},
+  //          new MobEntry[] {new MobEntry(EntityType.SoldierRobot, 50, 3), new MobEntry(EntityType.SniperRobot, 10, 1)},
+  //          new MobEntry[] {new MobEntry(EntityType.FighterRobot, 30, 3), new MobEntry(EntityType.OPFighterRobot, 10, 1), new MobEntry(EntityType.SniperRobot, 10, 1)},
+  //          new MobEntry[] {new MobEntry(EntityType.OPSoldierRobot, 50, 3), new MobEntry(EntityType.OPSniperRobot, 10, 1), new MobEntry(EntityType.Kamikaze, 10, 1)}
+  //      };
+
+
 
     }
 
