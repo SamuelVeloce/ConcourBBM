@@ -30,7 +30,7 @@ namespace CompetitionV2
 
         public override void Draw(SpriteBatch sb, float width, Color color)
         {
-            sb.Draw(this.Texture, new Rectangle((int)(X * width / Map.EntityPixelPerCase), (int)(Y * width / Map.EntityPixelPerCase), (int)(Size * width), (int)(Size * width)), color);
+            sb.Draw(this.Texture, new Rectangle((int)(X * width / Map.EntityPixelPerCase), (int)(Y * width / Map.EntityPixelPerCase), (int)(Size), (int)(Size)), color);
         }
 
         public override void Tick(long deltaTime)

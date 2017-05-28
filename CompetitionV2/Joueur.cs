@@ -27,7 +27,7 @@ namespace TopDownGridBasedEngine
             set { _Hp = value; }
         }
 
-        public int MaxHealth = 100;
+        public int MaxHealth = 1000;
 
         public event OnDropBombHandler DroppedBomb;
         public event OnBombExplodeHandler BombExploded;
@@ -147,6 +147,14 @@ namespace TopDownGridBasedEngine
             base.Tick(deltaTime);
             VelX *= (float)Math.Pow(0.9f, deltaTime / 8);
             VelY *= (float)Math.Pow(0.9f, deltaTime / 8);
+
+            for (int i = EntityManager.Instance.Bonus.Count - 1; i >= 0; i--)
+            {
+                if (new Rectangle(EntityManager.Instance.Bonus[i].X-5, EntityManager.Instance.Bonus[i].Y-5, EntityManager.Instance.Bonus[i].Size + 10, EntityManager.Instance.Bonus[i].Size+10).Contains(X,Y+1))
+                {
+                    //todo effet bonus
+                }
+            }
             //UpdateTexture(DeltaTime);
         }
 
