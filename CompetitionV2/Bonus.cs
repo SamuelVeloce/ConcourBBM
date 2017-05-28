@@ -19,7 +19,7 @@ namespace CompetitionV2
             EntityManager.Instance.Bonus.Add(this);
         }
 
-        public Texture2D Texture => TextureManager.TextureBarricade;
+        public Texture2D Texture => TextureManager.TextureBullet[0];
 
         public override EntityType Type => EntityType.Bonus;
 
