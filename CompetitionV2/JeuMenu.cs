@@ -78,6 +78,8 @@ namespace TopDownGridBasedEngine
             
             /*Enemy e;
             for (int i = 0; i < 10; i++)
+            Enemy e;
+            for (int i = 0; i < 10; i++)
             {
 
                 p = new Point(r.Next() % Map.Width, r.Next() % Map.Height);
@@ -104,10 +106,19 @@ namespace TopDownGridBasedEngine
             }
             else
             {
-                if (gameTime.TotalGameTime.TotalMilliseconds - StartTime > 120000)//2 minutes
+                if (gameTime.TotalGameTime.TotalMilliseconds - StartTime > 180000)//2 minutes
                 {
                     ProgressManager.ArgentDernierePartie = (int)(1.1*ProgressManager.ArgentDernierePartie);
+                    ProgressManager.Argent += ProgressManager.ArgentDernierePartie;
+                   // if (ProgressManager.LvlDebloque < 1)
+                    {
+                        ProgressManager.LvlDebloque += 1;
+                    }
                     Game1.SetPartieDeJeu((int)TypesDePartieDeJeu.Gagne);
+                }
+                else
+                {
+                    ProgressManager.TempsSurvecuDernierePartie = gameTime.TotalGameTime.TotalMilliseconds - StartTime;
                 }
             }
 
