@@ -22,9 +22,7 @@ namespace CompetitionV2
             set { _Hp = value; }
         }
 
-        
-        public int MaxHealth = 4000;
-
+        public int MaxHealth = 400;
 
         //public event OnDropBombHandler DroppedBomb;
         //public event OnBombExplodeHandler BombExploded;
