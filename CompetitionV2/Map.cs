@@ -181,7 +181,7 @@ namespace TopDownGridBasedEngine
         public void T_Elapsed(object sender, ElapsedEventArgs e)
         {
             int SpawnerNumber = 0;
-            foreach (MobEntry me in Waves[Difficulty])
+            /*foreach (MobEntry me in Waves[Difficulty])
             {
                 AbsEntity ent = null;
 
@@ -232,11 +232,9 @@ namespace TopDownGridBasedEngine
                     if (SpawnerNumber >= _Spawner.Length)
                         SpawnerNumber = 0;
                 }
-                
-                if (ent != null)
-                    EntityManager.Instance.Add(ent);
+               
             }
-
+            */
             ((Timer)sender).Interval -= 200;
             if (_MobsSpawned >= 100)
                 ((Timer)sender).Stop();

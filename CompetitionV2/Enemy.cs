@@ -123,6 +123,7 @@ namespace TopDownGridBasedEngine
 
                     
                 }
+                _path?.Delete();
                 _path = new Path(new Point((this.X + this.Size / 2) / Map.EntityPixelPerCase, (this.Y + this.Size / 2) / Map.EntityPixelPerCase),
                     new Point(EntityManager.Instance.Joueur.X / Map.EntityPixelPerCase, EntityManager.Instance.Joueur.Y / Map.EntityPixelPerCase),
                     Map, DistanceFromPlayer);
@@ -159,7 +160,7 @@ namespace TopDownGridBasedEngine
 
         public override void Draw(SpriteBatch sb, float w, Color color)
         {
-            sb.Draw(TextureManager.TextureTerre[0], new Rectangle((int)(X * w), (int)(Y * w), (int)(Size * w), (int)(Size * w)), color);
+            //sb.Draw(TextureManager.TextureTerre[0], new Rectangle((int)(X * w), (int)(Y * w), (int)(Size * w), (int)(Size * w)), color);
             sb.Draw(Texture, new Rectangle((int)(X * w), (int)(Y * w), (int)(Size * w), (int)(Size * w)), color);
 
         }

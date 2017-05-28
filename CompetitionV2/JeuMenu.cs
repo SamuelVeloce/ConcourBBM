@@ -29,7 +29,7 @@ namespace TopDownGridBasedEngine
             StartTime = 0;
             Game1.Penumbra.Lights.Clear();
             Game1.Penumbra.Hulls.Clear();
-            Game1.Penumbra.AmbientColor = Color.Black;
+            Game1.Penumbra.AmbientColor = Color.White;
 
             _hud = new Hud(Game1.Screen);
             Map = new Map(45, Game1.Screen.ClientBounds);
@@ -76,7 +76,7 @@ namespace TopDownGridBasedEngine
             EntityManager.InitInstance(m_Joueur, Map, 0);
 
             
-            Enemy e;
+            /*Enemy e;
             for (int i = 0; i < 10; i++)
             {
 
@@ -89,7 +89,7 @@ namespace TopDownGridBasedEngine
                 
                 
             }
-
+            */
             _wrapper = new KeyWrapper(0, 0, 0);
 
         }

@@ -40,6 +40,14 @@ namespace TopDownGridBasedEngine
             
         }
 
+        public void Delete()
+        {
+            foreach (Case c in m_ListPath)
+            {
+                c.Wrapped.color = Color.White;
+            }
+        }
+
         public Point? NextTile(Point CurrentEntityPosition)
         {
             Case c = m_ListPath.LastOrDefault();
@@ -49,6 +57,7 @@ namespace TopDownGridBasedEngine
                 if (Diff.LengthSquared() < 0.25f)
                 {
                     m_ListPath.Remove(c);
+                    c.Wrapped.color = Color.White;
                 }
                 return new Point(c.PosX, c.PosY);
             }
@@ -103,8 +112,8 @@ namespace TopDownGridBasedEngine
             else
                 m_ListPath.Clear();
 
-            //foreach (Case ca in m_ListPath)
-            //    ca.Wrapped.color = Color.HotPink;
+            foreach (Case ca in m_ListPath)
+                ca.Wrapped.color = Color.HotPink;
         }
 
         private Case FindLowestFCost()
