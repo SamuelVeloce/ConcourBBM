@@ -8,7 +8,7 @@ namespace CompetitionV2.Mobs
 {
     class KamikazeRobot : Enemy     
     {
-        Timer timer;
+        readonly Timer timer;
         bool exploding;
 
         public KamikazeRobot(int x, int y, Map m) : base(x, y, m, 0.60f) // Speedfactor changed there
@@ -21,9 +21,11 @@ namespace CompetitionV2.Mobs
             this.Died += KamikazeRobot_Died;
             Couleur = Color.White;
 
-            timer = new Timer();
-            timer.AutoReset = false;
-            timer.Interval = 500;
+            timer = new Timer
+            {
+                AutoReset = false,
+                Interval = 500
+            };
             timer.Elapsed += Timer_Elapsed;
             exploding = false;
         }

@@ -103,7 +103,7 @@ namespace CompetitionV2
             if (n == 0)
             {
                 if (ret.Count > 0)
-                    i = 0;
+                    //i = 0;
                 return ret;
             }
             

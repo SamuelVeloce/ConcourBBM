@@ -9,8 +9,8 @@ namespace CompetitionV2
     public class Mur
     {
         // Variables de ressources.
-        private Map _Map;
-        private Random _r;
+        private readonly Map _Map;
+        private readonly Random _r;
 
         // Variables du mur.
         private int _LeftLength;
@@ -278,48 +278,36 @@ namespace CompetitionV2
 
         bool UpperStart()
         {
-            bool over = false;
-
-            if (CheckUpperWallBuilding() &&
+            bool over = CheckUpperWallBuilding() &&
                 CheckRightWallBuilding() &&
-                CheckLeftWallBuilding())
-                over = true;
+                CheckLeftWallBuilding();
 
             return over;
         }
 
         bool RightStart()
         {
-            bool over = false;
-
-            if (CheckRightWallBuilding() &&
+            bool over = CheckRightWallBuilding() &&
                 CheckDownWallBuilding() &&
-                CheckUpperWallBuilding())
-                over = true;
+                CheckUpperWallBuilding();
 
             return over;
         }
 
         bool DownStart()
         {
-            bool over = false;
-
-            if (CheckDownWallBuilding() &&
+            bool over = CheckDownWallBuilding() &&
                 CheckRightWallBuilding() &&
-                CheckLeftWallBuilding())
-                over = true;
+                CheckLeftWallBuilding();
 
             return over;
         }
 
         bool LeftStart()
         {
-            bool over = false;
-
-            if (CheckLeftWallBuilding() &&
-                CheckUpperWallBuilding() &&
-                CheckDownWallBuilding())
-                over = true;
+            bool over = CheckLeftWallBuilding() &&
+                        CheckUpperWallBuilding() &&
+                        CheckDownWallBuilding();
 
             return over;
         }

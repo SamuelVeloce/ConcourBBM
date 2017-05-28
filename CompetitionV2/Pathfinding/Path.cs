@@ -8,16 +8,16 @@ namespace CompetitionV2.Pathfinding
     
     public class Path
     {
-        Case m_Begin;
-        Case m_End;
+        readonly Case m_Begin;
+        readonly Case m_End;
 
-        int m_Distance;
+        readonly int m_Distance;
 
         public List<Case> m_ListPath;
 
-        List<Case> m_ListToCheck;
+        readonly List<Case> m_ListToCheck;
 
-        Grille m_Grille;
+        readonly Grille m_Grille;
 
         object Lock;
 

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CompetitionV2
+﻿namespace CompetitionV2
 {
     public static class ProgressManager
     {
@@ -27,7 +21,7 @@ namespace CompetitionV2
         {
             //todo load from disk
             Argent = 1000;
-            LvlDebloque = 5;
+            LvlDebloque = 2;
             ArmesDebloque = new bool[] {true, true, true, true,true};
             ArmesAchete = ArmesDebloque;
             ArgentDernierePartie = 0;

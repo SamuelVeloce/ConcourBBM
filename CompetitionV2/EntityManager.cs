@@ -11,12 +11,12 @@ namespace CompetitionV2
         // Singleton! :D
         private List<AbsEntity> _entities;
 
-        private object someLock;
+        private readonly object someLock;
         private int _id;
         //private List<Fire> _deadFire;
         private List<absProjectile> m_projectilesListFriendly;
         private List<absProjectile> m_projectilesListHostile;
-        private List<Bonus> m_listBonus;
+        private readonly List<Bonus> m_listBonus;
 
 
 
@@ -50,9 +50,7 @@ namespace CompetitionV2
         {
             get
             {
-                if (_instance == null)
-                    return null;
-                        // throw new Exception("Instance inexistante. Utilisez InitInstance avant d'utiliser l'instance");
+                // throw new Exception("Instance inexistante. Utilisez InitInstance avant d'utiliser l'instance");
                 return _instance;
             }
         }
@@ -128,12 +126,13 @@ namespace CompetitionV2
                 foreach (AbsEntity e in toUpdate)
                 {
                     e.Tick((int) gameTime.ElapsedGameTime.TotalMilliseconds);
-                    if (e is ITexturable)
-                        ((ITexturable) e).UpdateTexture((int) gameTime.ElapsedGameTime.TotalMilliseconds);
+                    ITexturable Texturable = e as ITexturable;
+                    if (Texturable != null)
+                        Texturable.UpdateTexture((int) gameTime.ElapsedGameTime.TotalMilliseconds);
                 }
                 if (Joueur != null && Joueur.IsDead == false)
                     Joueur.UpdateTexture((int) gameTime.ElapsedGameTime.TotalMilliseconds); //Tick(DeltaTime);
-                if (Joueur.IsDead == false)
+                if (Joueur != null && Joueur.IsDead == false)
                     Joueur.Tick((long) gameTime.ElapsedGameTime.TotalMilliseconds);
                 /*if (_deadFire.Count != 0)
                 {
@@ -192,7 +191,7 @@ namespace CompetitionV2
         {
             float w = Map.TileWidth;
             
-            List<AbsEntity> toDraw = null;
+            List<AbsEntity> toDraw;
             
             lock (someLock)
             {

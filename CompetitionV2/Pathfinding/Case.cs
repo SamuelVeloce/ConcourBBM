@@ -28,7 +28,7 @@ namespace CompetitionV2.Pathfinding
         public int FCost { get; set; }
         public Case ParentCase { get; set; }
 
-        Grille m_Grille;
+        readonly Grille m_Grille;
         public bool Checked { get; set; }
 
         public Case(AbsCase Wrapped, Grille g)
@@ -51,9 +51,9 @@ namespace CompetitionV2.Pathfinding
         public List<Case> getNeighbors()
         {
             List<Case> Neighbors = new List<Case>();
-            bool bLeft, bRight, bUp, bDown;
+            bool bRight, bUp, bDown;
 
-            bLeft = PosX > 0;
+            bool bLeft = PosX > 0;
             bRight = PosX < m_Grille.Width - 1;
             bUp = PosY > 0;
             bDown = PosY < m_Grille.Width - 1;

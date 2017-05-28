@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -80,7 +75,7 @@ namespace CompetitionV2.Menu
             if (m_WasPressed && enterButton() && Mouse.GetState().LeftButton == ButtonState.Released)
             {
                 m_WasPressed = false;
-                m_Job.Invoke(m_PartieDeJeu);
+                if (m_Job != null) m_Job.Invoke(m_PartieDeJeu);
             }
         }
         public virtual void Draw(SpriteBatch sb)

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CompetitionV2.Armes;
+﻿using CompetitionV2.Armes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -12,7 +7,7 @@ namespace CompetitionV2.Menu
 {
     class Armurerie : Menu
     {
-        private static Button[] btn = new Button[]
+        private static readonly Button[] btn = new Button[]
             {
                 new Button("Jouer!", TextureManager.TextureTerre[0], new Rectangle(Game1.Screen.ClientBounds.Width/3-120, Game1.Screen.ClientBounds.Height-100, 240, 100),
                     Game1.SetPartieDeJeu, (int) TypesDePartieDeJeu.Jeu),
