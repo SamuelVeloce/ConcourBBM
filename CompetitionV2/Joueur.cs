@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using Competition.Armes;
+using CompetitionV2;
 using CompetitionV2.Armes;
 using TopDownGridBasedEngine.Armes;
 using TopDownGridBasedEngine.Projectile;
@@ -27,7 +28,7 @@ namespace TopDownGridBasedEngine
             set { _Hp = value; }
         }
 
-        public int MaxHealth = 1000;
+        public int MaxHealth = 100;
 
         public event OnDropBombHandler DroppedBomb;
         public event OnBombExplodeHandler BombExploded;
@@ -97,9 +98,9 @@ namespace TopDownGridBasedEngine
         {
             IsDead = true;
             Game1.Penumbra.Lights.Remove(Lights[0]);
-            Game1.Penumbra.Lights.Remove(Lights[1]); 
-            
-            Game1.SetPartieDeJeu((int)TypesDePartieDeJeu.MenuDefaut);
+            Game1.Penumbra.Lights.Remove(Lights[1]);
+            ProgressManager.Argent += ProgressManager.ArgentDernierePartie;
+            Game1.SetPartieDeJeu((int)TypesDePartieDeJeu.Perdu);
     }
 
         private void Joueur_Moved(object sender, CancellableEventArgs e)

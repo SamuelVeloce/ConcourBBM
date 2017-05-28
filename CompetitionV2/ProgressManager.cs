@@ -13,6 +13,8 @@ namespace CompetitionV2
 
         private static bool[] m_ArmesDebloque;
         private static bool[] m_ArmesAchete;
+
+        private static int m_ArgentDernierePartie;
         
 
      
@@ -28,6 +30,7 @@ namespace CompetitionV2
             LvlDebloque = 5;
             ArmesDebloque = new bool[] {true, true, true, true};
             ArmesAchete = ArmesDebloque;
+            ArgentDernierePartie = 0;
         }
 
 
@@ -39,7 +42,10 @@ namespace CompetitionV2
         public static int Argent
         {
             get { return m_Argent; }
-            set { m_Argent = value; }
+            set
+            {
+                m_Argent = value;
+            }
         }
 
         public static int LvlDebloque
@@ -60,8 +66,10 @@ namespace CompetitionV2
             set { m_ArmesAchete = value; }
         }
 
-       
-
-
+        public static int ArgentDernierePartie
+        {
+            get { return m_ArgentDernierePartie; }
+            set { m_ArgentDernierePartie = value; }
+        }
     }
 }
