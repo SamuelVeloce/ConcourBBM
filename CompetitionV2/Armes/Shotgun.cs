@@ -20,7 +20,7 @@ namespace CompetitionV2.Armes
         private readonly Random m_RNG;
 
       //  public override string WeaponName { get { return "Shotgun"; } }
-        private const byte m_BulletSpeed = 15;
+        private const int m_BulletSpeed = 500;
         private const int m_ReloadingTime = 700;
         private const int m_SpreadAngle = 30;
         private const int m_NumberOfBuckshot = 10;
