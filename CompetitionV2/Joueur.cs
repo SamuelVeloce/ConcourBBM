@@ -28,7 +28,7 @@ namespace TopDownGridBasedEngine
             set { _Hp = value; }
         }
 
-        public int MaxHealth = 10000;
+        public int MaxHealth = 1000;
 
         public event OnDropBombHandler DroppedBomb;
         public event OnBombExplodeHandler BombExploded;

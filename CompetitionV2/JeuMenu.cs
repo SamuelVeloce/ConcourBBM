@@ -113,6 +113,10 @@ namespace TopDownGridBasedEngine
                     }
                     Game1.SetPartieDeJeu((int)TypesDePartieDeJeu.Gagne);
                 }
+                else
+                {
+                    ProgressManager.TempsSurvecuDernierePartie = gameTime.TotalGameTime.TotalMilliseconds - StartTime;
+                }
             }
 
 

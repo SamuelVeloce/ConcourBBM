@@ -82,7 +82,7 @@ namespace TopDownGridBasedEngine
             _graphics = new GraphicsDeviceManager(this);
 
             _graphics.IsFullScreen = true;
-            int Dimension = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height - 100;
+            int Dimension = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
             _graphics.PreferredBackBufferHeight = Dimension;
             _graphics.PreferredBackBufferWidth = Dimension;
             _graphics.ApplyChanges();
