@@ -72,6 +72,7 @@ namespace TopDownGridBasedEngine
                         PartieDuJeu[i] = new Armurerie();
                         break;
                 }
+                // CRASH REPORT
                 Instance.GraphicsDevice.Clear(Color.Gray);
                 m_IndexPartieDeJeu = i;
             }
@@ -81,7 +82,7 @@ namespace TopDownGridBasedEngine
         {
             _graphics = new GraphicsDeviceManager(this);
 
-            _graphics.IsFullScreen = true;
+            //_graphics.IsFullScreen = true;
             int Dimension = 768;//GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height - 100;
             _graphics.PreferredBackBufferHeight = Dimension;
             _graphics.PreferredBackBufferWidth = Dimension;

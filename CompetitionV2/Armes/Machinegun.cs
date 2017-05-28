@@ -27,7 +27,7 @@ namespace TopDownGridBasedEngine.Armes
             }
         }
 
-        private const int m_BulletSpeed = 500;
+        private const int m_BulletSpeed = 400;
         private const int m_ReloadingTime = 2000;
         private const int m_ClipSize = 30;//30;
         private const int m_Firerate = 150;//105;

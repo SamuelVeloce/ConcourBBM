@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace TopDownGridBasedEngine
 {
@@ -12,8 +13,15 @@ namespace TopDownGridBasedEngine
 
         public SoldierRobot(int x, int y, Map m) : base(x, y, m, 0.24f) // Speedfactor changed there
         {
-            _Hp = 18;
-           // _Weapon = HandGunFlyWeigth;
+            
+        }
+
+        public override Texture2D Texture
+        {
+            get
+            {
+                return base.Texture;
+            }
         }
     }
 }

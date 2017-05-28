@@ -92,7 +92,8 @@ namespace CompetitionV2
 
                     case BonusType.Sante:
                         //Remet la santé du joueur à 100%
-                        EntityManager.Instance.Joueur.Health = 100;
+                        EntityManager.Instance.Joueur.Health = EntityManager.Instance.Joueur.Health >= EntityManager.Instance.Joueur.MaxHealth - 100 ?
+                            EntityManager.Instance.Joueur.MaxHealth : EntityManager.Instance.Joueur.Health + 100;
                         break;
                 }
                 EntityManager.Instance.Bonus.Remove(this); 

@@ -23,6 +23,7 @@ namespace TopDownGridBasedEngine
         protected Path _path;
         protected double NextPathfindTime;
         protected float _SpeedFactor;
+        protected int DistanceFromPlayer;
         public int _Hp { get; set; }
         
 
@@ -32,21 +33,22 @@ namespace TopDownGridBasedEngine
         {
             VelX = 0;
             VelY = 0;
-            Size = 15;
+            Size = 25;
             _path = null;
             Died += Die;
             Collided += Enemy_Collided;
             NextPathfindTime = 0;
             _SpeedFactor = speedFactor;
+            DistanceFromPlayer = 7;
             Arme = new PistolAI(this);
         }
 
         private void Enemy_Collided(object sender, BlockCollisionEventArgs e)
         {
-            Vector2 vec = new Vector2(VelX + (this.X / Map.EntityPixelPerCase) * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - (this.X + this.Size / 2),
-                VelY + (this.Y / Map.EntityPixelPerCase) * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - (this.Y + this.Size / 2));
+            Vector2 vec = new Vector2(VelX + ((this.X + Size / 2) / Map.EntityPixelPerCase) * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - (this.X + this.Size / 2),
+                VelY + ((this.Y + Size / 2) / Map.EntityPixelPerCase) * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - (this.Y + this.Size / 2));
             vec.Normalize();
-            vec *= _SpeedFactor;
+            //vec *= _SpeedFactor;
             this.VelX = vec.X;
             this.VelY = vec.Y;
             
@@ -100,7 +102,7 @@ namespace TopDownGridBasedEngine
                 if (p.HasValue)
                 {
                     Vector2 Velocity = new Vector2(p.Value.X * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - (this.X + this.Size / 2),
-                        p.Value.Y * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - (this.Y + this.Size));
+                        p.Value.Y * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - (this.Y + this.Size / 2));
                     Velocity.Normalize();
                     Velocity *= _SpeedFactor;
                     VelX = Velocity.X;
@@ -119,15 +121,11 @@ namespace TopDownGridBasedEngine
                     Arme.MouseDown(new Point(j.X - j.Size / 2, j.Y - j.Size / 2));
                     Arme.MouseUp();
 
-                }
-                else
-                {
-                    Random r = new Random();
                     
                 }
                 _path = new Path(new Point((this.X + this.Size / 2) / Map.EntityPixelPerCase, (this.Y + this.Size / 2) / Map.EntityPixelPerCase),
                     new Point(EntityManager.Instance.Joueur.X / Map.EntityPixelPerCase, EntityManager.Instance.Joueur.Y / Map.EntityPixelPerCase),
-                    Map);
+                    Map, DistanceFromPlayer);
                 
             }
             base.Tick(deltaTime);
@@ -138,29 +136,40 @@ namespace TopDownGridBasedEngine
             Draw(sb, width, Color.White);
         }
 
+        public virtual Texture2D Texture
+        {
+            get
+            {
+                if (Math.Abs(VelX) > Math.Abs(VelY)) // Left or right
+                {
+                    if (VelX > 0)
+                        return TextureManager.Instance.TextureDroneRight[_textureVariant / 20];
+                    else
+                        return TextureManager.Instance.TextureDroneLeft[_textureVariant / 20];
+                }
+                else // Up or down
+                {
+                    if (VelY > 0)
+                        return TextureManager.Instance.TextureDroneDown[_textureVariant / 20];
+                    else
+                        return TextureManager.Instance.TextureDroneUp[_textureVariant / 20];
+                }
+                if (VelX == 0 && VelY == 0)
+                    return TextureManager.Instance.TextureDroneDown[0];
+                
+            }
+        }
+
         public override void Draw(SpriteBatch sb, float w, Color color)
         {
             Texture2D bit;
-            if (Math.Abs(VelX) > Math.Abs(VelY)) // Left or right
-            {
-                if (VelX > 0)
-                    bit = TextureManager.Instance.TexturePlayerRight[_textureVariant / 20];
-                else
-                    bit = TextureManager.Instance.TexturePlayerLeft[_textureVariant / 20];
-            }
-            else // Up or down
-            {
-                if (VelY > 0)
-                    bit = TextureManager.Instance.TexturePlayerDown[_textureVariant / 20];
-                else
-                    bit = TextureManager.Instance.TexturePlayerUp[_textureVariant / 20];
-            }
-            if (VelX == 0 && VelY == 0)
-                bit = TextureManager.Instance.TexturePlayerDown[0];
-            sb.Draw(bit, new Rectangle((int)(X * w), (int)(Y * w - Size * w), (int)(Size * w), (int)(Size * w * 2)), color);
-     }
+            
+            sb.Draw(TextureManager.TextureTerre[0], new Rectangle((int)(X * w), (int)(Y * w), (int)(Size * w), (int)(Size * w)), color);
+            sb.Draw(Texture, new Rectangle((int)(X * w), (int)(Y * w), (int)(Size * w), (int)(Size * w)), color);
 
-        public void UpdateTexture(long deltaTime)
+        }
+
+        public virtual void UpdateTexture(long deltaTime)
         {
             //_textureVariant += (int)deltaTime / 1;
             if (_textureVariant > 79)

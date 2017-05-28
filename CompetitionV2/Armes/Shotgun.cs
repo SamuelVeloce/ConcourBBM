@@ -20,10 +20,10 @@ namespace CompetitionV2.Armes
         private readonly Random m_RNG;
 
       //  public override string WeaponName { get { return "Shotgun"; } }
-        private const int m_BulletSpeed = 500;
+        private const int m_BulletSpeed = 400;
         private const int m_ReloadingTime = 700;
         private const int m_SpreadAngle = 30;
-        private const int m_NumberOfBuckshot = 10;
+        private const int m_NumberOfBuckshot = 5;
         private const int m_ClipSize = 8;
         private const int m_Firerate = 600;
         private bool m_CanShoot = true;
@@ -90,7 +90,7 @@ namespace CompetitionV2.Armes
                     Vector2 MouseDir = new Vector2((float)Math.Cos(Radians), (float)Math.Sin(Radians));
                     EntityManager.Instance.ProjectilesListFriendly.Add(new ProjectileBullet(
                         TextureManager.TextureBullet, new Vector2(Owner.X, Owner.Y), new Vector2(8, 8), MouseDir* m_BulletSpeed,
-                        100) {Friendly = true});
+                        25) {Friendly = true});
                 }
                 
                 JouerSonTir();

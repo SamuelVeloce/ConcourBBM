@@ -32,7 +32,7 @@ namespace CompetitionV2.Armes
         {
             get { return m_ClipSize; }
         }
-        private const byte m_BulletSpeed = 25;
+        private const byte m_BulletSpeed = 200;
         private const int m_ReloadingTime = 2000;
         private const int m_ClipSize = 30;//30;
         private const int m_Firerate = 150;//105;
@@ -97,7 +97,7 @@ namespace CompetitionV2.Armes
                 }
 
 
-                double Radians = Math.Atan2(Target.Y / EntityManager.Instance.Map.TileWidth * Map.EntityPixelPerCase - Owner.Y, Target.X / EntityManager.Instance.Map.TileWidth * Map.EntityPixelPerCase - Owner.X) + ((m_RNG.NextDouble() * m_SpreadAngle) - m_SpreadAngle / 2.0) * (Math.PI / 180.0);
+                double Radians = Math.Atan2(Target.Y - Owner.Y, Target.X - Owner.X) + ((m_RNG.NextDouble() * m_SpreadAngle) - m_SpreadAngle / 2.0) * (Math.PI / 180.0);
                 Vector2 MouseDir = new Vector2((float)Math.Cos(Radians), (float)Math.Sin(Radians));
                 EntityManager.Instance.ProjectilesListHostile.Add(new ProjectileBullet(TextureManager.TextureBullet, new Vector2(Owner.X, Owner.Y), new Vector2(8, 8), MouseDir * 500, 10) { Friendly = false });
 
