@@ -50,7 +50,7 @@ namespace CompetitionV2
 
                     case BonusType.Arme:
                         int i = 0;
-                        //trouve la prochaine arme à ssss
+                        //trouve la prochaine arme à débloquer
                         while (i < ProgressManager.ArmesDebloque.Length && ProgressManager.ArmesDebloque[i])
                         {
                             i++;
