@@ -18,9 +18,9 @@ namespace CompetitionV2.Menu
     {
         private static Button[] btn = new Button[]
             {
-                new Button("Jouer!", TextureManager.TextureTerre[0], new Rectangle(10, 10, 120, 60),
+                new Button("Jouer!", TextureManager.TextureTerre[0], new Rectangle(Game1.Screen.ClientBounds.Width/3-120, Game1.Screen.ClientBounds.Height-100, 240, 100),
                     Game1.SetPartieDeJeu, (int) TypesDePartieDeJeu.Jeu),
-                new Button("Retour!", TextureManager.TextureTerre[0], new Rectangle(10, 160, 120, 60),
+                new Button("Retour!", TextureManager.TextureTerre[0], new Rectangle(Game1.Screen.ClientBounds.Width/3*2-120, Game1.Screen.ClientBounds.Height-100, 240, 100),
                     Game1.SetPartieDeJeu, (int) TypesDePartieDeJeu.MenuDefaut),
 
 
@@ -35,11 +35,11 @@ namespace CompetitionV2.Menu
 
 
 
-                new ButtonInfo("Vide", TextureManager.TextureTerre[0], new Rectangle(10, 500, 250, 100),
+                new ButtonInfo("Vide", TextureManager.TextureTerre[0], new Rectangle(Game1.Screen.ClientBounds.Width/10*2-150, 500, 300, 100),
                     Game1.SetPartieDeJeu, 0), 
-                new ButtonInfo("Vide", TextureManager.TextureTerre[0], new Rectangle(270, 500, 250, 100),
+                new ButtonInfo("Vide", TextureManager.TextureTerre[0], new Rectangle(Game1.Screen.ClientBounds.Width/10*5-150, 500, 300, 100),
                     Game1.SetPartieDeJeu, 1),
-                new ButtonInfo("Vide", TextureManager.TextureTerre[0], new Rectangle(530, 500, 250, 100),
+                new ButtonInfo("Vide", TextureManager.TextureTerre[0], new Rectangle(Game1.Screen.ClientBounds.Width/10*8-150, 500, 300, 100),
                     Game1.SetPartieDeJeu, 2)
 
 
@@ -74,7 +74,7 @@ namespace CompetitionV2.Menu
 
 
             
-            if (EntityManager.Instance.Joueur?.Weapon[PartieDeJeu]?.Nom != null)
+            if (PartieDeJeu < 3 && EntityManager.Instance.Joueur?.Weapon[PartieDeJeu]?.Nom != null)
             {
                 Vector2 size = TextureManager.Font.MeasureString(EntityManager.Instance.Joueur.Weapon[PartieDeJeu].Nom);
                 sb.DrawString(TextureManager.Font, EntityManager.Instance.Joueur.Weapon[PartieDeJeu].Nom, ButtonRect.Center.ToVector2(), Color.White, 0, size * 0.5f, 2.0f,

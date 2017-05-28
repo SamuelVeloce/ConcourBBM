@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Competition.Armes;
+using CompetitionV2;
 using CompetitionV2.Armes;
 using TopDownGridBasedEngine.Projectile;
 using Microsoft.Xna.Framework;
@@ -21,9 +22,11 @@ namespace TopDownGridBasedEngine
         public static Map Map;
         private KeyWrapper _wrapper;
         private bool MouseDown = false;
+        private double StartTime;
 
         public JeuMenu()
         {
+            StartTime = 0;
             Game1.Penumbra.Lights.Clear();
             Game1.Penumbra.Hulls.Clear();
             Game1.Penumbra.AmbientColor = Color.Black;
@@ -94,6 +97,21 @@ namespace TopDownGridBasedEngine
 
         public void Update(GameTime gameTime)
         {
+            if (StartTime == 0)
+            {
+                StartTime = gameTime.TotalGameTime.TotalMilliseconds;
+                ProgressManager.ArgentDernierePartie = 0;
+            }
+            else
+            {
+                if (gameTime.TotalGameTime.TotalMilliseconds - StartTime > 120000)//2 minutes
+                {
+                    ProgressManager.ArgentDernierePartie = (int)(1.1*ProgressManager.ArgentDernierePartie);
+                    Game1.SetPartieDeJeu((int)TypesDePartieDeJeu.Gagne);
+                }
+            }
+
+
             _wrapper.MouseX = Mouse.GetState().X;
             _wrapper.MouseY = Mouse.GetState().Y;
             _wrapper.State = 0;

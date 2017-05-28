@@ -23,7 +23,7 @@ namespace TopDownGridBasedEngine
         protected Path _path;
         protected double NextPathfindTime;
         protected float _SpeedFactor;
-        protected int _Hp { get; set; }
+        public int _Hp { get; set; }
         
 
         public override EntityType Type => EntityType.GenericEntity;
