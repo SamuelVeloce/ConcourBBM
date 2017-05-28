@@ -158,9 +158,9 @@ namespace TopDownGridBasedEngine
                             projho.RemoveAt(i);
                         }
                     }
-                    foreach (Bonus b in this.Bonus)
+                    for (int i = this.Bonus.Count - 1; i >= 0; i--)
                     {
-                        b.Tick((long)gameTime.ElapsedGameTime.TotalMilliseconds);
+                        this.Bonus[i].Tick((long)gameTime.ElapsedGameTime.TotalMilliseconds);
                     }
                 }
             }
