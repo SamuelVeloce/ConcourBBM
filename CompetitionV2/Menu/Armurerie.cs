@@ -30,6 +30,8 @@ namespace CompetitionV2.Menu
                     Game1.SetPartieDeJeu, (int) WeaponType.AssaultRifle),
                 new ArmurerieButton("Shotgun!", TextureManager.TextureTerre[0], new Rectangle(200, 230, 240, 100),
                     Game1.SetPartieDeJeu, (int) WeaponType.Shotgun),
+                new ArmurerieButton("Sniper!", TextureManager.TextureTerre[0], new Rectangle(200, 340, 240, 100),
+                    Game1.SetPartieDeJeu, (int) WeaponType.SemiAutoSniper),
 
 
 
@@ -128,9 +130,9 @@ namespace CompetitionV2.Menu
                 {
                     WasPressed = false;
 
-                    for (int i = 0; i < EntityManager.Instance.Joueur.Weapon.Length - 1; i++)
+                    for (int i = EntityManager.Instance.Joueur.Weapon.Length - 1; i >= 1; i--)
                     {
-                        EntityManager.Instance.Joueur.Weapon[i + 1] = EntityManager.Instance.Joueur.Weapon[i];
+                        EntityManager.Instance.Joueur.Weapon[i] = EntityManager.Instance.Joueur.Weapon[i-1];
                     }
                     switch (PartieDeJeu)
                     {
@@ -142,6 +144,9 @@ namespace CompetitionV2.Menu
                             break;
                         case (int) WeaponType.Shotgun:
                             EntityManager.Instance.Joueur.Weapon[0] = new Shotgun(EntityManager.Instance.Joueur);
+                            break;
+                        case (int)WeaponType.SemiAutoSniper:
+                            EntityManager.Instance.Joueur.Weapon[0] = new SemiAutomaticSniper(EntityManager.Instance.Joueur);
                             break;
                     }
                 }
