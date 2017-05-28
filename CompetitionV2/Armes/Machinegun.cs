@@ -17,7 +17,7 @@ namespace TopDownGridBasedEngine.Armes
         public override int NBulletLeft { get; set; }
         public override int NBulletInCharger { get; set; }
 
-        public override string WeaponName { get { return "Mitrailleuse antique"; } }
+       // public override string WeaponName { get { return "Mitrailleuse antique"; } }
 
         public override WeaponType WeaponType
         {
@@ -27,7 +27,7 @@ namespace TopDownGridBasedEngine.Armes
             }
         }
 
-        private const byte m_BulletSpeed = 25;
+        private const int m_BulletSpeed = 500;
         private const int m_ReloadingTime = 2000;
         private const int m_ClipSize = 30;//30;
         private const int m_Firerate = 150;//105;
@@ -40,7 +40,10 @@ namespace TopDownGridBasedEngine.Armes
 
 
 
-
+        public override int ClipSize
+        {
+            get { return m_ClipSize; }
+        }
         public override void JouerSonTir()
         {
             SoundManager.Pistol.Play((float)0.5,0,0);
@@ -94,7 +97,7 @@ namespace TopDownGridBasedEngine.Armes
 
                 double Radians = Math.Atan2(Target.Y / EntityManager.Instance.Map.TileWidth * Map.EntityPixelPerCase - Owner.Y, Target.X / EntityManager.Instance.Map.TileWidth * Map.EntityPixelPerCase - Owner.X) + ((m_RNG.NextDouble() * m_SpreadAngle) - m_SpreadAngle / 2.0) * (Math.PI / 180.0);
                 Vector2 MouseDir = new Vector2((float)Math.Cos(Radians), (float)Math.Sin(Radians));
-                EntityManager.Instance.ProjectilesListFriendly.Add(new ProjectileBullet(TextureManager.TextureBullet, new Vector2(Owner.X, Owner.Y), new Vector2(8, 8), MouseDir * 500, 10) {Friendly = true});
+                EntityManager.Instance.ProjectilesListFriendly.Add(new ProjectileBullet(TextureManager.TextureBullet, new Vector2(Owner.X, Owner.Y), new Vector2(8, 8), MouseDir * m_BulletSpeed, 10) {Friendly = true});
 
 
                 JouerSonTir();
@@ -158,7 +161,7 @@ namespace TopDownGridBasedEngine.Armes
                             double Radians = Math.Atan2(Mouse.GetState().Position.Y / EntityManager.Instance.Map.TileWidth * Map.EntityPixelPerCase - EntityManager.Instance.Joueur.Y, Mouse.GetState().Position.X / EntityManager.Instance.Map.TileWidth * Map.EntityPixelPerCase - EntityManager.Instance.Joueur.X) +
                                              ((m_RNG.NextDouble() * m_SpreadAngle) - m_SpreadAngle / 2.0) * (Math.PI / 180.0);
                             Vector2 MouseDir = new Vector2((float)Math.Cos(Radians), (float)Math.Sin(Radians));
-                            EntityManager.Instance.ProjectilesListFriendly.Add(new ProjectileBullet(TextureManager.TextureBullet, new Vector2(EntityManager.Instance.Joueur.X, EntityManager.Instance.Joueur.Y), new Vector2(8, 8), MouseDir * 500, 10) { Friendly = true });
+                            EntityManager.Instance.ProjectilesListFriendly.Add(new ProjectileBullet(TextureManager.TextureBullet, new Vector2(EntityManager.Instance.Joueur.X, EntityManager.Instance.Joueur.Y), new Vector2(8, 8), MouseDir * m_BulletSpeed, 10) { Friendly = true });
                             m_WeaponTimer.Start();
                             JouerSonTir();
 

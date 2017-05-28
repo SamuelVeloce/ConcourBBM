@@ -18,7 +18,7 @@ namespace CompetitionV2.Armes
         public override int NBulletLeft { get; set; }
         public override int NBulletInCharger { get; set; }
 
-        public override string WeaponName { get { return "Mitrailleuse antique"; } }
+      //  public override string WeaponName { get { return "Mitrailleuse antique"; } }
 
         public override WeaponType WeaponType
         {
@@ -28,6 +28,10 @@ namespace CompetitionV2.Armes
             }
         }
 
+        public override int ClipSize
+        {
+            get { return m_ClipSize; }
+        }
         private const byte m_BulletSpeed = 25;
         private const int m_ReloadingTime = 2000;
         private const int m_ClipSize = 30;//30;

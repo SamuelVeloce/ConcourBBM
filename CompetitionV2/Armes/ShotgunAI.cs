@@ -19,7 +19,7 @@ namespace CompetitionV2.Armes
 
         private readonly Random m_RNG;
 
-        public override string WeaponName { get { return "Shotgun"; } }
+        //public override string WeaponName { get { return "Shotgun"; } }
         private const byte m_BulletSpeed = 15;
         private const int m_ReloadingTime = 700;
         private const int m_SpreadAngle = 30;
@@ -30,6 +30,10 @@ namespace CompetitionV2.Armes
         private bool m_Reloading;
         private readonly System.Timers.Timer m_WeaponTimer;
 
+        public override int ClipSize
+        {
+            get { return m_ClipSize; }
+        }
         public override void JouerSonTir()
         {
             SoundManager.Shotgun.Play((float)0.5, 0, 0);
