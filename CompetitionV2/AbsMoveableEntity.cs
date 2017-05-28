@@ -111,6 +111,12 @@ namespace TopDownGridBasedEngine
             }
             
             cases = cases.Where((ca) => ca.IsSolid == true).OrderBy((a) => Math.Abs(xm - a.X * Map.EntityPixelPerCase) + Math.Abs(ym - a.Y * Map.EntityPixelPerCase)).ToArray();
+            if (cases.Any((a) => a.X == this.X / Map.EntityPixelPerCase || a.Y == this.Y / Map.EntityPixelPerCase))
+            {
+                cases = cases.Where((ca) => (ca.X == this.X / Map.EntityPixelPerCase || ca.Y == this.Y / Map.EntityPixelPerCase)
+                    && !(ca.X == this.X / Map.EntityPixelPerCase && ca.Y == this.Y / Map.EntityPixelPerCase)).ToArray();
+                n = cases.Count();
+            }
 
 
             for (i = 0; i < n; i++)
@@ -126,6 +132,7 @@ namespace TopDownGridBasedEngine
                 Vector2 BottomLeftCase = new Vector2(cases[i].X * Map.EntityPixelPerCase + Map.EntityPixelPerCase, cases[i].Y * Map.EntityPixelPerCase + Map.EntityPixelPerCase);
 
                 float X_on_Case = TopLeftEntity.X - TopLeftCase.X;
+                float Y_on_Case = TopLeftEntity.Y - TopLeftCase.Y;
                 if (X_on_Case <= -Size) // Too far to the left 
                 {
                     if (X_on_Case + velx > -Size) // Moved in to the right 
@@ -148,8 +155,7 @@ namespace TopDownGridBasedEngine
                         }
                     }
                 }
-                float Y_on_Case = TopLeftEntity.Y - TopLeftCase.Y;
-                if (Y_on_Case <= -Size) // Too high up
+                else if (Y_on_Case <= -Size) // Too high up
                 {
                     if (Y_on_Case + vely > -Size) // Moved down
                     {

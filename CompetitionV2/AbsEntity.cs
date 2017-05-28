@@ -34,7 +34,7 @@ namespace TopDownGridBasedEngine
         /// </summary>
         public event OnDieHandler Died;
         
-        protected void FireDied(object sender, CancellableEventArgs e)
+        public void FireDied(object sender, CancellableEventArgs e)
         {
             Died?.Invoke(sender, e);
         }

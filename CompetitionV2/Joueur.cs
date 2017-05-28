@@ -64,7 +64,7 @@ namespace TopDownGridBasedEngine
             Lights[0] = new PointLight();
             Lights[0].Color = Color.DarkGray;
             Lights[0].Intensity = 1f;
-            Lights[0].Scale = new Vector2(900, 900);
+            Lights[0].Scale = new Vector2(Game1.Screen.ClientBounds.Width * 3 / 4, Game1.Screen.ClientBounds.Height * 3/4);
             Lights[0].CastsShadows = true;
             Lights[0].ShadowType = ShadowType.Occluded;
             Lights[0].Radius = 5;
@@ -73,7 +73,7 @@ namespace TopDownGridBasedEngine
             Lights[1] = new PointLight();
             Lights[1].Color = Color.DarkGray;
             Lights[1].Intensity = 1f;
-            Lights[1].Scale = new Vector2(900, 900);
+            Lights[1].Scale = new Vector2(Game1.Screen.ClientBounds.Width * 3 / 4, Game1.Screen.ClientBounds.Height * 3 / 4);
             Lights[1].CastsShadows = false;
             Lights[1].ShadowType = ShadowType.Solid;
             Lights[1].Radius = 5;
@@ -87,7 +87,7 @@ namespace TopDownGridBasedEngine
         public void DealDamage(int Damage)
         {
             _Hp -= Damage;
-            if (_Hp < 0)
+            if (_Hp <= 0)
                 FireDied(this, new CancellableEventArgs(false));
         }
         

@@ -43,15 +43,15 @@ namespace TopDownGridBasedEngine
 
         private void Enemy_Collided(object sender, BlockCollisionEventArgs e)
         {
-            /*Vector2 vec = new Vector2(VelX + (this.X / Map.EntityPixelPerCase) * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - (this.X + this.Size / 2),
+            Vector2 vec = new Vector2(VelX + (this.X / Map.EntityPixelPerCase) * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - (this.X + this.Size / 2),
                 VelY + (this.Y / Map.EntityPixelPerCase) * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2 - (this.Y + this.Size / 2));
             vec.Normalize();
             vec *= _SpeedFactor;
             this.VelX = vec.X;
-            this.VelY = vec.Y;*/
-
-            this.X = ((this.X + this.Size / 2) / Map.EntityPixelPerCase) * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2;
-            this.Y = ((this.Y + this.Size / 2) / Map.EntityPixelPerCase) * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2;
+            this.VelY = vec.Y;
+            
+            //this.X = ((this.X + this.Size / 2) / Map.EntityPixelPerCase) * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2;
+            //this.Y = ((this.Y + this.Size / 2) / Map.EntityPixelPerCase) * Map.EntityPixelPerCase + Map.EntityPixelPerCase / 2;
         }
 
         public Weapons Arme { get; set; }
@@ -62,11 +62,13 @@ namespace TopDownGridBasedEngine
 
             Random r = new Random();
 
-            if (r.Next() % 10 == 0)
+            if (r.Next() % 6 == 0)
             {
                 Bonus b = new Bonus(this.X, this.Y, this.Map, this.Arme.WeaponType);
-                EntityManager.Instance.Bonus.Add(b);
             }
+
+            //Make a sound
+            SoundManager.ImpactRobot.Play();
         }
 
         public override void Tick(long deltaTime)
@@ -102,6 +104,11 @@ namespace TopDownGridBasedEngine
                     Arme.MouseDown(new Point(j.X - j.Size / 2, j.Y - j.Size / 2));
                     Arme.MouseUp();
 
+                }
+                else
+                {
+                    Random r = new Random();
+                    
                 }
                 _path = new Path(new Point((this.X + this.Size / 2) / Map.EntityPixelPerCase, (this.Y + this.Size / 2) / Map.EntityPixelPerCase),
                     new Point(EntityManager.Instance.Joueur.X / Map.EntityPixelPerCase, EntityManager.Instance.Joueur.Y / Map.EntityPixelPerCase),

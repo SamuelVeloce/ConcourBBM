@@ -12,14 +12,14 @@ using TopDownGridBasedEngine.Projectile;
 
 namespace CompetitionV2.Armes
 {
-    sealed class Shotgun : Weapons
+    class ShotgunAI : Weapons
     {
         public override int NBulletLeft { get; set; }
         public override int NBulletInCharger { get; set; }
 
         private readonly Random m_RNG;
 
-      //  public override string WeaponName { get { return "Shotgun"; } }
+        //public override string WeaponName { get { return "Shotgun"; } }
         private const byte m_BulletSpeed = 15;
         private const int m_ReloadingTime = 700;
         private const int m_SpreadAngle = 30;
@@ -30,21 +30,18 @@ namespace CompetitionV2.Armes
         private bool m_Reloading;
         private readonly System.Timers.Timer m_WeaponTimer;
 
-
-
         public override int ClipSize
         {
             get { return m_ClipSize; }
         }
-
         public override void JouerSonTir()
         {
-            SoundManager.Shotgun.Play((float)0.5,0,0);
+            SoundManager.Shotgun.Play((float)0.5, 0, 0);
         }
 
         public override WeaponType WeaponType => WeaponType.Shotgun;
 
-        public Shotgun(AbsEntity owner):base(owner)
+        public ShotgunAI(AbsEntity owner):base(owner)
         {
             Owner = owner;
             Nom = "Shotgun";
@@ -88,11 +85,12 @@ namespace CompetitionV2.Armes
                 {
                     double Radians = Math.Atan2(Target.Y / EntityManager.Instance.Map.TileWidth * Map.EntityPixelPerCase - Owner.Y, Target.X / EntityManager.Instance.Map.TileWidth * Map.EntityPixelPerCase - Owner.X) + ((m_RNG.NextDouble() * m_SpreadAngle) - m_SpreadAngle / 2.0) * (Math.PI / 180.0);
                     Vector2 MouseDir = new Vector2((float)Math.Cos(Radians), (float)Math.Sin(Radians));
-                    EntityManager.Instance.ProjectilesListFriendly.Add(new ProjectileBullet(
-                        TextureManager.TextureBullet, new Vector2(Owner.X, Owner.Y), new Vector2(8, 8), MouseDir* m_BulletSpeed,
-                        100) {Friendly = true});
+                    EntityManager.Instance.ProjectilesListHostile.Add(new ProjectileBullet(
+                        TextureManager.TextureBullet, new Vector2(Owner.X, Owner.Y), new Vector2(8, 8), MouseDir * 500,
+                        100)
+                    { Friendly = false });
                 }
-                
+
                 JouerSonTir();
             }
             else
@@ -166,5 +164,5 @@ namespace CompetitionV2.Armes
         }
 
     }
-
 }
+
