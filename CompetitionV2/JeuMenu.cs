@@ -32,7 +32,7 @@ namespace TopDownGridBasedEngine
             Game1.Penumbra.AmbientColor = Color.Black;
 
             _hud = new Hud(Game1.Screen);
-            Map = new Map(45, Game1.Screen.ClientBounds, 0);
+            Map = new Map(45, Game1.Screen.ClientBounds);
            // m_Joueur = null;
 
             System.Random r = new System.Random();

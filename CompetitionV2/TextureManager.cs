@@ -213,7 +213,7 @@ namespace TopDownGridBasedEngine
             Cyborg = _content.Load<Texture2D>("Textures/Cyborg");
 
             //Explosion
-            Explosion = _content.Load<Texture2D>("Textures/Explode");
+            Explosion = _content.Load<Texture2D>("Textures/TextureCaseFire1");
 
             //Texte
             Font = _content.Load<SpriteFont>("Font/Font");

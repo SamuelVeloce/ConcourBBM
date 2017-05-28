@@ -81,9 +81,10 @@ namespace TopDownGridBasedEngine
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
-
+            
             _graphics.IsFullScreen = true;
          //   int Dimension = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+
 
 
             int Dimension = 768;//GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height - 100;
