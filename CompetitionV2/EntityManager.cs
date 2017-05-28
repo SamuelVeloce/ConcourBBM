@@ -142,23 +142,26 @@ namespace TopDownGridBasedEngine
                 List<absProjectile> projli = EntityManager.Instance.ProjectilesListFriendly;
                 List<absProjectile> projho = EntityManager.Instance.ProjectilesListHostile;
 
-                for (int i = projli.Count - 1; i >= 0; i--)
+                lock (someLock)
                 {
-                    if (projli[i].Update(gameTime))
+                    for (int i = projli.Count - 1; i >= 0; i--)
                     {
-                        projli.RemoveAt(i);
+                        if (projli[i].Update(gameTime))
+                        {
+                            projli.RemoveAt(i);
+                        }
                     }
-                }
-                for (int i = projho.Count - 1; i >= 0; i--)
-                {
-                    if (projho[i].Update(gameTime))
+                    for (int i = projho.Count - 1; i >= 0; i--)
                     {
-                        projho.RemoveAt(i);
+                        if (projho[i].Update(gameTime))
+                        {
+                            projho.RemoveAt(i);
+                        }
                     }
-                }
-                foreach (Bonus b in this.Bonus)
-                {
-                    b.Tick((long)gameTime.ElapsedGameTime.TotalMilliseconds);
+                    foreach (Bonus b in this.Bonus)
+                    {
+                        b.Tick((long)gameTime.ElapsedGameTime.TotalMilliseconds);
+                    }
                 }
             }
         }
@@ -175,19 +178,21 @@ namespace TopDownGridBasedEngine
             lock (someLock)
             {
                 toDraw = _entities.ToList();
+
+                foreach (absProjectile proj in ProjectilesListFriendly)
+                    proj.Draw(sb, w);
+
+                foreach (absProjectile proj in ProjectilesListHostile)
+                    proj.Draw(sb, w);
+
+                foreach (AbsEntity e in toDraw)
+                    e.Draw(sb, w / 30);
+
+                foreach (Bonus b in Bonus)
+                    b.Draw(sb, w);
             }
 
-            foreach (absProjectile proj in ProjectilesListFriendly)
-                proj.Draw(sb, w);
-
-            foreach (absProjectile proj in ProjectilesListHostile)
-                proj.Draw(sb, w);
-
-            foreach (AbsEntity e in toDraw)
-                e.Draw(sb, w / 30);
-
-            foreach (Bonus b in Bonus)
-                b.Draw(sb, w);
+            
         }
 
         public void DrawPlayers(SpriteBatch sb, Rectangle clientRect)
