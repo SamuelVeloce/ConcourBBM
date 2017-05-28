@@ -112,8 +112,8 @@ namespace TopDownGridBasedEngine
             else
                 m_ListPath.Clear();
 
-            foreach (Case ca in m_ListPath)
-                ca.Wrapped.color = Color.HotPink;
+            /*foreach (Case ca in m_ListPath)
+                ca.Wrapped.color = Color.HotPink;*/
         }
 
         private Case FindLowestFCost()
