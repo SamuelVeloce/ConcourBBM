@@ -52,6 +52,7 @@ namespace TopDownGridBasedEngine.Projectile
                     }
                     if (i >= 0)
                     {
+                        EntityManager.Instance.Entities[i].FireDied(this, new CancellableEventArgs(false));
                         EntityManager.Instance.Entities.RemoveAt(i);
                         return true;
                     }
