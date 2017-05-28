@@ -24,6 +24,7 @@ namespace TopDownGridBasedEngine
             DistanceFromPlayer = 0;
             this.Died += KamikazeRobot_Died;
             timer = new Timer();
+            timer.AutoReset = false;
             timer.Interval = 500;
             timer.Elapsed += Timer_Elapsed;
             exploding = false;

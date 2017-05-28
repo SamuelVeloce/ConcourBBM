@@ -7,6 +7,8 @@ using Penumbra;
 using System.Collections.Generic;
 using System.Timers;
 
+using CompetitionV2;
+
 namespace TopDownGridBasedEngine
 {
     /*
@@ -46,7 +48,7 @@ namespace TopDownGridBasedEngine
         
         public event EventHandler TimerFinished;
 
-        public Map(int size, Rectangle clientRect, int Difficulty)
+        public Map(int size, Rectangle clientRect)
         {
 
             _noCase = size + (size % 2 - 1);
@@ -54,7 +56,7 @@ namespace TopDownGridBasedEngine
             _random = new Random();
             Walls = new List<AbsCase>();
             _MobsSpawned = 0;
-            Difficulty = 7;
+            Difficulty = ProgressManager.LvlDebloque;
 
             TileWidth = Math.Min((float)clientRect.Width / NoCase, (float)clientRect.Height / NoCase);
 
