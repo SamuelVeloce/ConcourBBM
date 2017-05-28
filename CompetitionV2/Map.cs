@@ -181,9 +181,8 @@ namespace TopDownGridBasedEngine
         public void T_Elapsed(object sender, ElapsedEventArgs e)
         {
             int SpawnerNumber = 0;
-            /*foreach (MobEntry me in Waves[Difficulty])
+            foreach (MobEntry me in Waves[Difficulty])
             {
-                AbsEntity ent = null;
 
                 for (int i = 0; i < me.PerWave; i++)
                 {
@@ -225,7 +224,6 @@ namespace TopDownGridBasedEngine
                                 _Spawner[SpawnerNumber].Y * Map.EntityPixelPerCase, this));
                             break;
                         default:
-                            ent = null;
                             break;
                     }
                     SpawnerNumber++;
@@ -234,7 +232,7 @@ namespace TopDownGridBasedEngine
                 }
                
             }
-            */
+            
             ((Timer)sender).Interval -= 200;
             if (_MobsSpawned >= 100)
                 ((Timer)sender).Stop();
