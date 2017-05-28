@@ -73,7 +73,7 @@ namespace TopDownGridBasedEngine
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
-            //_graphics.IsFullScreen = true;
+            _graphics.IsFullScreen = true;
             Content.RootDirectory = "Content";
             IndexPartieDeJeu = 0;
             Instance = this;

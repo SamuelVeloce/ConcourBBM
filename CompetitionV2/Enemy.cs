@@ -67,6 +67,9 @@ namespace TopDownGridBasedEngine
                 Bonus b = new Bonus(this.X, this.Y, this.Map, this.Arme.WeaponType);
                 EntityManager.Instance.Bonus.Add(b);
             }
+
+            //Make a sound
+            SoundManager.ImpactRobot.Play();
         }
 
         public override void Tick(long deltaTime)
