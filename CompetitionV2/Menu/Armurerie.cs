@@ -32,6 +32,8 @@ namespace CompetitionV2.Menu
                     Game1.SetPartieDeJeu, (int) WeaponType.Shotgun),
                 new ArmurerieButton("Sniper!", TextureManager.TextureTerre[0], new Rectangle(200, 340, 300, 100),
                     Game1.SetPartieDeJeu, (int) WeaponType.SemiAutoSniper),
+                new ArmurerieButton("Bolt action!", TextureManager.TextureTerre[0], new Rectangle(350, 10, 300, 100),
+                    Game1.SetPartieDeJeu, (int) WeaponType.BoltAction),
 
 
 

@@ -17,6 +17,7 @@ namespace Competition.Armes
         AssaultRifle = 1,
         Shotgun = 2,
         SemiAutoSniper = 3,
+        BoltAction = 4,
 
     };
 

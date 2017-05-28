@@ -56,7 +56,7 @@ namespace TopDownGridBasedEngine
             _random = new Random();
             Walls = new List<AbsCase>();
             _MobsSpawned = 0;
-            Difficulty = ProgressManager.LvlDebloque;
+            Difficulty = Math.Min(7,ProgressManager.LvlDebloque+10);
 
             TileWidth = Math.Min((float)clientRect.Width / NoCase, (float)clientRect.Height / NoCase);
 
