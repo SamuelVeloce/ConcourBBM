@@ -22,8 +22,8 @@ namespace TopDownGridBasedEngine
             Map = m;
             IsSolid = solid;
             IsBreakable = breakable;
-            LetsFireThrough = letsFireThrough;
-            //color = Color.White;
+            //LetsFireThrough = letsFireThrough;
+            color = Color.White;
 
             if (solid)
             {
@@ -35,7 +35,7 @@ namespace TopDownGridBasedEngine
             Hitbox = new Rectangle(new Point(x * Map.EntityPixelPerCase, y * Map.EntityPixelPerCase), new Point(Map.EntityPixelPerCase, Map.EntityPixelPerCase));
         }
 
-        //public Color color { get; set; }
+        public Color color { get; set; }
 
         /// <summary>
         /// Utile pour les raycasts. Déterminé selon Map.EntityPixelPerCase
@@ -72,19 +72,19 @@ namespace TopDownGridBasedEngine
         /// </summary>
         public bool IsBreaking
         {
-            get { return Fire != null; }
+            get { /*return Fire != null;*/ return false; }
             set { throw new System.NotImplementedException(); }
         }
 
         /// <summary>
         /// Référence vers le feu contenu dans cette case, ou null
         /// </summary>
-        public Fire Fire { get; set; }
+        //public Fire Fire { get; set; }
 
         /// <summary>
         /// Indique si le feu peut traverser librement cette case
         /// </summary>
-        public bool LetsFireThrough { get; set; }
+        //public bool LetsFireThrough { get; set; }
 
         /// <summary>
         /// Indique si le joueur peut traverser librement cette case
@@ -97,7 +97,7 @@ namespace TopDownGridBasedEngine
 
         public virtual void Draw(SpriteBatch sb, float width)
         {
-            sb.Draw(Texture, new Rectangle((int)(X * width), (int)(Y * width), (int)width + 1, (int)width + 1), Color.White);
+            sb.Draw(Texture, new Rectangle((int)(X * width), (int)(Y * width), (int)width + 1, (int)width + 1), color);
         }
 
         public override string ToString()

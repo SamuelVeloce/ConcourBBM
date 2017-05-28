@@ -121,9 +121,9 @@ namespace TopDownGridBasedEngine
 
             for (i = 0; i < n; i++)
             {
-                xm = x + (int)velx;
-                ym = y + (int)vely;
-                float dxm, dym, dx, dy;
+                //xm = x + (int)velx;
+                //ym = y + (int)vely;
+                //float dxm, dym, dx, dy;
 
                 Vector2 TopLeftEntity = new Vector2(x, y);
                 Vector2 BottomRightEntity = new Vector2(x + Size, y + Size);

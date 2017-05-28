@@ -73,7 +73,7 @@ namespace Competition.Armes
                 NBulletInCharger--;
                 double Radians = Math.Atan2(Target.Y - Owner.Y, Target.X - Owner.X) + ((m_RNG.NextDouble() * m_SpreadAngle) - m_SpreadAngle / 2.0) * (Math.PI / 180.0);
                 Vector2 MouseDir = new Vector2((float)Math.Cos(Radians), (float)Math.Sin(Radians));
-                EntityManager.Instance.ProjectilesListFriendly.Add(new ProjectileBullet(TextureManager.TextureBullet, new Vector2(Owner.X, Owner.Y), new Vector2(8, 8), MouseDir * m_BulletSpeed, 10) { Friendly = true });
+                EntityManager.Instance.ProjectilesListFriendly.Add(new ProjectileBullet(TextureManager.TextureBullet, new Vector2(Owner.X, Owner.Y), new Vector2(8, 8), MouseDir * m_BulletSpeed, 30) { Friendly = true });
                 JouerSonTir();
             }
 

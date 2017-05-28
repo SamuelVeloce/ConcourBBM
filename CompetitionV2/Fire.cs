@@ -6,7 +6,7 @@ using Penumbra;
 
 namespace TopDownGridBasedEngine
 {
-    public class Fire : AbsEntity, ITexturable
+    /*public class Fire : AbsEntity, ITexturable
     {
         int _textureVariant;
         int _lifeTime;
@@ -73,5 +73,5 @@ namespace TopDownGridBasedEngine
             EntityManager.Instance.Remove(this);
         }
 
-    }
+    }*/
 }

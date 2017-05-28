@@ -28,14 +28,14 @@ namespace TopDownGridBasedEngine
             set { _Hp = value; }
         }
 
-        public int MaxHealth = 100;
+        public int MaxHealth = 400;
 
-        public event OnDropBombHandler DroppedBomb;
-        public event OnBombExplodeHandler BombExploded;
-        public event OnGenericBlockEventHandler BombPlacedBonus;
-        public event OnGenericMultiblockEventHandler BombBrokeBlocks;
+        //public event OnDropBombHandler DroppedBomb;
+        //public event OnBombExplodeHandler BombExploded;
+        //public event OnGenericBlockEventHandler BombPlacedBonus;
+        //public event OnGenericMultiblockEventHandler BombBrokeBlocks;
 
-        protected void FireBombBrokeBlocks(object sender, MultiCaseEventArgs e)
+        /*protected void FireBombBrokeBlocks(object sender, MultiCaseEventArgs e)
         {
             BombBrokeBlocks?.Invoke(sender, e);
         }
@@ -46,14 +46,14 @@ namespace TopDownGridBasedEngine
         public void FireDroppedBomb(object sender, CaseEventArgs e)
         {
             DroppedBomb?.Invoke(sender, e);
-        }
+        }*/
 
         public Joueur(int x, int y, Map m) : base(x, y, m)
         {
             Size = 25;
             _textureVariant = 0;
 
-            BombsLeft = 1;
+            //BombsLeft = 1;
             
             m_WeaponList = new Weapons[] { new Pistol(this), new AssaultRifle(this), new Shotgun(this) };
             
@@ -115,18 +115,18 @@ namespace TopDownGridBasedEngine
 
         private void Joueur_ChangedCase(object sender, MultiCaseEventArgs e)
         {
-            foreach (AbsCase c in e.Cases)
+            /*foreach (AbsCase c in e.Cases)
             {
                 if (c.IsBreaking)
                 {
                     FireDied(this, new CancellableEventArgs(false));
                 }
-            }
+            }*/
         }
 
-        public Bomb Bomb { get; set; }
+        //public Bomb Bomb { get; set; }
 
-        public int BombsLeft { get; set; }
+        //public int BombsLeft { get; set; }
 
         public override EntityType Type { get; } = EntityType.Joueur;
 
@@ -178,13 +178,13 @@ namespace TopDownGridBasedEngine
                 VelX += (1.1f - VelX) / 15;
             if ((wrapper.State & KeyState.Space) > 0)
             {
-                DropBomb(X / 30, Y / 30);
+                //DropBomb(X / 30, Y / 30);
             }
             //Lights[0].Rotation = (float)Math.Atan2(Mouse.GetState().Position.Y - Y * Map.TileWidth / Map.EntityPixelPerCase,
             //    Mouse.GetState().Position.X - X * Map.TileWidth / Map.EntityPixelPerCase);
         }
 
-        public bool DropBomb(int x, int y)
+        /*public bool DropBomb(int x, int y)
         {
             if (x < 0 || y < 0 || x >= Map.NoCase || y >= Map.NoCase)
                 return false;
@@ -202,12 +202,12 @@ namespace TopDownGridBasedEngine
             cv.Bomb.PlaceBonus += FireBombPlacedBonus;
             cv.Bomb.BreakBlocks += FireBombBrokeBlocks;
             return true;
-        }
+        }*/
 
-        private void Bomb_Exploded(object sender, CaseEventArgs e)
+        /*private void Bomb_Exploded(object sender, CaseEventArgs e)
         {
             BombExploded?.Invoke(sender, e);
-        }
+        }*/
 
         public override void Draw(SpriteBatch sb, float w)
         {

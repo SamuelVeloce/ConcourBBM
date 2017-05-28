@@ -17,6 +17,8 @@ namespace TopDownGridBasedEngine
         Case m_Begin;
         Case m_End;
 
+        int m_Distance;
+
         List<Case> m_ListPath;
 
         List<Case> m_ListToCheck;
@@ -25,13 +27,14 @@ namespace TopDownGridBasedEngine
 
         object Lock;
 
-        public Path(Point Begin, Point End, Map m)
+        public Path(Point Begin, Point End, Map m, int Distance)
         {
             m_Grille = new Grille(m, Begin, End);
             m_Begin = m_Grille.BeginPoint;
             m_End = m_Grille.EndPoint;
             m_ListPath = new List<Case>();
             m_ListToCheck = new List<Case>();
+            m_Distance = Distance;
             Lock = new object();
             Trace();
             
@@ -95,13 +98,13 @@ namespace TopDownGridBasedEngine
                     c = c.ParentCase;
                 }
             }
-            if (m_ListPath.Count > 7)
-                m_ListPath.RemoveRange(0, 7);
+            if (m_ListPath.Count > m_Distance)
+                m_ListPath.RemoveRange(0, m_Distance);
             else
                 m_ListPath.Clear();
 
-            //foreach (Case ca in m_ListPath)
-                //ca.Wrapped.color = Color.HotPink;
+            foreach (Case ca in m_ListPath)
+                ca.Wrapped.color = Color.HotPink;
         }
 
         private Case FindLowestFCost()
